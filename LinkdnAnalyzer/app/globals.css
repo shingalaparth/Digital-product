@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-bg text-body antialiased;
+  font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+a {
+  @apply transition-colors duration-200;
+}
+
+.section-shell {
+  @apply mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply rounded-2xl border border-border bg-card;
+}
+
+.bg-hero-gradient {
+  background: #FFFFFF;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes subtle-float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--base-rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-5px) rotate(var(--base-rotate, 0deg));
+  }
+}
+
+.animate-subtle-float {
+  animation: subtle-float 3.2s ease-in-out infinite;
+}
+
+.animate-subtle-float-slow {
+  animation: subtle-float 4.8s ease-in-out infinite;
+}
+
+.animate-subtle-float-slower {
+  animation: subtle-float 6.4s ease-in-out infinite;
+}
+
