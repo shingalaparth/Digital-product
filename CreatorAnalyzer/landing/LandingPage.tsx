@@ -31,9 +31,11 @@ function classNames(...values: Array<string | false | null | undefined>): string
 
 export function LandingPage({ currentYear }: LandingPageProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [billingCycle, setBillingCycle] = useState<BillingCycle>("annual");
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const lastScrollY = useRef(0);
   const [heroPhraseIndex, setHeroPhraseIndex] = useState(0);
   const [heroTypedText, setHeroTypedText] = useState("");
   const [heroIsDeleting, setHeroIsDeleting] = useState(false);
@@ -58,15 +60,24 @@ export function LandingPage({ currentYear }: LandingPageProps) {
 
   useEffect(() => {
     const onScroll = (): void => {
-      setIsScrolled(window.scrollY > 60);
+      const currentScrollY = window.scrollY;
+
+      setIsScrolled(currentScrollY > 50);
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY <= 0) {
+        setIsNavVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        setIsNavVisible(false);
+      } else {
+        setIsNavVisible(true);
+      }
+      
+      lastScrollY.current = currentScrollY;
     };
 
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -225,48 +236,63 @@ export function LandingPage({ currentYear }: LandingPageProps) {
 
       <section
         data-testid="section-1"
-        className="fixed inset-x-0 top-0 z-50"
+        className={classNames(
+          "fixed inset-x-0 top-0 z-50 transition-transform duration-300 ease-in-out",
+          isNavVisible ? "translate-y-0" : "-translate-y-full"
+        )}
         aria-label="Primary Navigation Wrapper"
       >
         <nav
           aria-label="Primary"
-          data-scrolled={isScrolled ? "true" : "false"}
           className={classNames(
             "border-b transition-colors duration-300",
-            isScrolled ? "border-border bg-card/95 backdrop-blur" : "border-transparent bg-transparent",
+            isScrolled ? "bg-black/50 backdrop-blur-md border-white/5" : "bg-transparent border-transparent"
           )}
         >
-          <div className="flex h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-10">
-            <a href="#" className="text-xl font-bold tracking-tight text-headline">
-              Reel<span className="text-primary">DNA</span>
-            </a>
-
-            <div className="hidden flex-1 items-center justify-center gap-8 md:flex">
-              {landingContent.nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm font-medium text-body hover:text-primary"
-                >
-                  {item.label}
-                </a>
-              ))}
+          <div className="flex h-20 w-full items-center justify-between px-6 lg:px-12">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded bg-white text-black font-bold">R</div>
+              <a href="#" className="text-xl font-bold tracking-tight text-white">
+                ReelDNA
+              </a>
             </div>
 
-            <div className="hidden items-center gap-4 md:flex">
-              <button
-                type="button"
-                onClick={() => focusHeroSearch("navbar")}
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-bg transition hover:bg-primary-dark"
-              >
-                Start Free <ArrowRight className="h-4 w-4" aria-hidden />
-              </button>
+            <div className="hidden items-center gap-10 md:flex">
+              <div className="flex items-center gap-8">
+                {landingContent.nav.map((item, index) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="group flex items-center gap-1 text-[13px] font-medium text-white/70 transition-colors hover:text-white"
+                  >
+                    {item.label}
+                    {index === 0 && <ChevronDown className="h-3.5 w-3.5 opacity-50 transition-transform group-hover:translate-y-0.5" />}
+                  </a>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-4">
+                <button
+                  type="button"
+                  onClick={() => focusHeroSearch("navbar_login")}
+                  className="rounded-lg border border-primary/30 px-4 py-1.5 text-[13px] font-semibold text-white transition hover:bg-primary/10"
+                >
+                  Log in
+                </button>
+                <button
+                  type="button"
+                  onClick={() => focusHeroSearch("navbar_demo")}
+                  className="rounded-md bg-white px-5 py-1.5 text-[13px] font-bold text-black transition hover:bg-white/90"
+                >
+                  Get Demo
+                </button>
+              </div>
             </div>
 
             <button
               type="button"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-surface text-headline md:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-white md:hidden"
               onClick={() => setIsMenuOpen((current) => !current)}
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -282,40 +308,69 @@ export function LandingPage({ currentYear }: LandingPageProps) {
           )}
           aria-hidden={!isMenuOpen}
         >
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-6">
             {landingContent.nav.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-base font-medium text-body hover:text-primary"
+                className="text-lg font-medium text-white/80 hover:text-white"
               >
                 {item.label}
               </a>
             ))}
-            <button
-              type="button"
-              onClick={() => focusHeroSearch("mobile_menu")}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-bg"
-            >
-              Start Free <ArrowRight className="h-4 w-4" aria-hidden />
-            </button>
+            <div className="mt-4 flex flex-col gap-4">
+              <button
+                type="button"
+                onClick={() => focusHeroSearch("mobile_login")}
+                className="w-full rounded-lg border border-primary/30 py-3 text-sm font-semibold text-white transition hover:bg-primary/10"
+              >
+                Log in
+              </button>
+              <button
+                type="button"
+                onClick={() => focusHeroSearch("mobile_demo")}
+                className="w-full rounded-md bg-white py-3 text-sm font-bold text-black"
+              >
+                Get Demo
+              </button>
+            </div>
           </div>
         </div>
       </section>
       <section data-testid="section-2" className="relative overflow-hidden pt-20 pb-10 sm:pt-24 sm:pb-12">
         <div className="bg-hero-gradient absolute inset-0" />
+
+        {/* Premium Floating Background Elements - Left (Mirrored Hierarchy) */}
+        {/* Top-Left Medium Element */}
         <div
-          className="absolute -left-24 top-28 h-60 w-60 animate-subtle-float rounded-3xl border border-primary/25 bg-primary/10 rotate-12"
-          style={{ "--base-rotate": "12deg" } as React.CSSProperties}
+          className="absolute -left-4 top-20 h-56 w-56 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-40 pointer-events-none rotate-[12deg] blur-[1px]"
+          style={{ "--base-rotate": "10deg", backgroundImage: 'url("/8.png")' } as React.CSSProperties}
         />
+        {/* Bottom-Left Large Foreground Element */}
         <div
-          className="absolute right-8 top-24 h-48 w-48 animate-subtle-float-slow rounded-3xl border border-primary/20 bg-primary/10 -rotate-12"
-          style={{ "--base-rotate": "-12deg" } as React.CSSProperties}
+          className="absolute left-4 bottom-20 h-60 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-40 pointer-events-none -rotate-[10deg] drop-shadow-[0_0_45px_rgba(34,197,94,0.35)]"
+          style={{ "--base-rotate": "4deg", backgroundImage: 'url("/1.png")' } as React.CSSProperties}
         />
+        {/* Mid-Left Small Depth Element */}
         <div
-          className="absolute bottom-16 right-20 h-56 w-56 animate-subtle-float-slower rounded-3xl border border-primary/15 bg-primary/10 rotate-12"
-          style={{ "--base-rotate": "12deg" } as React.CSSProperties}
+          className="absolute left-[10%] top-[35%] h-36 w-36 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[-20deg] blur-[3.5px]"
+          style={{ "--base-rotate": "-2deg", backgroundImage: 'url("/7.png")' } as React.CSSProperties}
+        />
+        {/* Medium Back Element - Right (Unchanged as requested) */}
+        <div
+          className="absolute right-0 top-16 h-56 w-56 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-50 pointer-events-none -rotate-[15deg] blur-[2px]"
+          style={{ "--base-rotate": "-5deg", backgroundImage: 'url("/2.png")' } as React.CSSProperties}
+        />
+        {/* Very Close Element - Right (Unchanged as requested) */}
+        <div
+          className="absolute bottom-4 right-4 h-80 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-50 pointer-events-none rotate-[8deg] drop-shadow-[0_0_45px_rgba(34,197,94,0.35)]"
+          style={{ "--base-rotate": "20deg", backgroundImage: 'url("/4.png")' } as React.CSSProperties}
+        />
+        {/* Mid-far Element - Right (Unchanged as requested) */}
+        <div
+          className="absolute top-[40%] right-[12%] h-36 w-36 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[20deg] blur-[3px]"
+          style={{ "--base-rotate": "20deg", backgroundImage: 'url("/5.png")' } as React.CSSProperties}
         />
 
         <div className="section-shell relative z-10 flex min-h-[calc(100svh-5rem)] flex-col items-center justify-center pt-3 text-center sm:pt-5">
@@ -528,11 +583,12 @@ export function LandingPage({ currentYear }: LandingPageProps) {
                   </ul>
                 </div>
 
-                <div className="relative aspect-video overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-card shadow-inner">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(34,197,94,0.15),transparent)]" />
-                  <div className="flex h-full items-center justify-center">
-                    <div className="h-px w-1/2 bg-gradient-to-r from-transparent via-border to-transparent" />
-                  </div>
+                <div className="relative aspect-video overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-card shadow-inner group-hover:border-primary/30 transition-colors">
+                  <div
+                    className="absolute inset-x-4 inset-y-4 bg-cover bg-center rounded-xl opacity-80 group-hover:opacity-100 transition-opacity border border-border/50 shadow-2xl"
+                    style={{ backgroundImage: `url("/${[5, 2, 8, 7][index]}.png")` }}
+                  />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(34,197,94,0.1),transparent)]" />
                 </div>
               </article>
             );
@@ -542,13 +598,22 @@ export function LandingPage({ currentYear }: LandingPageProps) {
 
       <section id="compare" data-testid="section-7" className="relative overflow-hidden border-y border-hot/30 py-24 sm:py-32">
         <div className="bg-hero-gradient absolute inset-0" />
+
+        {/* Premium Floating Background Elements - Depth of Field Effect */}
+        {/* Close/Large Element - Right */}
         <div
-          className="absolute -right-24 top-28 h-60 w-60 animate-subtle-float rounded-3xl border border-primary/25 bg-primary/10 rotate-12"
-          style={{ "--base-rotate": "12deg" } as React.CSSProperties}
+          className="absolute -right-16 top-10 h-80 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[10deg] drop-shadow-[0_0_35px_rgba(34,197,94,0.3)]"
+          style={{ "--base-rotate": "-10deg", backgroundImage: 'url("/6.png")' } as React.CSSProperties}
         />
+        {/* Medium Back Element - slight blur */}
         <div
-          className="absolute left-8 top-24 h-48 w-48 animate-subtle-float-slow rounded-3xl border border-primary/20 bg-primary/10 -rotate-12"
-          style={{ "--base-rotate": "-12deg" } as React.CSSProperties}
+          className="absolute left-4 top-24 h-64 w-64 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[15deg] blur-[2px]"
+          style={{ "--base-rotate": "15deg", backgroundImage: 'url("/7.png")' } as React.CSSProperties}
+        />
+        {/* Far Back Element - Center Bottom, high blur */}
+        <div
+          className="absolute bottom-10 left-[45%] h-40 w-40 animate-subtle-float-slower bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[5deg] blur-[4px]"
+          style={{ "--base-rotate": "-5deg", backgroundImage: 'url("/8.png")' } as React.CSSProperties}
         />
 
         <div className="section-shell relative z-10">
@@ -751,12 +816,27 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
-      <section ref={waitlistRef} data-testid="section-12" className="relative overflow-hidden py-24 sm:py-32">
-        <div className="bg-hero-gradient absolute inset-0 opacity-80" />
+      <section
+        ref={waitlistRef}
+        data-testid="section-12"
+        className="relative overflow-hidden py-24 sm:py-32"
+      >
+        {/* Background Image for Footer 'Tab' Contrast */}
         <div
-          className="absolute -left-20 -top-20 h-64 w-64 animate-subtle-float-slow rounded-3xl border border-primary/10 bg-primary/5 rotate-[30deg]"
-          style={{ "--base-rotate": "30deg" } as React.CSSProperties}
+          className="absolute inset-0 bg-cover bg-bottom opacity-20 pointer-events-none"
+          style={{ backgroundImage: 'url("/bg.png")' }}
         />
+
+        {/* Premium Floating Background Elements - Bottom Section */}
+        <div
+          className="absolute -left-16 top-10 h-72 w-72 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[15deg] blur-[2px]"
+          style={{ "--base-rotate": "15deg", backgroundImage: 'url("/1.png")' } as React.CSSProperties}
+        />
+        <div
+          className="absolute -right-20 bottom-10 h-80 w-80 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[12deg] blur-[3px]"
+          style={{ "--base-rotate": "-12deg", backgroundImage: 'url("/4.png")' } as React.CSSProperties}
+        />
+
         <div className="section-shell relative z-10">
           <div className="rounded-3xl border border-primary/30 bg-card p-8 shadow-glow sm:p-10">
             <h2
@@ -772,7 +852,7 @@ export function LandingPage({ currentYear }: LandingPageProps) {
               <button
                 type="button"
                 onClick={() => scrollToWaitlist("final_cta")}
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-base font-semibold text-bg transition hover:bg-primary-dark"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-base font-semibold text-white transition hover:bg-primary-dark"
               >
                 {landingContent.finalCta.cta} <ArrowRight className="h-4 w-4" aria-hidden />
               </button>
@@ -784,8 +864,8 @@ export function LandingPage({ currentYear }: LandingPageProps) {
               <h3 className="text-lg font-semibold text-headline">Waitlist</h3>
               {tallyUrl ? (
                 <iframe
-                  title="ReelDNA Waitlist Form"
-                  src={tallyUrl}
+                  title="Waitlist Form"
+                  src={tallyUrl || undefined}
                   className="mt-4 min-h-[420px] w-full rounded-xl border border-border bg-card"
                   loading="lazy"
                 />
@@ -806,7 +886,7 @@ export function LandingPage({ currentYear }: LandingPageProps) {
                   />
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-bg"
+                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white"
                   >
                     Join Waitlist <ArrowRight className="h-4 w-4" aria-hidden />
                   </button>
@@ -818,13 +898,70 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
-      <footer className="border-t border-border py-8">
-        <div className="section-shell flex flex-col gap-3 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>Copyright {currentYear} ReelDNA. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-primary">Privacy</a>
-            <a href="#" className="hover:text-primary">Terms</a>
-            <a href="mailto:hello@reeldna.com" className="hover:text-primary">Contact</a>
+      {/* Branded Dark Footer with Inverted Corners */}
+      <footer className="relative bg-[#111827] pt-24 pb-12 text-white">
+        {/* Inverted Corner Overlays (matching Section Above Background) */}
+        <div className="absolute top-0 left-0 w-full h-12 flex justify-between pointer-events-none">
+          {/* Left Inverted Corner */}
+          <div
+            className="w-12 h-12"
+            style={{ backgroundImage: 'radial-gradient(circle at 0 100%, transparent 48px, #111827 48px)' }}
+          />
+          {/* Right Inverted Corner */}
+          <div
+            className="w-12 h-12"
+            style={{ backgroundImage: 'radial-gradient(circle at 100% 100%, transparent 48px, #111827 48px)' }}
+          />
+        </div>
+
+        <div className="section-shell">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 items-start">
+
+            {/* Brand Logo & Info */}
+            <div className="lg:col-span-2">
+              <a href="#" className="flex items-center gap-2 text-2xl font-bold tracking-tight text-white mb-6">
+                <span>Creator<span className="text-primary">Analyzer</span></span>
+              </a>
+              <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
+                Unlock the DNA of viral content with AI-powered insights. Build your Instagram audience faster than ever.
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-widest text-gray-500 mb-6">Menu</h4>
+              <ul className="space-y-4 text-sm font-medium text-gray-300">
+                <li><a href="#features" className="hover:text-primary transition-colors">Features</a></li>
+                <li><a href="#how-it-works" className="hover:text-primary transition-colors">How it Works</a></li>
+                <li><a href="#compare" className="hover:text-primary transition-colors">Compare</a></li>
+                <li><a href="#pricing" className="hover:text-primary transition-colors">Pricing</a></li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-widest text-gray-500 mb-6">Company</h4>
+              <ul className="space-y-4 text-sm font-medium text-gray-300">
+                <li><a href="#" className="hover:text-primary transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Security</a></li>
+              </ul>
+            </div>
+
+            {/* Social */}
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-widest text-gray-500 mb-6">Social</h4>
+              <ul className="space-y-4 text-sm font-medium text-gray-300">
+                <li><a href="#" className="hover:text-primary transition-colors">Instagram</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">Twitter</a></li>
+                <li><a href="mailto:hello@creatoranalyzer.com" className="hover:text-primary transition-colors">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-medium">
+            <p>© {currentYear} CreatorAnalyzer. Built with AI for modern creators.</p>
           </div>
         </div>
       </footer>
