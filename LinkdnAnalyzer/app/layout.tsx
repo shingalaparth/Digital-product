@@ -35,12 +35,12 @@ export default function RootLayout({
       <body className="font-sans min-h-screen bg-bg overflow-y-scroll overflow-x-hidden" suppressHydrationWarning>
 
         {/* Stationary OS Bezel Mask */}
-        <div className="fixed inset-0 z-[200] pointer-events-none p-2 sm:p-4 lg:p-6" aria-hidden>
-          <div className="w-full h-full rounded-[16px] sm:rounded-[24px] shadow-[0_0_0_100vw_#FFFFFF] border border-[#E5E7EB]" />
+        <div className="fixed inset-0 z-[200] hidden pointer-events-none p-6 lg:block" aria-hidden>
+          <div className="h-full w-full rounded-[24px] border border-[#E5E7EB] shadow-[0_0_0_100vw_#FFFFFF]" />
         </div>
 
         {/* Scrollable Container (Body level means outer scrollbar) */}
-        <div className="relative mx-auto w-full max-w-[1800px] min-h-screen px-0 sm:px-2 lg:px-4 pt-2 sm:pt-4 lg:pt-6 pb-2 sm:pb-4 lg:pb-6">
+        <div className="relative mx-auto min-h-screen w-full max-w-[1800px] lg:px-4 lg:pb-6 lg:pt-6">
           <AnalyticsScripts />
           {children}
         </div>
@@ -49,4 +49,3 @@ export default function RootLayout({
     </html>
   );
 }
-

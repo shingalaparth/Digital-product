@@ -11,6 +11,10 @@ body {
   font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
+body.drawer-open {
+  overflow: hidden;
+}
+
 a {
   @apply transition-colors duration-200;
 }
@@ -59,4 +63,3 @@ a {
 .animate-subtle-float-slower {
   animation: subtle-float 6.4s ease-in-out infinite;
 }
-

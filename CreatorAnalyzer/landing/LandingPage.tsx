@@ -58,6 +58,16 @@ export function LandingPage({ currentYear }: LandingPageProps) {
   const waitlistRef = useRef<HTMLElement | null>(null);
   const waitlistFocusRef = useRef<HTMLHeadingElement | null>(null);
 
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("drawer-open");
+    } else {
+      document.body.classList.remove("drawer-open");
+    }
+    return () => document.body.classList.remove("drawer-open");
+  }, [isMenuOpen]);
+
   useEffect(() => {
     const onScroll = (): void => {
       const currentScrollY = window.scrollY;
@@ -249,7 +259,7 @@ export function LandingPage({ currentYear }: LandingPageProps) {
             isScrolled ? "bg-black/50 backdrop-blur-md border-white/5" : "bg-transparent border-transparent"
           )}
         >
-          <div className="flex h-20 w-full items-center justify-between px-6 lg:px-12">
+          <div className="flex h-14 w-full items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-12">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded bg-white text-black font-bold">R</div>
               <a href="#" className="text-xl font-bold tracking-tight text-white">
@@ -300,10 +310,19 @@ export function LandingPage({ currentYear }: LandingPageProps) {
           </div>
         </nav>
 
+        {/* Mobile drawer backdrop */}
+        {isMenuOpen && (
+          <div
+            className="drawer-backdrop md:hidden"
+            onClick={() => setIsMenuOpen(false)}
+            aria-hidden
+          />
+        )}
+
         <div
           data-testid="mobile-drawer"
           className={classNames(
-            "fixed right-0 top-20 z-40 h-[calc(100vh-5rem)] w-72 border-l border-border bg-card p-6 transition-transform duration-300 md:hidden",
+            "fixed right-0 top-14 z-40 h-[calc(100vh-3.5rem)] w-[min(20rem,calc(100vw-1rem))] border-l border-border bg-card/95 p-5 backdrop-blur-lg transition-transform duration-300 sm:top-20 sm:h-[calc(100vh-5rem)] sm:p-6 md:hidden",
             isMenuOpen ? "translate-x-0" : "translate-x-full",
           )}
           aria-hidden={!isMenuOpen}
@@ -338,49 +357,43 @@ export function LandingPage({ currentYear }: LandingPageProps) {
           </div>
         </div>
       </section>
-      <section data-testid="section-2" className="relative overflow-hidden pt-20 pb-10 sm:pt-24 sm:pb-12">
+      <section data-testid="section-2" className="relative overflow-hidden pt-16 pb-8 sm:pt-24 sm:pb-12">
         <div className="bg-hero-gradient absolute inset-0" />
 
-        {/* Premium Floating Background Elements - Left (Mirrored Hierarchy) */}
-        {/* Top-Left Medium Element */}
+        {/* Premium Floating Background Elements — hidden on mobile for perf */}
         <div
-          className="absolute -left-4 top-20 h-56 w-56 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-40 pointer-events-none rotate-[12deg] blur-[1px]"
+          className="absolute -left-4 top-20 hidden h-56 w-56 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-40 pointer-events-none rotate-[12deg] blur-[1px] sm:block"
           style={{ "--base-rotate": "10deg", backgroundImage: 'url("/8.png")' } as React.CSSProperties}
         />
-        {/* Bottom-Left Large Foreground Element */}
         <div
-          className="absolute left-4 bottom-20 h-60 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-40 pointer-events-none -rotate-[10deg] drop-shadow-[0_0_45px_rgba(34,197,94,0.35)]"
+          className="absolute left-4 bottom-20 hidden h-60 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-40 pointer-events-none -rotate-[10deg] drop-shadow-[0_0_45px_rgba(34,197,94,0.35)] sm:block"
           style={{ "--base-rotate": "4deg", backgroundImage: 'url("/1.png")' } as React.CSSProperties}
         />
-        {/* Mid-Left Small Depth Element */}
         <div
-          className="absolute left-[10%] top-[35%] h-36 w-36 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[-20deg] blur-[3.5px]"
+          className="absolute left-[10%] top-[35%] hidden h-36 w-36 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[-20deg] blur-[3.5px] md:block"
           style={{ "--base-rotate": "-2deg", backgroundImage: 'url("/7.png")' } as React.CSSProperties}
         />
-        {/* Medium Back Element - Right (Unchanged as requested) */}
         <div
-          className="absolute right-0 top-16 h-56 w-56 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-50 pointer-events-none -rotate-[15deg] blur-[2px]"
+          className="absolute right-0 top-16 hidden h-56 w-56 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-50 pointer-events-none -rotate-[15deg] blur-[2px] sm:block"
           style={{ "--base-rotate": "-5deg", backgroundImage: 'url("/2.png")' } as React.CSSProperties}
         />
-        {/* Very Close Element - Right (Unchanged as requested) */}
         <div
-          className="absolute bottom-4 right-4 h-80 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-50 pointer-events-none rotate-[8deg] drop-shadow-[0_0_45px_rgba(34,197,94,0.35)]"
+          className="absolute bottom-4 right-4 hidden h-80 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-50 pointer-events-none rotate-[8deg] drop-shadow-[0_0_45px_rgba(34,197,94,0.35)] sm:block"
           style={{ "--base-rotate": "20deg", backgroundImage: 'url("/4.png")' } as React.CSSProperties}
         />
-        {/* Mid-far Element - Right (Unchanged as requested) */}
         <div
-          className="absolute top-[40%] right-[12%] h-36 w-36 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[20deg] blur-[3px]"
+          className="absolute top-[40%] right-[12%] hidden h-36 w-36 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[20deg] blur-[3px] md:block"
           style={{ "--base-rotate": "20deg", backgroundImage: 'url("/5.png")' } as React.CSSProperties}
         />
 
-        <div className="section-shell relative z-10 flex min-h-[calc(100svh-5rem)] flex-col items-center justify-center pt-3 text-center sm:pt-5">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary/90">
+        <div className="section-shell relative z-10 flex min-h-[calc(100svh-3.5rem)] flex-col items-center justify-center px-4 pt-3 text-center sm:min-h-[calc(100svh-5rem)] sm:pt-5">
+          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary/90 sm:text-xs">
             {landingContent.hero.eyebrow}
           </p>
 
-          <h1 className="text-[clamp(1.5rem,6.2vw,5.2rem)] font-extrabold leading-[1.05] tracking-tight text-headline whitespace-nowrap">
+          <h1 className="max-w-5xl text-[clamp(1.4rem,5vw,5.2rem)] font-extrabold leading-[1.1] tracking-tight text-headline">
             <span>{landingContent.hero.animatedPrefix} </span>
-            <span className="inline-flex items-baseline whitespace-nowrap align-baseline">
+            <span className="inline-flex items-baseline align-baseline">
               <span
                 data-testid="hero-rotating-word"
                 className="inline-block text-left align-baseline whitespace-pre bg-gradient-to-r from-primary via-[#6EE7B7] to-[#D1FAE5] bg-clip-text text-transparent"
@@ -394,20 +407,20 @@ export function LandingPage({ currentYear }: LandingPageProps) {
             </span>
           </h1>
 
-          <p className="mt-3 max-w-3xl text-lg text-body sm:text-xl">{landingContent.hero.subheadline}</p>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-body sm:max-w-3xl sm:text-lg md:text-xl">{landingContent.hero.subheadline}</p>
 
-          <div className="mt-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/90">
+          <div className="mt-5 sm:mt-6">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary/90 sm:text-sm">
               {landingContent.hero.profilesAnalyzedLabel}
             </p>
-            <p className="mt-2 text-5xl font-extrabold text-hot sm:text-6xl">
+            <p className="mt-1 text-4xl font-extrabold text-hot sm:mt-2 sm:text-5xl md:text-6xl">
               {new Intl.NumberFormat("en-US").format(animatedProfiles)}
               {profileHasPlus ? "+" : ""}
             </p>
           </div>
 
           <form
-            className="mt-6 w-full max-w-3xl rounded-full border border-primary/40 bg-card/95 p-1 shadow-[0_24px_70px_rgba(0,0,0,0.45)]"
+            className="mt-5 w-full max-w-3xl rounded-2xl border border-primary/40 bg-card/95 p-1 shadow-[0_24px_70px_rgba(0,0,0,0.45)] sm:mt-6 sm:rounded-full"
             onSubmit={(event) => {
               event.preventDefault();
               trackEvent("primary_cta_click", { source: "hero_search" });
@@ -419,7 +432,7 @@ export function LandingPage({ currentYear }: LandingPageProps) {
                 Instagram username
               </label>
               <div className="flex flex-1 items-center gap-3 px-4 py-3">
-                <Search className="h-5 w-5 text-primary" aria-hidden />
+                <Search className="h-5 w-5 flex-shrink-0 text-primary" aria-hidden />
                 <input
                   id="hero-username"
                   ref={heroSearchInputRef}
@@ -427,65 +440,65 @@ export function LandingPage({ currentYear }: LandingPageProps) {
                   onChange={(event) => setHeroSearchInput(event.target.value)}
                   type="text"
                   placeholder={landingContent.hero.searchPlaceholder}
-                  className="w-full bg-transparent text-base text-headline outline-none placeholder:text-muted"
+                  className="w-full bg-transparent text-sm text-headline outline-none placeholder:text-muted sm:text-base"
                 />
               </div>
 
               <button
                 type="submit"
-                className="rounded-full bg-primary px-8 py-3 text-base font-bold text-bg transition hover:bg-primary-dark sm:mr-1 sm:min-w-[200px]"
+                className="rounded-xl bg-primary px-6 py-3 text-sm font-bold text-bg transition hover:bg-primary-dark sm:mr-1 sm:min-w-[200px] sm:rounded-full sm:px-8 sm:text-base"
               >
                 {landingContent.hero.searchButtonLabel}
               </button>
             </div>
           </form>
 
-          <p className="mt-3 text-2xl font-medium italic text-primary/90">{landingContent.hero.searchHelperText}</p>
-          <p className="mt-1 text-sm text-muted">{landingContent.hero.trustLine}</p>
+          <p className="mt-3 text-lg font-medium italic text-primary/90 sm:text-2xl">{landingContent.hero.searchHelperText}</p>
+          <p className="mt-1 text-xs text-muted sm:text-sm">{landingContent.hero.trustLine}</p>
         </div>
       </section>
 
-      <section data-testid="section-3" className="border-y border-border bg-card/70 py-10">
-        <div className="section-shell grid gap-8 md:grid-cols-3">
+      <section data-testid="section-3" className="border-y border-border bg-card/70 py-6 sm:py-10">
+        <div className="section-shell grid gap-0 divide-y divide-border md:grid-cols-3 md:gap-8 md:divide-y-0">
           {landingContent.stats.map((item, index) => (
             <div
               key={item.label}
               className={classNames(
-                "text-center",
+                "py-4 text-center md:py-0",
                 index > 0 ? "md:border-l md:border-border" : "",
               )}
             >
-              <p className="text-4xl font-bold text-hot">{item.value}</p>
-              <p className="mt-2 text-sm text-muted">{item.label}</p>
+              <p className="text-3xl font-bold text-hot sm:text-4xl">{item.value}</p>
+              <p className="mt-1 text-xs text-muted sm:mt-2 sm:text-sm">{item.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section data-testid="section-4" className="py-24 sm:py-32">
+      <section data-testid="section-4" className="py-16 sm:py-24 lg:py-32">
         <div className="section-shell">
-          <h2 className="mx-auto max-w-4xl text-center text-3xl font-bold leading-tight text-headline sm:text-4xl">
+          <h2 className="mx-auto max-w-4xl text-center text-2xl font-bold leading-tight text-headline sm:text-3xl lg:text-4xl">
             {landingContent.painHeadline}
           </h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-3">
             {landingContent.pains.map((pain) => {
               const Icon = iconFor(pain.icon);
               return (
                 <article
                   key={pain.title}
-                  className="group relative overflow-hidden rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]"
+                  className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)] sm:p-8"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="absolute left-0 top-0 h-full w-[3px] bg-primary/70 transition-all duration-300 group-hover:w-[5px] group-hover:bg-primary" />
 
                   <div className="relative z-10">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface border border-border transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/10">
-                      <Icon className="h-6 w-6 text-primary transition-transform duration-300 group-hover:scale-110" aria-hidden />
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-surface border border-border transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/10 sm:h-12 sm:w-12">
+                      <Icon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6" aria-hidden />
                     </div>
-                    <h3 className="mt-6 text-xl font-bold text-headline transition-colors duration-300 group-hover:text-primary">
+                    <h3 className="mt-4 text-lg font-bold text-headline transition-colors duration-300 group-hover:text-primary sm:mt-6 sm:text-xl">
                       {pain.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-body/90">
+                    <p className="mt-2 text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-body/90 sm:mt-3">
                       {pain.description}
                     </p>
                   </div>
@@ -500,48 +513,53 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         id="how-it-works"
         data-testid="section-5"
         ref={howItWorksRef}
-        className="relative overflow-hidden border-y border-border py-24 sm:py-32"
+        className="relative overflow-hidden border-y border-border py-16 sm:py-24 lg:py-32"
       >
         <div className="bg-hero-gradient absolute inset-0 opacity-[0.12]" />
 
         <div className="section-shell relative z-10">
-          <h2 className="text-center text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-center text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
             <span className="bg-gradient-to-r from-primary via-[#6EE7B7] to-primary bg-clip-text text-transparent">
               {landingContent.howItWorksHeadline}
             </span>
           </h2>
 
-          <div className="mt-16 grid gap-8 lg:grid-cols-3">
+          <div className="relative mt-10 grid gap-8 sm:mt-16 lg:grid-cols-3">
+            {/* Vertical connector line for mobile */}
+            <div className="absolute left-8 top-8 bottom-8 w-px border-l border-dashed border-border lg:hidden" />
+
             {landingContent.steps.map((step, index) => (
               <article key={step.step} className="group relative">
                 {index < landingContent.steps.length - 1 && (
                   <div className="absolute left-[50%] top-8 hidden h-px w-full border-t border-dashed border-border lg:block" />
                 )}
 
-                <div className="relative flex flex-col items-center text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-card shadow-lg transition-all duration-300 group-hover:border-primary/50 group-hover:bg-primary/5 group-hover:shadow-primary/10">
-                    <span className="text-3xl font-black text-primary transition-transform duration-300 group-hover:scale-110">
+                <div className="relative flex flex-row items-start gap-4 text-left lg:flex-col lg:items-center lg:text-center">
+                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-border bg-card shadow-lg transition-all duration-300 group-hover:border-primary/50 group-hover:bg-primary/5 group-hover:shadow-primary/10 sm:h-16 sm:w-16">
+                    <span className="text-2xl font-black text-primary transition-transform duration-300 group-hover:scale-110 sm:text-3xl">
                       {step.step}
                     </span>
                   </div>
-                  <h3 className="mt-6 text-xl font-bold text-headline">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted px-4">{step.description}</p>
+                  <div>
+                    <h3 className="text-lg font-bold text-headline sm:text-xl lg:mt-6">{step.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted sm:mt-2 lg:px-4">{step.description}</p>
+                  </div>
                 </div>
               </article>
             ))}
           </div>
 
-          <div className="mt-16 rounded-3xl border border-primary/20 bg-card/50 p-1 backdrop-blur-sm">
-            <div className="rounded-[calc(1.5rem-4px)] border border-border bg-surface/50 p-8 text-center sm:p-10">
+          <div className="mt-10 rounded-3xl border border-primary/20 bg-card/50 p-1 backdrop-blur-sm sm:mt-16">
+            <div className="rounded-[calc(1.5rem-4px)] border border-border bg-surface/50 p-5 text-center sm:p-8 lg:p-10">
               <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
                 Instant Processing
               </span>
-              <p className="mt-6 text-lg font-medium text-headline sm:text-xl">
-                Search creator <span className="mx-2 text-primary">→</span>
-                ranked viral reels <span className="mx-2 text-primary">→</span>
+              <p className="mt-4 text-base font-medium text-headline sm:mt-6 sm:text-lg md:text-xl">
+                Search creator <span className="mx-1 text-primary sm:mx-2">→</span>
+                ranked viral reels <span className="mx-1 text-primary sm:mx-2">→</span>
                 AI blueprint screen.
               </p>
-              <div className="mt-8 flex justify-center gap-2">
+              <div className="mt-6 flex justify-center gap-2 sm:mt-8">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="h-1.5 w-1.5 rounded-full bg-primary/20" />
                 ))}
@@ -552,8 +570,8 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
-      <section id="features" data-testid="section-6" className="py-24 sm:py-32">
-        <div className="section-shell space-y-16">
+      <section id="features" data-testid="section-6" className="py-16 sm:py-24 lg:py-32">
+        <div className="section-shell space-y-8 sm:space-y-16">
           {landingContent.features.map((feature, index) => {
             const Icon = iconFor(feature.icon);
             const isReverse = index % 2 === 1;
@@ -562,8 +580,8 @@ export function LandingPage({ currentYear }: LandingPageProps) {
               <article
                 key={feature.key}
                 className={classNames(
-                  "grid gap-8 rounded-3xl border border-border bg-card p-8 lg:grid-cols-2 lg:items-center",
-                  isReverse ? "lg:[&>*:first-child]:order-2" : "",
+                  "grid gap-6 rounded-2xl border border-border bg-card p-5 sm:gap-8 sm:rounded-3xl sm:p-8 md:grid-cols-2 md:items-center",
+                  isReverse ? "md:[&>*:first-child]:order-2" : "",
                 )}
               >
                 <div>
@@ -571,21 +589,21 @@ export function LandingPage({ currentYear }: LandingPageProps) {
                     <Icon className="h-5 w-5" aria-hidden />
                     <span className="text-sm font-semibold">{feature.title}</span>
                   </div>
-                  <h3 className="mt-3 text-2xl font-bold text-headline">{feature.heading}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-body">{feature.description}</p>
-                  <ul className="mt-4 space-y-2">
+                  <h3 className="mt-3 text-xl font-bold text-headline sm:text-2xl">{feature.heading}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-body sm:mt-3">{feature.description}</p>
+                  <ul className="mt-3 space-y-2 sm:mt-4">
                     {feature.bullets.map((bullet) => (
                       <li key={bullet} className="flex items-start gap-2 text-sm text-muted">
-                        <Check className="mt-[2px] h-4 w-4 text-primary" aria-hidden />
+                        <Check className="mt-[2px] h-4 w-4 flex-shrink-0 text-primary" aria-hidden />
                         <span>{bullet}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="relative aspect-video overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-card shadow-inner group-hover:border-primary/30 transition-colors">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-gradient-to-br from-surface to-card shadow-inner transition-colors sm:aspect-video sm:rounded-2xl">
                   <div
-                    className="absolute inset-x-4 inset-y-4 bg-cover bg-center rounded-xl opacity-80 group-hover:opacity-100 transition-opacity border border-border/50 shadow-2xl"
+                    className="absolute inset-2 bg-cover bg-center rounded-lg opacity-80 transition-opacity border border-border/50 shadow-2xl sm:inset-4 sm:rounded-xl"
                     style={{ backgroundImage: `url("/${[5, 2, 8, 7][index]}.png")` }}
                   />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(34,197,94,0.1),transparent)]" />
@@ -596,90 +614,87 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
-      <section id="compare" data-testid="section-7" className="relative overflow-hidden border-y border-hot/30 py-24 sm:py-32">
+      <section id="compare" data-testid="section-7" className="relative overflow-hidden border-y border-hot/30 py-16 sm:py-24 lg:py-32">
         <div className="bg-hero-gradient absolute inset-0" />
 
-        {/* Premium Floating Background Elements - Depth of Field Effect */}
-        {/* Close/Large Element - Right */}
+        {/* Premium Floating Background Elements — hidden on mobile */}
         <div
-          className="absolute -right-16 top-10 h-80 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[10deg] drop-shadow-[0_0_35px_rgba(34,197,94,0.3)]"
+          className="absolute -right-16 top-10 hidden h-80 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[10deg] drop-shadow-[0_0_35px_rgba(34,197,94,0.3)] md:block"
           style={{ "--base-rotate": "-10deg", backgroundImage: 'url("/6.png")' } as React.CSSProperties}
         />
-        {/* Medium Back Element - slight blur */}
         <div
-          className="absolute left-4 top-24 h-64 w-64 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[15deg] blur-[2px]"
+          className="absolute left-4 top-24 hidden h-64 w-64 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[15deg] blur-[2px] md:block"
           style={{ "--base-rotate": "15deg", backgroundImage: 'url("/7.png")' } as React.CSSProperties}
         />
-        {/* Far Back Element - Center Bottom, high blur */}
         <div
-          className="absolute bottom-10 left-[45%] h-40 w-40 animate-subtle-float-slower bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[5deg] blur-[4px]"
+          className="absolute bottom-10 left-[45%] hidden h-40 w-40 animate-subtle-float-slower bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[5deg] blur-[4px] lg:block"
           style={{ "--base-rotate": "-5deg", backgroundImage: 'url("/8.png")' } as React.CSSProperties}
         />
 
         <div className="section-shell relative z-10">
-          <h2 className="text-3xl font-bold text-headline sm:text-4xl">{landingContent.comparison.headline}</h2>
-          <p className="mt-3 max-w-3xl text-base text-body">{landingContent.comparison.subtext}</p>
+          <h2 className="text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">{landingContent.comparison.headline}</h2>
+          <p className="mt-2 max-w-3xl text-sm text-body sm:mt-3 sm:text-base">{landingContent.comparison.subtext}</p>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-6 grid gap-3 sm:mt-8 sm:gap-4 md:grid-cols-3">
             {[
               { name: "Creator A", pattern: "Question hook", score: "91" },
               { name: "Creator B", pattern: "Face-first opener", score: "89" },
               { name: "Creator C", pattern: "Curiosity headline", score: "93" },
             ].map((creator) => (
-              <article key={creator.name} className="rounded-2xl border border-hot/30 bg-surface p-5">
+              <article key={creator.name} className="rounded-xl border border-hot/30 bg-surface p-4 sm:rounded-2xl sm:p-5">
                 <p className="text-sm font-semibold text-headline">{creator.name}</p>
-                <p className="mt-2 text-xs text-muted">Top pattern: {creator.pattern}</p>
-                <p className="mt-3 inline-flex rounded-full bg-hot/20 px-2 py-1 text-xs font-bold text-hot">
+                <p className="mt-1 text-xs text-muted sm:mt-2">Top pattern: {creator.pattern}</p>
+                <p className="mt-2 inline-flex rounded-full bg-hot/20 px-2 py-1 text-xs font-bold text-hot sm:mt-3">
                   Score {creator.score}
                 </p>
               </article>
             ))}
           </div>
 
-          <div className="mt-6 rounded-2xl border border-primary/40 bg-primary/10 p-5">
+          <div className="mt-4 rounded-xl border border-primary/40 bg-primary/10 p-4 sm:mt-6 sm:rounded-2xl sm:p-5">
             <p className="text-sm font-semibold text-primary">Shared Patterns Found</p>
-            <p className="mt-2 text-sm text-body">High-retention hooks, 18-24 second duration, and comment-led CTAs.</p>
+            <p className="mt-1 text-sm text-body sm:mt-2">High-retention hooks, 18-24 second duration, and comment-led CTAs.</p>
           </div>
 
           <button
             type="button"
             onClick={onComparisonCta}
-            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-bg transition hover:bg-primary-dark"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-bg transition hover:bg-primary-dark sm:mt-8 sm:w-auto"
           >
             {landingContent.comparison.cta} <ArrowRight className="h-4 w-4" aria-hidden />
           </button>
         </div>
       </section>
 
-      <section data-testid="section-8" className="py-24 sm:py-32">
+      <section data-testid="section-8" className="py-16 sm:py-24 lg:py-32">
         <div className="section-shell">
           <div className="text-center">
-            <h2 className="text-4xl font-extrabold tracking-tight text-headline sm:text-5xl lg:text-6xl">
+            <h2 className="text-2xl font-extrabold tracking-tight text-headline sm:text-4xl lg:text-5xl xl:text-6xl">
               {landingContent.insightsHeadline}
             </h2>
             {landingContent.insightsSubheadline && (
-              <p className="mx-auto mt-6 max-w-2xl text-lg text-muted sm:text-xl">
+              <p className="mx-auto mt-4 max-w-xl text-sm text-muted sm:mt-6 sm:max-w-2xl sm:text-lg md:text-xl">
                 {landingContent.insightsSubheadline}
               </p>
             )}
           </div>
 
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-1 gap-4 xs:grid-cols-2 sm:mt-16 sm:gap-6 lg:grid-cols-4">
             {landingContent.insights.map((insight, index) => {
               const Icon = iconFor(insight.icon);
               return (
                 <article
                   key={insight.title}
-                  className="group relative rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 hover:shadow-glow"
+                  className="group relative rounded-xl border border-border bg-card p-4 transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 hover:shadow-glow sm:rounded-2xl sm:p-6"
                   style={{ "--reveal-delay": `${index * 100}ms` } as React.CSSProperties}
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface border border-border transition-colors duration-300 group-hover:bg-primary/10 group-hover:border-primary/30">
-                    <Icon className="h-6 w-6 text-primary transition-transform duration-300 group-hover:scale-110" aria-hidden />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-surface border border-border transition-colors duration-300 group-hover:bg-primary/10 group-hover:border-primary/30 sm:h-12 sm:w-12 sm:rounded-xl">
+                    <Icon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6" aria-hidden />
                   </div>
-                  <h3 className="mt-5 text-lg font-bold text-headline transition-colors duration-300 group-hover:text-primary">
+                  <h3 className="mt-3 text-sm font-bold text-headline transition-colors duration-300 group-hover:text-primary sm:mt-5 sm:text-lg">
                     {insight.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                  <p className="mt-1 text-xs leading-relaxed text-muted sm:mt-2 sm:text-sm">
                     {insight.description}
                   </p>
                 </article>
@@ -689,17 +704,17 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
-      <section data-testid="section-9" className="border-y border-border py-24 sm:py-32">
+      <section data-testid="section-9" className="border-y border-border py-16 sm:py-24 lg:py-32">
         <div className="section-shell">
-          <h2 className="text-center text-3xl font-bold text-headline sm:text-4xl">
+          <h2 className="text-center text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">
             {landingContent.testimonialsHeadline}
           </h2>
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-3">
             {landingContent.testimonials.map((testimonial) => (
-              <article key={testimonial.name} className="card p-6">
-                <div className="mb-4 h-10 w-10 rounded-full bg-surface" aria-hidden />
+              <article key={testimonial.name} className="card p-5 sm:p-6">
+                <div className="mb-3 h-9 w-9 rounded-full bg-surface sm:mb-4 sm:h-10 sm:w-10" aria-hidden />
                 <p className="text-sm leading-relaxed text-body">{testimonial.quote}</p>
-                <p className="mt-4 text-sm font-semibold text-headline">{testimonial.name}</p>
+                <p className="mt-3 text-sm font-semibold text-headline sm:mt-4">{testimonial.name}</p>
                 <p className="text-xs text-muted">{testimonial.detail}</p>
               </article>
             ))}
@@ -707,12 +722,12 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
-      <section id="pricing" data-testid="section-10" className="py-24 sm:py-32">
+      <section id="pricing" data-testid="section-10" className="py-16 sm:py-24 lg:py-32">
         <div className="section-shell">
-          <h2 className="text-center text-3xl font-bold text-headline sm:text-4xl">{landingContent.pricingHeadline}</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-base text-muted">{landingContent.pricingSubtext}</p>
+          <h2 className="text-center text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">{landingContent.pricingHeadline}</h2>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-muted sm:mt-3 sm:text-base">{landingContent.pricingSubtext}</p>
 
-          <div className="mt-8 flex justify-center">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-8">
             <div className="inline-flex rounded-full border border-border bg-card p-1">
               <button
                 type="button"
@@ -735,12 +750,12 @@ export function LandingPage({ currentYear }: LandingPageProps) {
                 Monthly
               </button>
             </div>
-            <span className="ml-3 inline-flex items-center rounded-full bg-hot/20 px-3 text-xs font-semibold text-hot">
+            <span className="inline-flex items-center rounded-full bg-hot/20 px-3 py-1 text-xs font-semibold text-hot">
               {yearlyDiscountLabel}
             </span>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-3">
             {landingContent.pricing.map((tier) => {
               const price = billingCycle === "annual" ? tier.priceAnnual : tier.priceMonthly;
               const subtitle = billingCycle === "annual" ? tier.subtitleAnnual : tier.subtitleMonthly;
@@ -749,7 +764,7 @@ export function LandingPage({ currentYear }: LandingPageProps) {
                 <article
                   key={tier.key}
                   className={classNames(
-                    "relative rounded-2xl border bg-card p-6",
+                    "relative rounded-2xl border bg-card p-5 sm:p-6",
                     tier.featured ? "border-primary shadow-glow" : "border-border",
                   )}
                 >
@@ -758,20 +773,20 @@ export function LandingPage({ currentYear }: LandingPageProps) {
                       Most Popular
                     </span>
                   ) : null}
-                  <h3 className="text-xl font-semibold text-headline">{tier.name}</h3>
-                  <p className="mt-3 text-4xl font-bold text-hot">{price}</p>
-                  <p className="mt-1 text-sm text-muted">{subtitle}</p>
+                  <h3 className="text-lg font-semibold text-headline sm:text-xl">{tier.name}</h3>
+                  <p className="mt-2 text-3xl font-bold text-hot sm:mt-3 sm:text-4xl">{price}</p>
+                  <p className="mt-1 text-xs text-muted sm:text-sm">{subtitle}</p>
 
-                  <ul className="mt-5 space-y-2">
+                  <ul className="mt-4 space-y-2 sm:mt-5">
                     {tier.included.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-body">
-                        <Check className="mt-[2px] h-4 w-4 text-primary" aria-hidden />
+                        <Check className="mt-[2px] h-4 w-4 flex-shrink-0 text-primary" aria-hidden />
                         <span>{item}</span>
                       </li>
                     ))}
                     {tier.excluded.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-muted">
-                        <X className="mt-[2px] h-4 w-4 text-muted" aria-hidden />
+                        <X className="mt-[2px] h-4 w-4 flex-shrink-0 text-muted" aria-hidden />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -781,34 +796,33 @@ export function LandingPage({ currentYear }: LandingPageProps) {
             })}
           </div>
 
-          <div className="mt-8 rounded-2xl border border-primary/40 bg-primary/10 p-4 text-center text-sm text-body">
+          <div className="mt-6 rounded-xl border border-primary/40 bg-primary/10 p-3 text-center text-sm text-body sm:mt-8 sm:rounded-2xl sm:p-4">
             {landingContent.guarantee}
           </div>
-          <p className="mt-3 text-center text-sm text-muted">No surprise charges. Cancel anytime. Data stays yours.</p>
-
+          <p className="mt-2 text-center text-xs text-muted sm:mt-3 sm:text-sm">No surprise charges. Cancel anytime. Data stays yours.</p>
 
         </div>
       </section>
 
-      <section data-testid="section-11" className="border-y border-border py-24 sm:py-32">
+      <section data-testid="section-11" className="border-y border-border py-16 sm:py-24 lg:py-32">
         <div className="section-shell max-w-4xl">
-          <h2 className="text-center text-3xl font-bold text-headline sm:text-4xl">FAQ</h2>
-          <div className="mt-8 space-y-3">
+          <h2 className="text-center text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">FAQ</h2>
+          <div className="mt-6 space-y-2 sm:mt-8 sm:space-y-3">
             {landingContent.faq.map((item, index) => {
               const isOpen = openFaqIndex === index;
               return (
                 <article key={item.question} className="rounded-xl border border-border bg-card">
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-semibold text-headline"
+                    className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left text-sm font-semibold text-headline sm:px-5 sm:py-5 sm:text-base"
                     onClick={() => onFaqToggle(index)}
                     aria-expanded={isOpen}
                   >
                     <span>{item.question}</span>
-                    <ChevronDown className={classNames("h-4 w-4 transition-transform", isOpen ? "rotate-180" : "")}
+                    <ChevronDown className={classNames("h-4 w-4 flex-shrink-0 transition-transform", isOpen ? "rotate-180" : "")}
                     />
                   </button>
-                  {isOpen ? <p className="px-5 pb-4 text-sm leading-relaxed text-muted">{item.answer}</p> : null}
+                  {isOpen ? <p className="px-4 pb-4 text-sm leading-relaxed text-muted sm:px-5">{item.answer}</p> : null}
                 </article>
               );
             })}
@@ -829,20 +843,20 @@ export function LandingPage({ currentYear }: LandingPageProps) {
 
         {/* Premium Floating Background Elements - Bottom Section */}
         <div
-          className="absolute -left-16 top-10 h-72 w-72 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[15deg] blur-[2px]"
+          className="absolute -left-16 top-10 hidden h-72 w-72 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[15deg] blur-[2px] sm:block"
           style={{ "--base-rotate": "15deg", backgroundImage: 'url("/1.png")' } as React.CSSProperties}
         />
         <div
-          className="absolute -right-20 bottom-10 h-80 w-80 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[12deg] blur-[3px]"
+          className="absolute -right-20 bottom-10 hidden h-80 w-80 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[12deg] blur-[3px] sm:block"
           style={{ "--base-rotate": "-12deg", backgroundImage: 'url("/4.png")' } as React.CSSProperties}
         />
 
         <div className="section-shell relative z-10">
-          <div className="rounded-3xl border border-primary/30 bg-card p-8 shadow-glow sm:p-10">
+          <div className="rounded-3xl border border-primary/30 bg-card p-5 shadow-glow sm:p-10">
             <h2
               tabIndex={-1}
               ref={waitlistFocusRef}
-              className="text-center text-4xl font-bold text-headline sm:text-5xl"
+              className="text-center text-3xl font-bold text-headline sm:text-5xl"
             >
               {landingContent.finalCta.headline}
             </h2>
@@ -852,7 +866,7 @@ export function LandingPage({ currentYear }: LandingPageProps) {
               <button
                 type="button"
                 onClick={() => scrollToWaitlist("final_cta")}
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-base font-semibold text-white transition hover:bg-primary-dark"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-base font-semibold text-white transition hover:bg-primary-dark sm:w-auto"
               >
                 {landingContent.finalCta.cta} <ArrowRight className="h-4 w-4" aria-hidden />
               </button>
@@ -886,7 +900,7 @@ export function LandingPage({ currentYear }: LandingPageProps) {
                   />
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white sm:w-auto"
                   >
                     Join Waitlist <ArrowRight className="h-4 w-4" aria-hidden />
                   </button>

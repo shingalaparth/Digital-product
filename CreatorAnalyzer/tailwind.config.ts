@@ -4,6 +4,9 @@ const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}", "./landing/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        xs: "375px",
+      },
       colors: {
         bg: "#050505",
         card: "#0D1117",

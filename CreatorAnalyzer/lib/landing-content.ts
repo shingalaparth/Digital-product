@@ -112,7 +112,7 @@ export type LandingContent = {
 
 export const landingContent: LandingContent = {
   brand: {
-    name: "ReelDNA",
+    name: "Reel!DNA",
     shortTagline: "The viral formula. Decoded.",
     primaryTagline: "Decode why any creator's reels go viral. In seconds.",
     finalCtaLine: "Stop guessing. Start decoding.",
@@ -126,18 +126,18 @@ export const landingContent: LandingContent = {
   hero: {
     eyebrow: "AI-Powered Viral Reel Intelligence",
     animatedPrefix: "Analyze",
-    animatedPhrases: ["creators", "comments", "captions", "competitors"],
-    headline: "Finally Understand Why Your Favorite Creators' Reels Go Viral",
+    animatedPhrases: ["competitors", "profitable hooks", "viral patterns", "growth loops"],
+    headline: "Scale Your Growth & Revenue by Decoding the Viral DNA of Top Creators",
     subheadline:
-      "Type any creator's name. Get instant AI analysis of their top viral reels: hooks, structure, emotion triggers, and the exact formula that made each one blow up.",
+      "Stop wasting time on content that flops. Use AI to extract high-profit hooks, winning structures, intresting scripts and the exact formulas that drive millions of views. Grow faster, monetize better.",
     profilesAnalyzedLabel: "PROFILES ANALYZED",
-    profilesAnalyzedCount: "1,000+",
-    searchPlaceholder: "Write any Instagram username",
-    searchButtonLabel: "Analyze now",
+    profilesAnalyzedCount: "14,200+",
+    searchPlaceholder: "Enter an Instagram username to decode...",
+    searchButtonLabel: "Analyze for Profit",
     searchHelperText: "It's free!",
     primaryCta: "Analyze a Creator Free",
     secondaryCta: "Watch 60-sec Demo",
-    trustLine: "No credit card required | Free forever plan | Works on any public creator",
+    trustLine: "No credit card required | Proven growth patterns | Works on any public creator",
   },
   stats: [
     { value: "14,000+", label: "Creators Analyzed" },
@@ -145,174 +145,174 @@ export const landingContent: LandingContent = {
     { value: "9,200+", label: "Creators Growing Faster" },
   ],
   painHeadline:
-    "You study the same creators every day. But you still cannot figure out what made that reel go viral.",
+    "You're working hard, but your reach is flat. Stop guessing and start using the data that drives million-dollar creators.",
   pains: [
     {
       icon: "search-x",
-      title: "No clear reason for one viral reel",
+      title: "Stop Burning Cash on Content That Flops",
       description:
-        "You watch the same reel over and over and still do not know what made it explode while other posts stayed flat.",
+        "Every reel that doesn't go viral is wasted time and money. Use proven data to ensure every post has the highest chance of exploding.",
     },
     {
       icon: "clock",
-      title: "Weeks lost to guessing",
+      title: "Gain an Unfair Advantage Over Your Competition",
       description:
-        "You are guessing hooks, pacing, and captions, then burning time testing ideas without knowing what works.",
+        "Your competitors are scaling while you're still testing. ReelDNA gives you the exact formula they use, so you can beat them at their own game.",
     },
     {
       icon: "layers",
-      title: "No true multi-creator view",
+      title: "Eliminate the 'Guesswork' from Your Strategy",
       description:
-        "There is no simple way to compare top creators in your niche side by side and spot shared winning patterns.",
+        "No more staring at a blank screen. Identify shared winning patterns across your entire niche in seconds and replicate what works.",
     },
   ],
-  howItWorksHeadline: "From creator name to viral blueprint in under 60 seconds",
+  howItWorksHeadline: "Your Viral Growth Roadmap in Under 60 Seconds",
   steps: [
     {
       step: 1,
-      title: "Enter any creator's name",
-      description: "Type any public Instagram creator username into the search bar.",
+      title: "Target Any Top Creator",
+      description: "Enter any public Instagram username that's currently winning in your niche.",
     },
     {
       step: 2,
-      title: "AI finds top viral reels",
+      title: "AI Extracts the Viral DNA",
       description:
-        "ReelDNA automatically pulls their top 10-20 best-performing reels ranked by virality score.",
+        "ReelDNA automatically identifies and ranks their most profitable and viral content pieces.",
     },
     {
       step: 3,
-      title: "Get the full viral formula",
+      title: "Implement the Winning Formula",
       description:
-        "See exactly why each reel blew up: hooks, emotion, audio, pacing, captions, and more.",
+        "Get the exact hooks, structure, and emotional triggers to apply to your own content for instant results.",
     },
   ],
   features: [
     {
       key: "finder",
       icon: "search",
-      heading: "Type a name. See what actually went viral.",
+      heading: "Identify High-Growth Content Ideas Instantly",
       title: "Viral Reel Finder",
       description:
-        "Enter any public creator username and ReelDNA finds and ranks top reels without account linking.",
+        "Surface the content that's actually driving reach in your niche. No more guessing what's trending.",
       bullets: [
         "Works on any public Instagram account",
-        "Ranks by virality score (views + engagement)",
-        "Shows thumbnail, views, likes, and comments",
-        "Sort by views, engagement, recent, or virality",
+        "Ranks by Virality & Profit Potential Score",
+        "Deep engagement metrics (views/likes/comments ratio)",
+        "Filter by recent winners to stay ahead of trends",
       ],
     },
     {
       key: "analysis",
       icon: "dna",
-      heading: "8 reasons why that reel blew up. All in one screen.",
-      title: "Deep AI Analysis Per Reel",
+      heading: "The Blueprint for Consistent 100K+ View Reels",
+      title: "Deep AI Analysis",
       description:
-        "Click any reel and get an eight-dimension breakdown in plain English so you know what made it win.",
+        "We break down the 'why' behind the views so you can replicate the success with your own unique voice.",
       bullets: [
-        "Hook strength score (0-100)",
-        "Emotion trigger, pacing, caption, and audio analysis",
-        "Video duration sweet spot detection",
-        "Why this reel beat their non-viral reels",
+        "Hook strength analysis (find what stops the scroll)",
+        "Emotion mapping to trigger shares and saves",
+        "Pacing and duration sweet spots for maximum retention",
+        "The 'Viral Delta': why this reel outperformed everything else",
       ],
     },
     {
       key: "comparison",
       icon: "scale",
-      heading: "Compare the best. Copy the pattern. Make it yours.",
+      heading: "Outperform Your Niche with Competitor Intelligence",
       title: "Multi-Creator Comparison",
       description:
-        "Add 2 to 5 creators and surface the exact patterns all top creators in your niche share.",
+        "Add your top 5 competitors and surface the 'Secret Sauce' that all industry leaders are using.",
       bullets: [
-        "Side-by-side creator comparison workspace",
-        "Shared patterns highlighted in green",
-        "Unique patterns per creator surfaced clearly",
-        "Combined Viral Blueprint generated automatically",
+        "Side-by-side pattern recognition workspace",
+        "Highlight shared winning formulas across creators",
+        "Spot content gaps your competitors are missing",
+        "Automatically generated niche growth strategy",
       ],
     },
     {
       key: "blueprint",
       icon: "file-text",
-      heading: "Your viral strategy. One click to download.",
-      title: "Viral Blueprint Report",
+      heading: "Close High-Ticket Clients with Data-Backed Reports",
+      title: "Viral Blueprint Reports",
       description:
-        "Generate a clean PDF report after any analysis so you can save, share, and apply every insight.",
+        "Generate professional PDF reports to prove your content strategy works. Perfect for creators and agencies.",
       bullets: [
-        "One-click PDF generation",
-        "Includes reels, patterns, scores, and recommendations",
-        "Share via link or download",
-        "Agency plan supports white-label exports",
+        "One-click professional PDF generation",
+        "Full data breakdowns to justify content decisions",
+        "Client-ready white-label exports (Agency Plan)",
+        "Actionable checklists for every content piece",
       ],
     },
   ],
   comparison: {
-    headline: "Compare the best. Copy the pattern. Make it yours.",
+    headline: "Spy. Analyze. Outperform.",
     subtext:
-      "Add up to 5 creators. ReelDNA analyzes all of them and shows the patterns every top creator in your niche shares.",
-    cta: "Try the Comparison Tool Free",
+      "Select up to 5 creators and ReelDNA will surface the exact patterns every leader in your niche is currently using to dominate the algorithm.",
+    cta: "Start Competitor Analysis",
   },
-  insightsHeadline: "Most reels fail in 3 seconds. We fix that.",
-  insightsSubheadline: "Stop guessing why your favorites win. ReelDNA decodes the exact patterns hidden in every viral reel so you can start growing.",
+  insightsHeadline: "We Solve the Problem of 'Flat' Reach.",
+  insightsSubheadline: "Stop guessing why your favorites win. ReelDNA decodes the hidden ROI patterns in every viral reel so you can scale your personal brand or agency.",
   insights: [
     {
       icon: "gauge",
-      title: "Hook Analysis",
-      description: "Know why people scroll or stop.",
+      title: "High-Profit Hook Analysis",
+      description: "Identify hooks that convert viewers into loyal fans.",
     },
     {
       icon: "clock",
-      title: "Watch Time Pattern",
-      description: "Identify drop-off moments.",
+      title: "Retention Patterns",
+      description: "Know exactly when and why viewers drop off.",
     },
     {
       icon: "captions",
-      title: "Caption Intelligence",
-      description: "What actually makes people comment.",
+      title: "Conversion-Led Captions",
+      description: "Copy-writing formulas that drive comments & sales.",
     },
     {
       icon: "sparkles",
-      title: "Emotion Mapping",
-      description: "What triggers shares & saves.",
+      title: "Psychological Triggers",
+      description: "Leverage emotion to force massive shares & saves.",
     },
     {
       icon: "music",
-      title: "Audio Choice",
-      description: "Understand trending audio versus original sound.",
+      title: "Trending vs. Evergreen Audio",
+      description: "Strategic audio choices for stability & viral spikes.",
     },
     {
       icon: "timer",
-      title: "Video Duration",
-      description: "Find the duration sweet spot for this audience.",
+      title: "The Profit Sweet Spot",
+      description: "Find the ideal duration for maximum algorithm reach.",
     },
     {
       icon: "activity",
-      title: "AI Virality Score",
-      description: "Compare against niche averages.",
+      title: "Virality Score indexing",
+      description: "Measure your potential against the top 1% of creators.",
     },
     {
       icon: "megaphone",
-      title: "CTA Optimization",
-      description: "Where you lose conversions.",
+      title: "CTA ROI Optimization",
+      description: "Turn your attention into actionable business results.",
     },
   ],
-  testimonialsHeadline: "What creators are saying",
+  testimonialsHeadline: "Trusted by Top Creators & High-Growth Agencies",
   testimonials: [
     {
       quote:
-        "I finally understand why one creator blows up every time. I found three patterns I now use in every reel. My average views doubled in two weeks.",
-      name: "Sarah K.",
-      detail: "Fitness Creator, 180K followers",
-    },
-    {
-      quote:
-        "The comparison feature is insane. I added four top creators in my niche and ReelDNA showed me the one hook format they all use.",
+        "My agency's content ROI tripled after using ReelDNA. We stopped guessing and started pitching data-backed strategies to our clients. Six-figure deals are now easier to close.",
       name: "Marcus T.",
-      detail: "Agency Owner",
+      detail: "Scale Social Agency Owner",
     },
     {
       quote:
-        "I went from 2,000 views to 38,000 on my next reel after applying the viral blueprint ReelDNA gave me.",
-      name: "Priya M.",
-      detail: "Lifestyle Creator, 90K followers",
+        "I was stuck at 50k followers for a year. After decoding the top 3 creators in my niche, I found a hook pattern I was missing. Gained another 100k in 3 months.",
+      name: "Sarah K.",
+      detail: "Fitness Creator",
+    },
+    {
+      quote:
+        "The white-label reports saved us 10+ hours a week in client reporting. We look like geniuses and our clients are seeing 2x engagement growth.",
+      name: "Alex R.",
+      detail: "Agency Content Lead",
     },
   ],
   pricingHeadline: "Simple pricing. Powerful insights.",
@@ -329,7 +329,7 @@ export const landingContent: LandingContent = {
         "3 creator analyses per month",
         "Top 10 viral reels per creator",
         "5-dimension AI analysis",
-        "Basic virality score",
+        "Basic growth patterns",
       ],
       excluded: [
         "Multi-creator comparison",
@@ -365,13 +365,13 @@ export const landingContent: LandingContent = {
       subtitleAnnual: "/mo billed annually",
       included: [
         "Everything in Pro",
-        "5 team seats included",
+        "5 team seats for your staff",
         "Unlimited creator comparisons",
-        "White-label PDF reports",
-        "Client workspace management",
-        "Priority email and chat support",
+        "White-label PDF reports for clients",
+        "Client-facing workspace management",
+        "Priority ROI consultation",
         "API access (coming soon)",
-        "Custom onboarding call",
+        "Premium Agency onboarding",
       ],
       excluded: [],
     },
@@ -421,10 +421,10 @@ export const landingContent: LandingContent = {
     },
   ],
   finalCta: {
-    headline: "Stop guessing. Start decoding.",
-    subtext: "Join 9,000+ creators who know the exact viral formula.",
+    headline: "Stop Wasting Time. Start Scaling.",
+    subtext: "Join 14,000+ creators and agencies who use data to win.",
     cta: "Analyze a Creator Free",
-    trust: "No credit card required",
+    trust: "No credit card required | Instant profitability insights",
   },
 };
 
