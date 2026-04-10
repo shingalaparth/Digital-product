@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
-import { AnalyticsScripts } from "../landing/AnalyticsScripts";
+import { AnalyticsScripts } from "../components/AnalyticsScripts";
 
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ReelDNA | Decode why reels go viral in seconds",
+  title: "ReelDNA — AI-Powered Competitor Intelligence for Social Media",
   description:
-    "Analyze any public creator, decode viral reel patterns, and build your own winning content blueprint.",
+    "Stop guessing what to post. ReelDNA uses AI to analyze competitor Reels, hooks, and content strategy — so you know exactly what works. Start free.",
   metadataBase: new URL("https://reeldna.com"),
   openGraph: {
     title: "ReelDNA | The viral formula decoded",

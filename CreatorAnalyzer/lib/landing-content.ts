@@ -27,6 +27,7 @@ export type FeatureItem = {
   title: string;
   description: string;
   bullets: string[];
+  href?: string;
 };
 
 export type InsightItem = {
@@ -41,8 +42,16 @@ export type TestimonialItem = {
   detail: string;
 };
 
+export type UseCaseItem = {
+  title: string;
+  description: string;
+  perfectFor: string;
+  link: string;
+  linkLabel: string;
+};
+
 export type PricingTier = {
-  key: "free" | "pro" | "agency";
+  key: "starter" | "growth" | "pro" | "agency";
   name: string;
   priceMonthly: string;
   priceAnnual: string;
@@ -56,6 +65,22 @@ export type PricingTier = {
 export type FaqItem = {
   question: string;
   answer: string;
+};
+
+export type CaseStudyItem = {
+  label: string;
+  title: string;
+  metric: string;
+  metricLabel: string;
+  description: string;
+  href: string;
+};
+
+export type FreeToolItem = {
+  title: string;
+  description: string;
+  cta: string;
+  href: string;
 };
 
 export type LandingContent = {
@@ -83,6 +108,8 @@ export type LandingContent = {
   };
   stats: StatItem[];
   painHeadline: string;
+  painSubheadline: string;
+  painSteps: string[];
   pains: PainItem[];
   howItWorksHeadline: string;
   steps: StepItem[];
@@ -91,12 +118,23 @@ export type LandingContent = {
     headline: string;
     subtext: string;
     cta: string;
+    href?: string;
   };
   insightsHeadline: string;
   insightsSubheadline?: string;
   insights: InsightItem[];
+  caseStudies: {
+    headline: string;
+    subheadline: string;
+    items: CaseStudyItem[];
+  };
   testimonialsHeadline: string;
   testimonials: TestimonialItem[];
+  freeTools: {
+    headline: string;
+    subheadline: string;
+    items: FreeToolItem[];
+  };
   pricingHeadline: string;
   pricingSubtext: string;
   pricing: PricingTier[];
@@ -108,14 +146,18 @@ export type LandingContent = {
     cta: string;
     trust: string;
   };
+  useCases: {
+    headline: string;
+    items: UseCaseItem[];
+  };
 };
 
 export const landingContent: LandingContent = {
   brand: {
-    name: "Reel!DNA",
-    shortTagline: "The viral formula. Decoded.",
-    primaryTagline: "Decode why any creator's reels go viral. In seconds.",
-    finalCtaLine: "Stop guessing. Start decoding.",
+    name: "ReelDNA",
+    shortTagline: "AI-Powered Competitor Intelligence for Social Media.",
+    primaryTagline: "See Exactly Why Your Competitor's Content Goes Viral — In 10 Seconds.",
+    finalCtaLine: "Stop guessing what to post. Start winning with data.",
   },
   nav: [
     { label: "Features", href: "#features" },
@@ -124,292 +166,434 @@ export const landingContent: LandingContent = {
     { label: "Pricing", href: "#pricing" },
   ],
   hero: {
-    eyebrow: "AI-Powered Viral Reel Intelligence",
-    animatedPrefix: "Analyze",
-    animatedPhrases: ["competitors", "profitable hooks", "viral patterns", "growth loops"],
-    headline: "Scale Your Growth & Revenue by Decoding the Viral DNA of Top Creators",
+    eyebrow: "AI-Powered Competitor Intelligence for Social Media",
+    animatedPrefix: "Decode",
+    animatedPhrases: ["competitor hooks", "posting patterns", "content strategy", "viral trends"],
+    headline: "See Exactly Why Your Competitor's Content Goes Viral — In 10 Seconds",
     subheadline:
-      "Stop wasting time on content that flops. Use AI to extract high-profit hooks, winning structures, intresting scripts and the exact formulas that drive millions of views. Grow faster, monetize better.",
-    profilesAnalyzedLabel: "PROFILES ANALYZED",
-    profilesAnalyzedCount: "700+",
-    searchPlaceholder: "Enter an Instagram username to decode...",
-    searchButtonLabel: "Analyze for Profit",
-    searchHelperText: "It's free!",
-    primaryCta: "Analyze a Creator Free",
+      "ReelDNA uses AI to analyze your competitors' Reels, Shorts, hooks, posting patterns, and content strategy — then tells you exactly what to post next. No manual stalking. No guessing. Just data-backed strategy delivered to your inbox every week.",
+    profilesAnalyzedLabel: "BRANDS & CREATORS TRUST US",
+    profilesAnalyzedCount: "500+",
+    searchPlaceholder: "Enter a competitor's @handle to analyze...",
+    searchButtonLabel: "Analyze Competitor",
+    searchHelperText: "It's free — no credit card required!",
+    primaryCta: "Start Free 7-Day Trial",
     secondaryCta: "Watch 60-sec Demo",
-    trustLine: "No credit card required | Proven growth patterns | Works on any public creator",
+    trustLine: "Trusted by 500+ creators, agencies, and D2C brands across India",
   },
   stats: [
-    { value: "700+", label: "Creators Analyzed" },
-    { value: "3800+", label: "Viral Reels Decoded" },
-    { value: "9200+", label: "Creators Growing Faster" },
+    { value: "500+", label: "Brands, Creators & Agencies" },
+    { value: "134%", label: "Avg. Engagement Lift (Case Study Verified)" },
+    { value: "91%", label: "Time Saved on Competitor Research" },
+    { value: "₹15,000+", label: "Avg. Revenue Unlocked Per User (MOM)" },
   ],
   painHeadline:
-    "You're working hard, but your reach is flat. Stop guessing and start using the data that drives million-dollar creators.",
+    "You're Doing Competitor Research the Hard Way. It's Costing You Hours, Money, and Relevance.",
+  painSubheadline:
+    "Every brand, creator, and agency does competitor research. But here is how most people do it today:",
+  painSteps: [
+    "Open your competitor's profile. Scroll through their Reels. Manually. For 30 minutes.",
+    "Screenshot the ones that 'look good.' Dump them in a Google Drive folder you will never organize.",
+    "Try to figure out why one Reel got 100K views and another got 800. Fail. Because the answer is not visible to the naked eye — it is buried in the hook, the pacing, the concept structure, and the posting timing.",
+    "Post something based on gut feeling. Hope it works. It does not.",
+    "Repeat tomorrow. And the day after. And the day after that.",
+  ],
   pains: [
     {
-      icon: "search-x",
-      title: "Stop Burning Cash on Content That Flops",
+      icon: "clock",
+      title: "10+ Hours/Week Wasted",
       description:
-        "Every reel that doesn't go viral is wasted time and money. Use proven data to ensure every post has the highest chance of exploding.",
+        "Manual competitor research is a full-time job disguised as a 'quick check.' Your time is worth more than screenshotting Reels.",
     },
     {
-      icon: "clock",
-      title: "Gain an Unfair Advantage Over Your Competition",
+      icon: "search-x",
+      title: "₹15,000–30,000/Month Burned",
       description:
-        "Your competitors are scaling while you're still testing. ReelDNA gives you the exact formula they use, so you can beat them at their own game.",
+        "That is what you pay a freelancer or junior team member to do this manually. And they still miss the patterns that matter.",
     },
     {
       icon: "layers",
-      title: "Eliminate the 'Guesswork' from Your Strategy",
+      title: "3 Weeks Behind Every Trend",
       description:
-        "No more staring at a blank screen. Identify shared winning patterns across your entire niche in seconds and replicate what works.",
+        "By the time you notice a trend, execute it, edit it, and post it — the algorithm has already moved on. You are always late.",
     },
   ],
-  howItWorksHeadline: "Your Viral Growth Roadmap in Under 60 Seconds",
+  howItWorksHeadline: "How ReelDNA Works — 3 Steps, 30 Seconds",
   steps: [
     {
       step: 1,
-      title: "Target Any Top Creator",
-      description: "Enter any public Instagram username that's currently winning in your niche.",
+      title: "Add Your Competitors",
+      description: "Enter up to 5–25 competitor profiles (depending on your plan) across Instagram or YouTube. Takes 30 seconds.",
     },
     {
       step: 2,
-      title: "AI Extracts the Viral DNA",
+      title: "AI Analyzes Every Piece of Content",
       description:
-        "ReelDNA automatically identifies and ranks their most profitable and viral content pieces.",
+        "Our AI watches their Reels and Shorts, reads transcripts, detects hook types, identifies content formats, maps posting patterns, and categorizes CTAs. Automatically. Every single day.",
     },
     {
       step: 3,
-      title: "Implement the Winning Formula",
+      title: "Get Your Weekly Strategy Brief",
       description:
-        "Get the exact hooks, structure, and emotional triggers to apply to your own content for instant results.",
+        "Every Monday, you receive a clear, AI-generated brief: what your competitors posted, which 3 concepts performed best, and exactly what you should try this week. Delivered via email or WhatsApp.",
     },
   ],
   features: [
     {
       key: "finder",
       icon: "search",
-      heading: "Identify High-Growth Content Ideas Instantly",
-      title: "Viral Reel Finder",
+      heading: "Stop Guessing Which Opening Hooks Get Views",
+      title: "Benefit 1: Know Which Hooks Actually Work",
       description:
-        "Surface the content that's actually driving reach in your niche. No more guessing what's trending.",
+        "See exactly which hooks — question hooks, shock stats, before/after reveals, trending audio intros — are driving the most views in your specific niche. Not generic advice. Your niche. Your competitors. Real data.",
       bullets: [
-        "Works on any public Instagram account",
-        "Ranks by Virality & Profit Potential Score",
-        "Deep engagement metrics (views/likes/comments ratio)",
-        "Filter by recent winners to stay ahead of trends",
+        "Detects question, shock stat, and curiosity hook formats",
+        "Ranks hooks by engagement and view conversion rate",
+        "Niche-specific analysis — not generic tips",
+        "Updated daily with fresh competitor data",
       ],
+      href: "/features/hook-format-analysis",
     },
     {
       key: "analysis",
       icon: "dna",
-      heading: "The Blueprint for Consistent 100K+ View Reels",
-      title: "Deep AI Analysis",
+      heading: "See Trends 2 Weeks Before Everyone Else",
+      title: "Benefit 2: Spot Trends Before They Peak",
       description:
-        "We break down the 'why' behind the views so you can replicate the success with your own unique voice.",
+        "Your competitors test content formats for you. ReelDNA detects which new formats are gaining traction before they go mainstream. You post the trend — you don't copy it three weeks too late.",
       bullets: [
-        "Hook strength analysis (find what stops the scroll)",
-        "Emotion mapping to trigger shares and saves",
-        "Pacing and duration sweet spots for maximum retention",
-        "The 'Viral Delta': why this reel outperformed everything else",
+        "Identifies rising content formats before they peak",
+        "Tracks format adoption across your competitor set",
+        "Alerts you to new hooks and concepts gaining traction",
+        "Weekly trend summary in your strategy brief",
       ],
+      href: "/features/ai-competitor-analysis",
     },
     {
       key: "comparison",
       icon: "scale",
-      heading: "Outperform Your Niche with Competitor Intelligence",
-      title: "Multi-Creator Comparison",
+      heading: "A Data-Backed Content Plan — Every Monday",
+      title: "Benefit 3: Get a Ready-to-Execute Content Plan",
       description:
-        "Add your top 5 competitors and surface the 'Secret Sauce' that all industry leaders are using.",
+        "Every week you receive: 'Post a product showcase Reel on Tuesday using the question hook format. Here's the evidence — Competitor A got 3.2x engagement with this exact approach last week.' No more staring at a blank screen wondering what to post.",
       bullets: [
-        "Side-by-side pattern recognition workspace",
-        "Highlight shared winning formulas across creators",
-        "Spot content gaps your competitors are missing",
-        "Automatically generated niche growth strategy",
+        "AI-generated action plan delivered every Monday",
+        "Specific format, hook, and posting time recommendations",
+        "Evidence-backed with real competitor performance data",
+        "Delivered via email or WhatsApp — zero effort required",
       ],
+      href: "/features/weekly-strategy-briefs",
     },
     {
       key: "blueprint",
       icon: "file-text",
-      heading: "Close High-Ticket Clients with Data-Backed Reports",
-      title: "Viral Blueprint Reports",
+      heading: "Replace Manual Research With AI That Never Sleeps",
+      title: "Benefit 4: Save 10+ Hours Every Week",
       description:
-        "Generate professional PDF reports to prove your content strategy works. Perfect for creators and agencies.",
+        "No more manual screenshotting, folder organizing, or 'let me check what competitors are doing.' ReelDNA monitors everything automatically. Updated daily. Analyzed continuously. Delivered weekly.",
       bullets: [
-        "One-click professional PDF generation",
-        "Full data breakdowns to justify content decisions",
-        "Client-ready white-label exports (Agency Plan)",
-        "Actionable checklists for every content piece",
+        "24/7 automated monitoring of competitor content",
+        "Daily data refresh — never miss a viral post",
+        "Content categorization: product showcase, BTS, tutorial, UGC, trending challenge",
+        "CTA detection and performance analysis",
       ],
+      href: "/features/video-content-intelligence",
     },
   ],
   comparison: {
-    headline: "Spy. Analyze. Outperform.",
+    headline: "See What Your Competitors Don't Want You to Know",
     subtext:
-      "Select up to 5 creators and ReelDNA will surface the exact patterns every leader in your niche is currently using to dominate the algorithm.",
-    cta: "Start Competitor Analysis",
+      "Select up to 5 competitors and ReelDNA surfaces the shared patterns every leader in your niche is using — the hooks that stop the scroll, the posting times that maximize reach, and the content formats that drive real sales.",
+    cta: "Start Free Competitor Analysis",
+    href: "/compare",
   },
-  insightsHeadline: "We Solve the Problem of 'Flat' Reach.",
-  insightsSubheadline: "Stop guessing why your favorites win. ReelDNA decodes the hidden ROI patterns in every viral reel so you can scale your personal brand or agency.",
+  insightsHeadline: "What You Get With ReelDNA",
+  insightsSubheadline: "Everything you need to stop guessing and start growing — powered by AI competitor intelligence that works 24/7 so you don't have to.",
   insights: [
     {
       icon: "gauge",
-      title: "High-Profit Hook Analysis",
-      description: "Identify hooks that convert viewers into loyal fans.",
+      title: "Hook Performance Breakdown",
+      description: "See which opening hooks drive the most views in your specific niche.",
     },
     {
       icon: "clock",
-      title: "Retention Patterns",
-      description: "Know exactly when and why viewers drop off.",
+      title: "Posting Pattern Analysis",
+      description: "Know exactly when and how often your competitors post for maximum reach.",
     },
     {
       icon: "captions",
-      title: "Conversion-Led Captions",
-      description: "Copy-writing formulas that drive comments & sales.",
+      title: "Content Format Detection",
+      description: "Product showcase, BTS, tutorial, UGC — know what format wins.",
     },
     {
       icon: "sparkles",
-      title: "Psychological Triggers",
-      description: "Leverage emotion to force massive shares & saves.",
+      title: "AI Concept Categorization",
+      description: "Automatically categorize every reel by concept type and strategy.",
     },
     {
       icon: "music",
-      title: "Trending vs. Evergreen Audio",
-      description: "Strategic audio choices for stability & viral spikes.",
+      title: "Audio & Trend Tracking",
+      description: "Spot trending audio choices before they peak across your niche.",
     },
     {
       icon: "timer",
-      title: "The Profit Sweet Spot",
-      description: "Find the ideal duration for maximum algorithm reach.",
+      title: "Engagement Prediction",
+      description: "Get data-backed predictions on which concepts will outperform.",
     },
     {
       icon: "activity",
-      title: "Virality Score indexing",
-      description: "Measure your potential against the top 1% of creators.",
+      title: "CTA Performance Mapping",
+      description: "See which calls-to-action drive the most saves, comments, and shares.",
     },
     {
       icon: "megaphone",
-      title: "CTA ROI Optimization",
-      description: "Turn your attention into actionable business results.",
+      title: "Weekly Strategy Brief",
+      description: "Actionable plan delivered to your inbox every Monday morning.",
     },
   ],
-  testimonialsHeadline: "Trusted by Top Creators & High-Growth Agencies",
+  caseStudies: {
+    headline: "Real Results. Real Businesses. Real Data.",
+    subheadline: "See how brands, agencies, and creators are growing with ReelDNA's AI-powered competitor intelligence.",
+    items: [
+      {
+        label: "D2C Brand",
+        title: "Diorin — Premium Jewelry Brand",
+        metric: "134%",
+        metricLabel: "Engagement Increase",
+        description: "Engagement went from 4.2% to 9.8%. Viral Reels jumped from 2 to 5 per month. Time spent on competitor research dropped by 91%.",
+        href: "#",
+      },
+      {
+        label: "Freelance SMM",
+        title: "Priya — Managing 6 D2C Brands",
+        metric: "94%",
+        metricLabel: "Client Retention Rate",
+        description: "Client retention improved from 60% to 94%. Retainer fees increased from ₹15K to ₹24K per client. Proposal close rate nearly doubled.",
+        href: "#",
+      },
+      {
+        label: "Agency",
+        title: "NaviAgency — 25+ DTC Clients",
+        metric: "₹8.5L",
+        metricLabel: "New Monthly Retainers Won",
+        description: "Won 8 new clients citing competitor intelligence capability. NPS jumped from 42 to 71. Creative throughput increased 40%.",
+        href: "#",
+      },
+    ],
+  },
+  testimonialsHeadline: "Results From Real Users",
   testimonials: [
     {
       quote:
-        "My agency's content ROI tripled after using ReelDNA. We stopped guessing and started pitching data-backed strategies to our clients. Six-figure deals are now easier to close.",
-      name: "Marcus T.",
-      detail: "Scale Social Agency Owner",
+        "Engagement went from 4.2% to 9.8% in 3 months. We now get 5 viral Reels per month instead of 2. ReelDNA showed us exactly what our competitors were doing differently.",
+      name: "Mehul K.",
+      detail: "Founder, Diorin (D2C Jewelry Brand)",
     },
     {
       quote:
-        "I was stuck at 50k followers for a year. After decoding the top 3 creators in my niche, I found a hook pattern I was missing. Gained another 100k in 3 months.",
-      name: "Sarah K.",
-      detail: "Fitness Creator",
+        "Client retention improved from 60% to 94%. I raised retainers from ₹15K to ₹24K per client because I now deliver data-backed competitive intelligence, not opinions.",
+      name: "Priya S.",
+      detail: "Freelance SMM | Managing 6 D2C Brands",
     },
     {
       quote:
-        "The white-label reports saved us 10+ hours a week in client reporting. We look like geniuses and our clients are seeing 2x engagement growth.",
-      name: "Alex R.",
-      detail: "Agency Content Lead",
+        "We won 8 new clients specifically because we could offer competitor intelligence. Our NPS jumped from 42 to 71. Creative throughput increased 40%.",
+      name: "NaviAgency",
+      detail: "Performance Marketing Agency | 25+ Clients",
+    },
+    {
+      quote:
+        "I now offer competitor analysis as a ₹15,000 add-on service to my clients. The tool costs me ₹2,499. Best ROI of any tool I use.",
+      name: "Arjun M.",
+      detail: "Freelance Social Media Manager",
     },
   ],
-  pricingHeadline: "Simple pricing. Powerful insights.",
-  pricingSubtext: "Start free. Upgrade when you are ready. No surprise charges. Cancel anytime.",
+  freeTools: {
+    headline: "Free Tools & Resources to Get Started",
+    subheadline: "No login. No credit card. Start analyzing competitors and improving your content strategy right now.",
+    items: [
+      {
+        title: "Free Competitor Snapshot",
+        description: "Analyze any Instagram profile instantly — growth rate, engagement breakdown, top content type, posting frequency, and audience demographics.",
+        cta: "Get Free Snapshot",
+        href: "#",
+      },
+      {
+        title: "Top 50 Viral Hook Formulas (PDF)",
+        description: "50 proven scroll-stopping hooks used by top D2C brands and creators — narrative, question, contrast, and curiosity gap formulas.",
+        cta: "Download Free PDF",
+        href: "#",
+      },
+      {
+        title: "90-Day Content Calendar Template",
+        description: "Pre-populated planning template used by Indian D2C brands. Includes content themes, hashtag research columns, and performance tracking.",
+        cta: "Download Template",
+        href: "#",
+      },
+      {
+        title: "Competitor Analysis Worksheet",
+        description: "Structured DIY framework to deep-dive into any competitor — content strategy, engagement metrics, audience analysis, and gap identification.",
+        cta: "Download Worksheet",
+        href: "#",
+      },
+    ],
+  },
+  pricingHeadline: "Pricing That Scales With Your Growth",
+  pricingSubtext: "India-first pricing. Simple, transparent, and built for results. All plans include 7-day free trial (no credit card required) and 30-day money-back guarantee.",
   pricing: [
     {
-      key: "free",
-      name: "Free",
-      priceMonthly: "$0",
-      priceAnnual: "$0",
-      subtitleMonthly: "forever",
-      subtitleAnnual: "forever",
+      key: "starter",
+      name: "Starter",
+      priceMonthly: "₹999",
+      priceAnnual: "₹833",
+      subtitleMonthly: "per month",
+      subtitleAnnual: "/mo billed annually",
       included: [
-        "3 creator analyses per month",
-        "Top 10 viral reels per creator",
-        "5-dimension AI analysis",
-        "Basic growth patterns",
+        "Up to 5 competitor accounts",
+        "Weekly Strategy Brief (Basic)",
+        "Reel analysis + hook extraction",
+        "Hashtag strategy mapping",
+        "Engagement benchmarking",
+        "1 team member seat",
       ],
       excluded: [
-        "Multi-creator comparison",
-        "Viral Blueprint PDF",
-        "Saved workspaces",
-        "Priority support",
+        "Visual analytics dashboard",
+        "Daily alerts",
+        "Team collaboration",
+        "API access",
       ],
     },
     {
-      key: "pro",
-      name: "Pro",
-      priceMonthly: "$29",
-      priceAnnual: "$24",
+      key: "growth",
+      name: "Growth",
+      priceMonthly: "₹2,499",
+      priceAnnual: "₹2,083",
       subtitleMonthly: "per month",
       subtitleAnnual: "/mo billed annually",
       featured: true,
       included: [
-        "Unlimited creator analyses",
-        "Top 20 viral reels per creator",
-        "Full 8-dimension AI analysis",
-        "Multi-creator comparison (up to 5)",
-        "Viral Blueprint PDF export",
-        "Saved workspaces and creator lists",
+        "Up to 25 competitor accounts",
+        "Weekly Strategy Brief (Visual)",
+        "Advanced engagement analysis",
+        "Sound trend predictions (14 days early)",
+        "Caption tone analysis",
+        "2 team member seats",
       ],
-      excluded: ["Team seats", "White-label reports"],
+      excluded: ["Unlimited tracking", "Daily briefs", "White-label reports"],
+    },
+    {
+      key: "pro",
+      name: "Pro",
+      priceMonthly: "₹4,999",
+      priceAnnual: "₹4,166",
+      subtitleMonthly: "per month",
+      subtitleAnnual: "/mo billed annually",
+      included: [
+        "Unlimited competitor accounts",
+        "Daily Strategy Briefs",
+        "Real-time hook alerts",
+        "Format performance analysis",
+        "Custom niche segmentation",
+        "5 team member seats",
+        "Priority support (Slack + WhatsApp)",
+      ],
+      excluded: ["Custom integrations", "Dedicated manager"],
     },
     {
       key: "agency",
       name: "Agency",
-      priceMonthly: "$79",
-      priceAnnual: "$66",
+      priceMonthly: "₹9,999",
+      priceAnnual: "₹8,333",
       subtitleMonthly: "per month",
       subtitleAnnual: "/mo billed annually",
       included: [
-        "Everything in Pro",
-        "5 team seats for your staff",
-        "Unlimited creator comparisons",
-        "White-label PDF reports for clients",
-        "Client-facing workspace management",
-        "Priority ROI consultation",
-        "API access (coming soon)",
-        "Premium Agency onboarding",
+        "Everything in Pro, plus:",
+        "Unlimited everything (seats/calls)",
+        "Dedicated Account Manager",
+        "Custom integrations (CRM/Slack)",
+        "White-label reporting",
+        "SSO + SAML security",
+        "On-demand custom analysis",
       ],
       excluded: [],
     },
   ],
   guarantee:
-    "14-day money-back guarantee on all paid plans. If you do not find a single useful insight in 14 days, you get a full refund.",
+    "Lock in 50% off lifetime with annual plans (Founding Member Deal) · 7-day free trial · 30-day money-back guarantee · UPI, Cards, Net Banking & Razorpay accepted.",
   faq: [
     {
-      question: "Does this work on any Instagram creator?",
+      question: "How does the AI analysis work?",
       answer:
-        "Yes. ReelDNA works on any public Instagram account. You do not need permission and you do not need to connect your own account.",
+        "ReelDNA's AI watches your competitors' videos, analyzes visual content, reads transcripts, detects hook formats, identifies content types (product showcase, BTS, tutorial, UGC, trending challenge), and categorizes CTAs. You receive a clean summary — no manual work required. The AI updates its analysis daily.",
     },
     {
-      question: "How is this different from Instagram's own analytics?",
+      question: "Can I cancel anytime?",
       answer:
-        "Instagram analytics only show your own content after posting. ReelDNA helps you analyze any creator before you create your next reel.",
+        "Yes. Cancel with one click from your dashboard. No contracts, no lock-in, no questions asked. We also offer a 30-day money-back guarantee on all paid plans.",
     },
     {
-      question: "How is this different from tools like ViralScope or Virlo?",
+      question: "Can I upgrade or downgrade mid-month?",
       answer:
-        "Those tools focus on tracking your own performance. ReelDNA is built for competitor research and viral pattern decoding across creators.",
+        "Yes. Upgrades take effect immediately (we prorate the difference). Downgrades take effect at the start of your next billing cycle.",
     },
     {
-      question: "How accurate is the AI analysis?",
+      question: "What payment methods do you accept for Indian users?",
       answer:
-        "ReelDNA analyzes patterns correlated with high performance, including hook type, pacing, caption, audio, and duration. It is not a guarantee of virality.",
+        "We support UPI (Google Pay, PhonePe, Paytm, BHIM), all major credit/debit cards, Razorpay, and direct bank transfers for annual plans.",
     },
     {
-      question: "Can I compare multiple creators at the same time?",
+      question: "What is the Founding Member Deal?",
       answer:
-        "Yes. Pro and Agency plans support up to five creators in one comparison workspace with shared and unique pattern output.",
+        "If you sign up for any annual plan before June 30, 2026, you lock in a 50% discount for the lifetime of your subscription. Even when we raise prices, your rate stays the same.",
+    },
+    {
+      question: "How does the manual vs AI analysis compare in price?",
+      answer:
+        "ReelDNA Starter (₹999) costs roughly 90% less than hiring a freelancer for manual tracking and provides 24/7 automated analysis that manual research simply can't match.",
+    },
+    {
+      question: "What happens after my 7-day trial ends?",
+      answer:
+        "If you've added a payment method, your subscription starts. If not, your access ends and you won't be charged. No dark patterns, no hidden fees.",
     },
   ],
   finalCta: {
-    headline: "Stop Wasting Time. Start Scaling.",
-    subtext: "Join 14,000+ creators and agencies who use data to win.",
-    cta: "Analyze a Creator Free",
-    trust: "No credit card required | Instant profitability insights",
+    headline: "Still Not Sure? Try It Free.",
+    subtext: "Enter one competitor's @handle. See their complete content strategy in 10 seconds. No credit card. No commitment. Just the data you've been missing.",
+    cta: "Start Your Free 7-Day Trial",
+    trust: "Join 500+ creators and brands who stopped guessing and started winning · 7-day free trial · 30-day money-back guarantee · Cancel anytime",
+  },
+  useCases: {
+    headline: "Built for Everyone Who Takes Social Media Seriously",
+    items: [
+      {
+        title: "For Brands",
+        description: "You sell through social media. So do your competitors. ReelDNA shows you their exact content strategy — which Reels drive sales, which hooks stop the scroll, which posting times maximize reach. Use their data to grow faster, spend less on trial-and-error, and outperform brands with 10x your budget.",
+        perfectFor: "D2C brands, e-commerce stores, restaurants, real estate, startups",
+        link: "/solutions/d2c-brands",
+        linkLabel: "See How Brands Use ReelDNA",
+      },
+      {
+        title: "For Creators",
+        description: "You post Reels every day. But are you posting the right Reels? ReelDNA tracks the top creators in your niche and shows you which hooks, formats, and CTAs get them 10x your views. Create smarter, not harder. Know what works before you press record.",
+        perfectFor: "Content creators, influencers, coaches, personal brand builders",
+        link: "/solutions/content-creators",
+        linkLabel: "See How Creators Use ReelDNA",
+      },
+      {
+        title: "For Agencies",
+        description: "You manage 10 clients. That's 50+ competitors to track. Manual research takes your team 20 hours per week. ReelDNA automates the entire process. White-label the reports. Sell competitor analysis as a ₹50,000 service. Your cost: ₹2,499 per month.",
+        perfectFor: "Digital marketing agencies, social media agencies",
+        link: "/solutions/marketing-agencies",
+        linkLabel: "See How Agencies Use ReelDNA",
+      },
+      {
+        title: "For Freelancers",
+        description: "Your clients ask 'why did our competitor get better engagement?' and you have no data-backed answer. ReelDNA gives you that answer in 10 seconds. Offer strategy alongside execution. Charge ₹10,000 more per client. Look like the smartest person in the room.",
+        perfectFor: "Freelance social media managers, marketing consultants, video editors",
+        link: "/solutions/social-media-managers",
+        linkLabel: "See How Freelancers Use ReelDNA",
+      },
+    ],
   },
 };
-
