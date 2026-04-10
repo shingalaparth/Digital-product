@@ -131,7 +131,7 @@ export const landingContent: LandingContent = {
     subheadline:
       "Stop wasting time on content that flops. Use AI to extract high-profit hooks, winning structures, intresting scripts and the exact formulas that drive millions of views. Grow faster, monetize better.",
     profilesAnalyzedLabel: "PROFILES ANALYZED",
-    profilesAnalyzedCount: "14,200+",
+    profilesAnalyzedCount: "700+",
     searchPlaceholder: "Enter an Instagram username to decode...",
     searchButtonLabel: "Analyze for Profit",
     searchHelperText: "It's free!",
@@ -140,9 +140,9 @@ export const landingContent: LandingContent = {
     trustLine: "No credit card required | Proven growth patterns | Works on any public creator",
   },
   stats: [
-    { value: "14,000+", label: "Creators Analyzed" },
-    { value: "380,000+", label: "Viral Reels Decoded" },
-    { value: "9,200+", label: "Creators Growing Faster" },
+    { value: "700+", label: "Creators Analyzed" },
+    { value: "3800+", label: "Viral Reels Decoded" },
+    { value: "9200+", label: "Creators Growing Faster" },
   ],
   painHeadline:
     "You're working hard, but your reach is flat. Stop guessing and start using the data that drives million-dollar creators.",
@@ -403,21 +403,6 @@ export const landingContent: LandingContent = {
       question: "Can I compare multiple creators at the same time?",
       answer:
         "Yes. Pro and Agency plans support up to five creators in one comparison workspace with shared and unique pattern output.",
-    },
-    {
-      question: "What do I get on the Free plan?",
-      answer:
-        "The Free plan includes three creator analyses per month, top 10 reels per creator, and a 5-dimension AI breakdown.",
-    },
-    {
-      question: "Do I need a Creator or Business Instagram account?",
-      answer:
-        "No. You do not connect your own account at all. ReelDNA works by analyzing public creator usernames.",
-    },
-    {
-      question: "Is my data safe?",
-      answer:
-        "ReelDNA stores only analysis results you choose to save in your workspace. Your research is not sold or shared with other users.",
     },
   ],
   finalCta: {

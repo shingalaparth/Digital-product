@@ -6,6 +6,7 @@ import {
   Check,
   ChevronDown,
   Menu,
+  Plus,
   Search,
   X,
 } from "lucide-react";
@@ -458,18 +459,18 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
-      <section data-testid="section-3" className="border-y border-border bg-card/70 py-6 sm:py-10">
-        <div className="section-shell grid gap-0 divide-y divide-border md:grid-cols-3 md:gap-8 md:divide-y-0">
-          {landingContent.stats.map((item, index) => (
-            <div
-              key={item.label}
-              className={classNames(
-                "py-4 text-center md:py-0",
-                index > 0 ? "md:border-l md:border-border" : "",
-              )}
-            >
-              <p className="text-3xl font-bold text-hot sm:text-4xl">{item.value}</p>
-              <p className="mt-1 text-xs text-muted sm:mt-2 sm:text-sm">{item.label}</p>
+      <section data-testid="section-3" className="relative overflow-hidden border-y border-border py-10 sm:py-14">
+        <div className="bg-hero-gradient absolute inset-0 opacity-[0.2]" />
+        
+        <div className="section-shell relative z-10 grid gap-12 text-center md:grid-cols-3">
+          {landingContent.stats.map((item) => (
+            <div key={item.label} className="group transition-transform duration-300 hover:scale-[1.02]">
+              <p className="text-5xl font-black italic tracking-tighter text-hot sm:text-5xl lg:text-6xl">
+                {item.value}
+              </p>
+              <p className="mt-4 text-sm font-medium text-muted sm:text-base lg:text-lg">
+                {item.label}
+              </p>
             </div>
           ))}
         </div>
@@ -805,27 +806,58 @@ export function LandingPage({ currentYear }: LandingPageProps) {
       </section>
 
       <section data-testid="section-11" className="border-y border-border py-16 sm:py-24 lg:py-32">
-        <div className="section-shell max-w-4xl">
-          <h2 className="text-center text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">FAQ</h2>
-          <div className="mt-6 space-y-2 sm:mt-8 sm:space-y-3">
-            {landingContent.faq.map((item, index) => {
-              const isOpen = openFaqIndex === index;
-              return (
-                <article key={item.question} className="rounded-xl border border-border bg-card">
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left text-sm font-semibold text-headline sm:px-5 sm:py-5 sm:text-base"
-                    onClick={() => onFaqToggle(index)}
-                    aria-expanded={isOpen}
-                  >
-                    <span>{item.question}</span>
-                    <ChevronDown className={classNames("h-4 w-4 flex-shrink-0 transition-transform", isOpen ? "rotate-180" : "")}
-                    />
-                  </button>
-                  {isOpen ? <p className="px-4 pb-4 text-sm leading-relaxed text-muted sm:px-5">{item.answer}</p> : null}
-                </article>
-              );
-            })}
+        <div className="section-shell">
+          <div className="grid gap-12 md:grid-cols-[1fr,1.5fr] lg:grid-cols-[1fr,2fr]">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-headline sm:text-4xl lg:text-5xl lg:leading-[1.1]">
+                Frequently Asked <br className="hidden lg:block" /> Questions
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              <div className="space-y-3">
+                {landingContent.faq.map((item, index) => {
+                  const isOpen = openFaqIndex === index;
+                  return (
+                    <article key={item.question} className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:shadow-md">
+                      <button
+                        type="button"
+                        className="flex w-full items-center justify-between gap-3 px-5 py-5 text-left text-base font-semibold text-headline sm:px-6 sm:py-6"
+                        onClick={() => onFaqToggle(index)}
+                        aria-expanded={isOpen}
+                      >
+                        <span className="flex-1">{item.question}</span>
+                        <div className={classNames(
+                          "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-primary/20 text-primary transition-transform duration-300",
+                          isOpen ? "rotate-45" : "rotate-0"
+                        )}>
+                          <Plus className="h-4 w-4" />
+                        </div>
+                      </button>
+                      <div className={classNames(
+                        "grid transition-all duration-300 ease-in-out",
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      )}>
+                        <div className="overflow-hidden">
+                          <p className="px-5 pb-6 text-sm leading-relaxed text-muted sm:px-6 sm:pb-8 sm:text-base">
+                            {item.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <div className="mt-8">
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-primary-dark sm:text-base"
+                >
+                  See more FAQs <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

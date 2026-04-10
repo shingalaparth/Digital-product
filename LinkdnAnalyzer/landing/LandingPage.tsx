@@ -7,6 +7,7 @@ import {
   Check,
   ChevronDown,
   Menu,
+  Plus,
   Search,
   X,
 } from "lucide-react";
@@ -334,18 +335,19 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
-      <section data-testid="section-3" className="border-y border-border bg-card/70 py-10">
-        <div className="section-shell grid gap-8 md:grid-cols-3">
-          {landingContent.stats.map((item, index) => (
-            <div
-              key={item.label}
-              className={classNames(
-                "text-center",
-                index > 0 ? "md:border-l md:border-border" : "",
-              )}
-            >
-              <p className="text-4xl font-bold text-hot">{item.value}</p>
-              <p className="mt-2 text-sm text-muted">{item.label}</p>
+     <section data-testid="section-3" className="relative border-y border-border bg-gray-50/50 py-10 sm:py-16">
+        {/* Subtle Dot Grid Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-60" />
+
+        <div className="section-shell relative z-10 grid gap-12 text-center md:grid-cols-3">
+          {landingContent.stats.map((item) => (
+            <div key={item.label} className="group transition-transform duration-300 hover:scale-[1.02]">
+              <p className="text-5xl font-black italic tracking-tighter text-blue-900 sm:text-4xl lg:text-5xl">
+                {item.value}
+              </p>
+              <p className="mt-4 text-sm font-medium text-gray-500 sm:text-base lg:text-lg">
+                {item.label}
+              </p>
             </div>
           ))}
         </div>
@@ -565,6 +567,32 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
+      {/* High-Impact Autopilot Section */}
+      <section className="relative overflow-hidden bg-white py-24 sm:py-22 lg:py-28">
+        <div className="section-shell relative flex items-center justify-center">
+          {/* Central Scanline Figure */}
+          <div className="absolute inset-0 z-0 flex items-center justify-center opacity-70 pointer-events-none">
+            <Image
+              src="/autopilot-figure.png"
+              alt="Autopilot Figure"
+              width={600}
+              height={800}
+              className="h-auto w-[min(90vw,600px)] object-contain"
+            />
+          </div>
+
+          {/* Massive Layered Text */}
+          <div className="relative z-10 mx-auto max-w-7xl px-4 text-center">
+            <h2 className="text-[clamp(1.8rem,7vw,4.5rem)] font-[900] uppercase leading-[0.9] tracking-tighter text-gray-400 sm:text-[clamp(3rem,8vw,6.5rem)]">
+              Everything <br />
+              you need <br />
+              to scale <br />
+              on <span className="text-primary">autopilot</span>
+            </h2>
+          </div>
+        </div>
+      </section>
+
       <section data-testid="section-9" className="border-y border-border py-16 sm:py-24 lg:py-32">
         <div className="section-shell">
           <h2 className="text-center text-3xl font-bold text-headline sm:text-4xl">
@@ -666,28 +694,59 @@ export function LandingPage({ currentYear }: LandingPageProps) {
         </div>
       </section>
 
-      <section data-testid="section-11" className="border-y border-border py-16 sm:py-24 lg:py-32">
-        <div className="section-shell max-w-4xl">
-          <h2 className="text-center text-3xl font-bold text-headline sm:text-4xl">FAQ</h2>
-          <div className="mt-8 space-y-3">
-            {landingContent.faq.map((item, index) => {
-              const isOpen = openFaqIndex === index;
-              return (
-                <article key={item.question} className="rounded-xl border border-border bg-card">
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-semibold text-headline"
-                    onClick={() => onFaqToggle(index)}
-                    aria-expanded={isOpen}
-                  >
-                    <span>{item.question}</span>
-                    <ChevronDown className={classNames("h-4 w-4 transition-transform", isOpen ? "rotate-180" : "")}
-                    />
-                  </button>
-                  {isOpen ? <p className="px-5 pb-4 text-sm leading-relaxed text-muted">{item.answer}</p> : null}
-                </article>
-              );
-            })}
+      <section data-testid="section-11" className="border-y border-border py-16 sm:py-24 lg:py-32 bg-bg">
+        <div className="section-shell">
+          <div className="grid gap-12 md:grid-cols-[1fr,1.5fr] lg:grid-cols-[1fr,2fr]">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-headline sm:text-4xl lg:text-5xl lg:leading-[1.1]">
+                Frequently Asked <br className="hidden lg:block" /> Questions
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              <div className="space-y-3">
+                {landingContent.faq.map((item, index) => {
+                  const isOpen = openFaqIndex === index;
+                  return (
+                    <article key={item.question} className="overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition-all duration-300 hover:shadow-md">
+                      <button
+                        type="button"
+                        className="flex w-full items-center justify-between gap-3 px-5 py-5 text-left text-base font-semibold text-headline sm:px-6 sm:py-6"
+                        onClick={() => onFaqToggle(index)}
+                        aria-expanded={isOpen}
+                      >
+                        <span className="flex-1">{item.question}</span>
+                        <div className={classNames(
+                          "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-primary/20 text-primary transition-transform duration-300",
+                          isOpen ? "rotate-45" : "rotate-0"
+                        )}>
+                          <Plus className="h-4 w-4" />
+                        </div>
+                      </button>
+                      <div className={classNames(
+                        "grid transition-all duration-300 ease-in-out",
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      )}>
+                        <div className="overflow-hidden">
+                          <p className="px-5 pb-6 text-sm leading-relaxed text-muted sm:px-6 sm:pb-8 sm:text-base">
+                            {item.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <div className="mt-8">
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-primary-dark sm:text-base"
+                >
+                  See more FAQs <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
