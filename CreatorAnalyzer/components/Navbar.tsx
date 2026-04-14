@@ -5,10 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 
-/* ------------------------------------------------------------------ */
-/*  Navigation data — matches the sitemap structure                    */
-/* ------------------------------------------------------------------ */
-
 type NavChild = {
   label: string;
   href: string;
@@ -72,12 +68,6 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-
-function cn(...v: Array<string | false | null | undefined>): string {
-  return v.filter(Boolean).join(" ");
-}
-
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -88,7 +78,6 @@ export function Navbar() {
   const dropdownTimeout = useRef<number | null>(null);
   const pathname = usePathname();
 
-  /* Lock body scroll when mobile drawer is open */
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("drawer-open");
@@ -98,7 +87,6 @@ export function Navbar() {
     return () => document.body.classList.remove("drawer-open");
   }, [isMenuOpen]);
 
-  /* Scroll-aware show / hide */
   useEffect(() => {
     const onScroll = (): void => {
       const y = window.scrollY;
@@ -112,7 +100,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Close everything on route change */
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsMenuOpen(false);
@@ -131,67 +118,72 @@ export function Navbar() {
     dropdownTimeout.current = window.setTimeout(() => setOpenDropdown(null), 150);
   };
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname === href) {
+      if (!href.includes("#") || href === "/") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-transform duration-300 ease-in-out",
-        isNavVisible ? "translate-y-0" : "-translate-y-full",
-      )}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-in-out ${
+        isNavVisible ? "translate-y-0" : "-translate-y-full"
+      } ${
+        isScrolled ? "bg-bg border-b border-border shadow-sm" : "bg-transparent border-transparent"
+      }`}
     >
-      <nav
-        aria-label="Primary"
-        className={cn(
-          "border-b transition-colors duration-300",
-          isScrolled
-            ? "bg-black/50 backdrop-blur-md border-white/5"
-            : "bg-transparent border-transparent",
-        )}
-      >
-        <div className="flex h-14 w-full items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-12">
+      <nav aria-label="Primary">
+        <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
+          
           {/* ---- Logo ---- */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded bg-white text-black font-bold">
-              R
-            </div>
-            <span className="text-xl font-bold tracking-tight text-white">ReelDNA</span>
+          <Link
+            href="/"
+            className="flex items-center gap-2"
+            onClick={(e) => handleLinkClick(e, "/")}
+          >
+            <span className="text-xl font-bold tracking-tight text-headline">
+              Reel<span className="text-primary">DNA</span>
+            </span>
           </Link>
 
           {/* ---- Desktop nav ---- */}
           <div className="hidden items-center gap-10 lg:flex">
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-8">
               {NAV_ITEMS.map((item) => (
                 <div
                   key={item.label}
-                  className="relative"
+                  className="relative group h-16 flex items-center"
                   onMouseEnter={() => item.children && enterDropdown(item.label)}
                   onMouseLeave={() => item.children && leaveDropdown()}
                 >
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className={cn(
-                        "flex items-center gap-1 py-2 text-[13px] font-medium transition-colors",
-                        pathname === item.href ? "text-white" : "text-white/70 hover:text-white",
-                      )}
+                      onClick={(e) => handleLinkClick(e, item.href!)}
+                      className={`text-[14px] font-semibold transition-colors ${
+                        pathname === item.href ? "text-headline" : "text-body hover:text-headline"
+                      }`}
                     >
                       {item.label}
                     </Link>
                   ) : (
                     <button
                       type="button"
-                      className={cn(
-                        "group flex items-center gap-1 py-2 text-[13px] font-medium transition-colors",
+                      className={`flex items-center gap-1 text-[14px] font-semibold transition-colors ${
                         openDropdown === item.label || (item.children && pathname.startsWith(`/${item.label.toLowerCase()}`))
-                          ? "text-white"
-                          : "text-white/70 hover:text-white",
-                      )}
+                          ? "text-headline"
+                          : "text-body hover:text-headline"
+                      }`}
                     >
                       {item.label}
                       <ChevronDown
-                        className={cn(
-                          "h-3.5 w-3.5 opacity-50 transition-transform duration-200 group-hover:translate-y-0.5",
-                          openDropdown === item.label && "rotate-180",
-                        )}
+                        className={`h-3.5 w-3.5 opacity-50 transition-transform duration-200 ${
+                          openDropdown === item.label ? "rotate-180" : ""
+                        }`}
                       />
                     </button>
                   )}
@@ -199,33 +191,32 @@ export function Navbar() {
                   {/* Dropdown panel */}
                   {item.children && (
                     <div
-                      className={cn(
-                        "absolute left-1/2 top-full pt-2 -translate-x-1/2 transition-all duration-200",
+                      className={`absolute left-1/2 top-full -translate-x-1/2 pt-1 transition-all duration-200 w-max ${
                         openDropdown === item.label
                           ? "visible translate-y-0 opacity-100"
-                          : "invisible -translate-y-2 opacity-0",
-                      )}
+                          : "invisible translate-y-2 opacity-0"
+                      }`}
                     >
-                      <div className="min-w-[280px] rounded-xl border border-border bg-card/95 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl">
+                      <div className="min-w-[280px] rounded-xl border border-border bg-card p-3 shadow-soft backdrop-blur-xl">
                         {item.children.map((child) => (
                           <Link
                             key={child.href}
                             href={child.href}
-                            className={cn(
-                              "flex flex-col gap-0.5 rounded-lg px-3 py-2.5 transition-colors hover:bg-surface",
-                              pathname === child.href && "bg-surface",
-                            )}
+                            onClick={(e) => handleLinkClick(e, child.href)}
+                            className={`flex flex-col gap-1 rounded-lg px-4 py-3 transition-colors hover:bg-surface ${
+                              pathname === child.href ? "bg-surface" : ""
+                            }`}
                           >
-                            <span className="flex items-center gap-2 text-sm font-medium text-headline">
+                            <span className="flex items-center gap-2 text-[14px] font-semibold text-headline tracking-tight">
                               {child.label}
                               {child.badge && (
-                                <span className="rounded-full bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                                <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase font-bold text-primary">
                                   {child.badge}
                                 </span>
                               )}
                             </span>
                             {child.description && (
-                              <span className="text-xs text-muted">{child.description}</span>
+                              <span className="text-[12px] leading-relaxed text-muted">{child.description}</span>
                             )}
                           </Link>
                         ))}
@@ -239,14 +230,9 @@ export function Navbar() {
             {/* Right-side buttons */}
             <div className="flex items-center gap-4">
               <Link
-                href="/contact"
-                className="rounded-lg border border-primary/30 px-4 py-1.5 text-[13px] font-semibold text-white transition hover:bg-primary/10"
-              >
-                Log in
-              </Link>
-              <Link
                 href="/pricing"
-                className="rounded-md bg-white px-5 py-1.5 text-[13px] font-bold text-black transition hover:bg-white/90"
+                onClick={(e) => handleLinkClick(e, "/pricing")}
+                className="rounded-lg bg-headline px-6 py-2.5 text-[14px] font-semibold text-white transition hover:bg-headline/90 shadow-soft"
               >
                 Start Free Trial
               </Link>
@@ -257,10 +243,10 @@ export function Navbar() {
           <button
             type="button"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-white lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-body hover:bg-surface lg:hidden"
             onClick={() => setIsMenuOpen((o) => !o)}
           >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </nav>
@@ -268,28 +254,37 @@ export function Navbar() {
       {/* ---- Mobile backdrop ---- */}
       {isMenuOpen && (
         <div
-          className="drawer-backdrop lg:hidden"
+          className="fixed inset-0 z-30 bg-headline/20 backdrop-blur-sm lg:hidden transition-opacity"
           onClick={() => setIsMenuOpen(false)}
-          aria-hidden
+          aria-hidden="true"
         />
       )}
 
       {/* ---- Mobile drawer ---- */}
       <div
-        className={cn(
-          "fixed right-0 top-14 z-40 h-[calc(100vh-3.5rem)] w-[min(20rem,calc(100vw-1rem))] overflow-y-auto border-l border-border bg-card/95 p-5 backdrop-blur-lg transition-transform duration-300 sm:top-20 sm:h-[calc(100vh-5rem)] sm:p-6 lg:hidden",
-          isMenuOpen ? "translate-x-0" : "translate-x-full",
-        )}
+        className={`fixed right-0 top-0 bottom-0 z-40 w-full max-w-sm overflow-y-auto bg-card border-l border-border px-6 py-8 shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
         aria-hidden={!isMenuOpen}
       >
-        <div className="flex flex-col gap-1">
+        <div className="flex justify-end mb-8">
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-surface text-headline"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-2">
           {NAV_ITEMS.map((item) => (
             <div key={item.label}>
               {item.href ? (
                 <Link
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block py-3 text-lg font-medium text-white/80 transition-colors hover:text-white"
+                  onClick={(e) => handleLinkClick(e, item.href!)}
+                  className="block py-3 text-[17px] font-bold text-headline transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -300,36 +295,34 @@ export function Navbar() {
                     onClick={() =>
                       setMobileExpanded((prev) => (prev === item.label ? null : item.label))
                     }
-                    className="flex w-full items-center justify-between py-3 text-lg font-medium text-white/80 transition-colors hover:text-white"
+                    className="flex w-full items-center justify-between py-3 text-[17px] font-bold text-headline transition-colors"
                   >
                     {item.label}
                     <ChevronDown
-                      className={cn(
-                        "h-4 w-4 opacity-50 transition-transform duration-200",
-                        mobileExpanded === item.label && "rotate-180",
-                      )}
+                      className={`h-5 w-5 opacity-50 transition-transform duration-200 ${
+                        mobileExpanded === item.label ? "rotate-180" : ""
+                      }`}
                     />
                   </button>
 
                   <div
-                    className={cn(
-                      "overflow-hidden transition-all duration-300",
+                    className={`overflow-hidden transition-all duration-300 ${
                       mobileExpanded === item.label
-                        ? "max-h-[500px] opacity-100"
-                        : "max-h-0 opacity-0",
-                    )}
+                        ? "max-h-[800px] opacity-100 mb-2"
+                        : "max-h-0 opacity-0"
+                    }`}
                   >
-                    <div className="space-y-0.5 pb-2 pl-3">
+                    <div className="flex flex-col gap-1 border-l-2 border-borderbg ml-3 pl-4 pt-2">
                       {item.children?.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          onClick={() => setIsMenuOpen(false)}
-                          className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm text-white/60 transition-colors hover:bg-surface hover:text-white"
+                          onClick={(e) => handleLinkClick(e, child.href)}
+                          className="py-2.5 text-[15px] font-semibold text-body hover:text-headline"
                         >
                           {child.label}
                           {child.badge && (
-                            <span className="rounded-full bg-primary/20 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                            <span className="ml-2 rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-primary">
                               {child.badge}
                             </span>
                           )}
@@ -343,18 +336,11 @@ export function Navbar() {
           ))}
 
           {/* Mobile CTA buttons */}
-          <div className="mt-4 flex flex-col gap-3 border-t border-border pt-4">
-            <Link
-              href="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="w-full rounded-lg border border-primary/30 py-3 text-center text-sm font-semibold text-white transition hover:bg-primary/10"
-            >
-              Log in
-            </Link>
+          <div className="mt-8 flex flex-col pt-6 border-t border-border">
             <Link
               href="/pricing"
-              onClick={() => setIsMenuOpen(false)}
-              className="w-full rounded-md bg-white py-3 text-center text-sm font-bold text-black"
+              onClick={(e) => handleLinkClick(e, "/pricing")}
+              className="w-full rounded-lg bg-headline py-4 text-center text-[15px] font-bold text-white shadow-soft transition-colors hover:bg-headline/90"
             >
               Start Free Trial
             </Link>

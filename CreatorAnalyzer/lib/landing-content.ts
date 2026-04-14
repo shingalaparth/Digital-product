@@ -166,12 +166,12 @@ export const landingContent: LandingContent = {
     { label: "Pricing", href: "#pricing" },
   ],
   hero: {
-    eyebrow: "AI-Powered Competitor Intelligence for Social Media",
-    animatedPrefix: "Decode",
-    animatedPhrases: ["competitor hooks", "posting patterns", "content strategy", "viral trends"],
-    headline: "See Exactly Why Your Competitor's Content Goes Viral — In 10 Seconds",
+    eyebrow: "Unlock Your Next Viral Hit with AI",
+    animatedPrefix: "The Content Engine",
+    animatedPhrases: ["viral blueprints", "hidden patterns", "creator secrets", "winning hooks"],
+    headline: "Stop Guessing. Start Winning with Data-Driven Content.",
     subheadline:
-      "ReelDNA uses AI to analyze your competitors' Reels, Shorts, hooks, posting patterns, and content strategy — then tells you exactly what to post next. No manual stalking. No guessing. Just data-backed strategy delivered to your inbox every week.",
+      "ReelDNA decodes your competitors' highest-performing content so you can replicate their success—instantly and predictably.",
     profilesAnalyzedLabel: "BRANDS & CREATORS TRUST US",
     profilesAnalyzedCount: "500+",
     searchPlaceholder: "Enter a competitor's @handle to analyze...",
