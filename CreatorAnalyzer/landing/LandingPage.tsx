@@ -276,11 +276,11 @@ export function LandingPage() {
                     {/* Two-line headline — matches reference image exactly */}
                     <h1 className="max-w-3xl tracking-tight text-headline">
                         {/* Line 1: static, normal weight — small, like a label */}
-                        <span className="block text-[1.6rem] font-normal leading-snug text-headline/70 sm:text-3xl md:text-4xl">
+                        <span className="block text-2xl font-normal leading-snug text-headline/70 sm:text-3xl md:text-4xl">
                             {landingContent.hero.animatedPrefix}
                         </span>
                         {/* Line 2: bold, BIGGER — the punchline with typewriter word */}
-                        <span className="block text-[2.4rem] font-bold leading-tight sm:text-5xl md:text-[3.6rem] mt-1">
+                        <span className="block text-3xl font-bold leading-tight sm:text-5xl md:text-[3.6rem] mt-1">
                             To decode{" "}
                             <span className="relative inline-block">
                                 <span
@@ -338,15 +338,59 @@ export function LandingPage() {
                         </p>
                     </div>
 
-                    <div className="mt-10 max-w-3xl mx-auto space-y-4 sm:mt-16">
+                    {/* Interactive Timeline (Desktop & Mobile) */}
+                    <div className="hidden md:block relative mt-24 mb-16 max-w-6xl mx-auto h-[350px]">
+                        {/* Horizontal Line */}
+                        <div className="absolute top-1/2 left-[2%] right-[2%] h-[1px] bg-border z-0" />
+
+                        <div className="flex w-full h-full justify-between relative z-10 items-center">
+                            {landingContent.painSteps.map((step, idx) => {
+                                const isTop = idx % 2 === 0;
+                                return (
+                                    <div key={idx} className="relative flex-1 flex justify-center group cursor-default">
+                                        
+                                        {/* Step Node */}
+                                        <div className="bg-card border border-border px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-[11px] font-bold text-headline uppercase tracking-widest transition-all duration-300 group-hover:border-primary/40 group-hover:bg-primary/5 group-hover:text-primary group-hover:shadow-[0_0_15px_rgba(255,95,38,0.15)] relative z-20">
+                                            Step {idx + 1}
+                                        </div>
+
+                                        {/* Vertical Connector */}
+                                        <div 
+                                            className={`absolute left-1/2 w-[1px] bg-border -translate-x-1/2 transition-colors duration-300 group-hover:bg-primary/40 z-10 ${
+                                                isTop ? 'bottom-1/2 h-8 lg:h-10' : 'top-1/2 h-8 lg:h-10'
+                                            }`} 
+                                        />
+
+                                        {/* Content Box */}
+                                        <div 
+                                            className={`absolute left-1/2 w-[150px] lg:w-[220px] -translate-x-1/2 text-center p-2 transition-all duration-300 ${
+                                                isTop ? 'bottom-[calc(50%+2rem)] lg:bottom-[calc(50%+2.5rem)]' : 'top-[calc(50%+2rem)] lg:top-[calc(50%+2.5rem)]'
+                                            }`}
+                                        >
+                                            <p className="text-[13px] sm:text-sm text-body font-medium leading-relaxed group-hover:text-headline transition-colors duration-300">
+                                                {step}
+                                            </p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Interactive Timeline (Mobile) */}
+                    <div className="md:hidden mt-16 mb-20 space-y-8 relative max-w-sm mx-auto px-4">
+                        {/* Vertical Line */}
+                        <div className="absolute left-[35px] top-4 bottom-4 w-[1px] bg-border" />
+                        
                         {landingContent.painSteps.map((step, idx) => (
-                            <div key={idx} className="flex gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] items-start">
-                                <span className="flex-shrink-0 flex h-6 w-12 items-center justify-center rounded-full bg-primary/10 text-[11px] font-bold text-primary uppercase tracking-wider">
-                                    Step {idx + 1}
-                                </span>
-                                <p className="text-sm sm:text-base text-body leading-relaxed">
-                                    {step}
-                                </p>
+                            <div key={idx} className="relative flex items-start gap-6 group">
+                                <div className="relative z-10 flex-shrink-0 bg-card border border-border h-10 w-10 rounded-full flex items-center justify-center text-[10px] font-bold text-headline transition-all duration-300 group-hover:border-primary/40 group-hover:bg-primary/5 group-hover:text-primary">
+                                    {idx + 1}
+                                </div>
+                                <div className="pt-2 pb-2">
+                                    <span className="block text-[11px] font-bold text-primary mb-1 uppercase tracking-wider">Step {idx + 1}</span>
+                                    <p className="text-[13px] sm:text-sm font-medium leading-relaxed text-body transition-colors duration-300 group-hover:text-headline">{step}</p>
+                                </div>
                             </div>
                         ))}
                     </div>
