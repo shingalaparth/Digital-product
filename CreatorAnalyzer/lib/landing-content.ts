@@ -558,9 +558,9 @@ export const landingContent: LandingContent = {
     },
   ],
   finalCta: {
-    headline: "Still Not Sure? Try It Free.",
-    subtext: "Enter one competitor's @handle. See their complete content strategy in 10 seconds. No credit card. No commitment. Just the data you've been missing.",
-    cta: "Start Your Free 7-Day Trial",
+    headline: "Never fall short of performance targets",
+    subtext: "ReelDNA does the heavy-lifting to bring you insights that keep you ahead.",
+    cta: "Talk to Founders",
     trust: "Join 500+ creators and brands who stopped guessing and started winning · 7-day free trial · 30-day money-back guarantee · Cancel anytime",
   },
   useCases: {
