@@ -435,6 +435,7 @@ export function LandingPage() {
                 className="relative overflow-hidden border-y border-border py-16 sm:py-24 lg:py-32 bg-surface/30"
             >
 
+
                 <div className="section-shell relative z-10">
                     <h2 className="text-center text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
                         <span className="text-primary">

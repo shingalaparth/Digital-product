@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BlogPageTemplate, type BlogPageData } from "../../../../components/BlogPageTemplate";
 
 export const metadata: Metadata = {
- title:"Social Media Marketing by Industry: Niche Strategies 2026 | labhook",
+ title:"Social Media Marketing by Industry: Niche Strategies 2026 | TheHookLab",
  description:
 "Industry-specific social media strategies for D2C brands, restaurants, wedding photography, coaching, and real estate with benchmarks and best practices.",
 };
@@ -135,7 +135,7 @@ const data: BlogPageData = {
  ],
  ctaHeadline:"Build an Industry-Aligned Strategy",
  ctaDescription:
-"labhook analyzes competitor strategies in your specific niche — showing you industry-specific content patterns, benchmarks, and actionable insights.",
+"TheHookLab analyzes competitor strategies in your specific niche — showing you industry-specific content patterns, benchmarks, and actionable insights.",
 };
 
 export default function IndustryGuidesBlogPage() {

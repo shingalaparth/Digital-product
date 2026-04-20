@@ -110,7 +110,7 @@ export function SolutionPageTemplate({ data }: { data: SolutionPageData }) {
  <section className="py-16 sm:py-24">
  <div className="section-shell">
  <h2 className="text-center text-2xl font-bold text-headline sm:text-3xl">
- How labhook Solves This
+ How TheHookLab Solves This
  </h2>
  <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2">
  {data.solutions.map((sol, idx) => (

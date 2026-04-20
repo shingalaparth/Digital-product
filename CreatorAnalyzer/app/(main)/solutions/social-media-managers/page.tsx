@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { SolutionPageTemplate, type SolutionPageData } from "../../../../components/SolutionPageTemplate";
 
 export const metadata: Metadata = {
- title:"Freelance SMM Tool | Competitor Analysis for Social Managers | labhook",
+ title:"Freelance SMM Tool | Competitor Analysis for Social Managers | TheHookLab",
  description:
-"Stop wasting 10 hours/week on competitor research. Get weekly strategy briefs. Charge clients ₹10,000 more per month. labhook for freelance SMMs.",
+"Stop wasting 10 hours/week on competitor research. Get weekly strategy briefs. Charge clients ₹10,000 more per month. TheHookLab for freelance SMMs.",
 };
 
 const data: SolutionPageData = {
@@ -15,7 +15,7 @@ const data: SolutionPageData = {
  eyebrow:"FOR SOCIAL MEDIA MANAGERS",
  title:"Stop Spending 10 Hours/Week on Competitor Research. Charge Clients ₹10,000 More.",
  subtitle:
-"You're already good at managing accounts, but manual research is eating your profits. labhook automates your competitor analysis and turns it into a premium strategy service you can bill for.",
+"You're already good at managing accounts, but manual research is eating your profits. TheHookLab automates your competitor analysis and turns it into a premium strategy service you can bill for.",
  hook:"The top-earning SMMs we know aren't spending 10 hours on competitor research. They're using data to charge clients ₹50K for quarterly analysis.",
  painPoints: [
 "You're manually tracking 5–10 competitor profiles for each client — taking screenshots and notes for hours that aren't billable.",
@@ -28,7 +28,7 @@ const data: SolutionPageData = {
  {
  title:"Automate Your Weekly Competitor Research",
  description:
-"labhook watches your clients' competitors for you. Receive a professional strategy brief every Friday with hooks, formats, and posting times included.",
+"TheHookLab watches your clients' competitors for you. Receive a professional strategy brief every Friday with hooks, formats, and posting times included.",
  },
  {
  title:"Deliver Premium Quarterly Strategy Decks",
@@ -53,7 +53,7 @@ const data: SolutionPageData = {
  ],
  testimonial: {
  quote:
-"I was spending 8 hours/week on research that clients didn't pay for. Now labhook does it in minutes. I package the briefs into quarterly reports and charge ₹50K each. Three clients signed up. That's ₹150K in new revenue.",
+"I was spending 8 hours/week on research that clients didn't pay for. Now TheHookLab does it in minutes. I package the briefs into quarterly reports and charge ₹50K each. Three clients signed up. That's ₹150K in new revenue.",
  name:"Freelance SMM",
  role:"Managing 6 Brand Accounts",
  },

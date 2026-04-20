@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BlogPageTemplate, type BlogPageData } from "../../../../components/BlogPageTemplate";
 
 export const metadata: Metadata = {
- title:"Complete Guide to Social Media Competitor Analysis 2026 | labhook",
+ title:"Complete Guide to Social Media Competitor Analysis 2026 | TheHookLab",
  description:
 "Master social media competitor analysis with this step-by-step framework. Learn what to analyze, which tools to use, and how to outcompete rivals with data.",
 };
@@ -138,12 +138,12 @@ const data: BlogPageData = {
  {
  label:"AI Competitor Analysis Feature",
  href:"/features/ai-competitor-analysis",
- description:"See how labhook automates competitor tracking with AI-powered intelligence.",
+ description:"See how TheHookLab automates competitor tracking with AI-powered intelligence.",
  },
  ],
  ctaHeadline:"Ready to Master Competitor Analysis? ",
  ctaDescription:
-"Stop spending hours manually stalking competitors. labhook automates the entire process — tracking 5–10 competitors continuously and surfacing actionable insights every week.",
+"Stop spending hours manually stalking competitors. TheHookLab automates the entire process — tracking 5–10 competitors continuously and surfacing actionable insights every week.",
 };
 
 export default function CompetitorAnalysisBlogPage() {

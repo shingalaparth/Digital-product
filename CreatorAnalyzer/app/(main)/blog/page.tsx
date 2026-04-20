@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "../../../components/Breadcrumbs";
 
 export const metadata: Metadata = {
- title:"Blog – Social Media Guides & Strategy | labhook",
+ title:"Blog – Social Media Guides & Strategy | TheHookLab",
  description:
 "In-depth guides on competitor analysis, social media strategy, and industry-specific marketing. Data-driven frameworks for D2C brands, agencies, and creators.",
 };
@@ -49,7 +49,7 @@ export default function BlogIndexPage() {
  </div>
  <div className="section-shell relative z-10 mt-8 text-center sm:mt-12">
  <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary/90 sm:text-xs">
- labhook BLOG
+ TheHookLab BLOG
  </p>
  <h1 className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-headline sm:text-4xl lg:text-5xl">
  Guides, Frameworks & Strategies for Social Media Growth
@@ -103,7 +103,7 @@ export default function BlogIndexPage() {
  Stop Guessing. Start Growing.
  </h2>
  <p className="mx-auto mt-3 max-w-xl text-base text-body">
- labhook turns competitive intelligence into actionable growth strategy — automatically.
+ TheHookLab turns competitive intelligence into actionable growth strategy — automatically.
  </p>
  <div className="mt-6 flex justify-center">
  <Link

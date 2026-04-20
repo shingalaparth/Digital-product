@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"AI Content Calendar Tool – Auto-Suggest Posts Based on Data | labhook",
+ title:"AI Content Calendar Tool – Auto-Suggest Posts Based on Data | TheHookLab",
  description:
 "Never stare at a blank screen again. AI suggests what to post, when to post, and what format based on competitor data and India-specific seasonal trends.",
 };
@@ -15,7 +15,7 @@ const data: FeaturePageData = {
  eyebrow:"FEATURE",
  title:"Stop Guessing What to Post — Let AI Suggest Your Content Calendar",
  description:
-"Never stare at a blank screen again. labhook suggests what to post, when to post, and what format based on competitor data and India-specific seasonal trends.",
+"Never stare at a blank screen again. TheHookLab suggests what to post, when to post, and what format based on competitor data and India-specific seasonal trends.",
  features: [
  {
  title:"Data-Driven Content Suggestions",

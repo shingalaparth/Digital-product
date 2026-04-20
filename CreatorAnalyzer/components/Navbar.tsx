@@ -144,7 +144,7 @@ export function Navbar() {
             onClick={(e) => handleLinkClick(e, "/")}
           >
             <span className="text-xl font-bold tracking-tight text-headline">
-              Lab<span className="text-primary">Hook</span>
+              The<span className="text-primary">Hook</span>Lab
             </span>
           </Link>
 

@@ -151,7 +151,7 @@ export function Footer() {
               className="mb-6 flex items-center gap-2 text-2xl font-bold tracking-tight text-white transition-opacity hover:opacity-80"
             >
               <span>
-                lab<span className="text-primary">hook</span>
+                The<span className="text-primary">Hook</span>Lab
               </span>
             </Link>
             <p className="max-w-xs text-[13px] leading-relaxed text-white/40 font-medium">
@@ -185,7 +185,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-white/5 pt-8 text-[12px] font-medium text-white/30 md:flex-row">
-          <p>© {year} labhook. Built in India 🇮🇳 with AI for creators.</p>
+          <p>© {year} TheHookLab. Built in India 🇮🇳 with AI for creators.</p>
           <div className="flex gap-8 items-center">
             <Link href="#" className="hover:text-white transition-colors">Twitter</Link>
             <Link href="#" className="hover:text-white transition-colors">LinkedIn</Link>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"Social Media Industry Benchmarks India – Know If Your Metrics Are Good | labhook",
+ title:"Social Media Industry Benchmarks India – Know If Your Metrics Are Good | TheHookLab",
  description:
 "Is 2% engagement rate good or bad? Get India-specific social media benchmarks by niche, track performance against peers, and optimize with real context.",
 };

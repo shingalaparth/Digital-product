@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"Content Hook Analyzer | Video Format Analysis Tool | labhook",
+ title:"Content Hook Analyzer | Video Format Analysis Tool | TheHookLab",
  description:
 "Analyze which content hooks work in your niche. Compare hook types, formats, CTAs ranked by performance. See why their Reels go viral — and yours don't.",
 };

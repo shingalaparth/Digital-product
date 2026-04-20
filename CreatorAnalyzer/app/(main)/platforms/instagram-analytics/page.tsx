@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"Instagram Analytics & Competitor Intelligence | labhook",
+ title:"Instagram Analytics & Competitor Intelligence | TheHookLab",
  description:
 "Deep Instagram Reel analytics with AI competitor intelligence. Track competitors, analyze hooks & formats, get weekly strategy briefs. Built for Indian creators.",
 };
@@ -15,12 +15,12 @@ const data: FeaturePageData = {
  eyebrow:"PLATFORM",
  title:"AI-Powered Instagram Competitor Analysis for Indian D2C Brands",
  description:
-"labhook gives you AI-driven insights into what makes your competitors' Instagram Reels go viral. Extract winning hooks, formats, and posting strategies in seconds — then execute your own winning content.",
+"TheHookLab gives you AI-driven insights into what makes your competitors' Instagram Reels go viral. Extract winning hooks, formats, and posting strategies in seconds — then execute your own winning content.",
  features: [
  {
- title:"How labhook Beats Native Insights",
+ title:"How TheHookLab Beats Native Insights",
  description:
-"Instagram Insights shows YOUR performance. labhook shows your competitors' gold mine, extracting the 'why' behind every viral view.",
+"Instagram Insights shows YOUR performance. TheHookLab shows your competitors' gold mine, extracting the 'why' behind every viral view.",
  items: [
 "Competitor Reel Analysis: Real-time AI extraction (Not available in native)",
 "Hook Identification: Opening technique mapping (Not available in native)",
@@ -47,12 +47,12 @@ const data: FeaturePageData = {
  {
  title:"Success Story: D2C Fashion",
  description:
-"\"We were stuck at 2.3% engagement. After using labhook to map competitor hooks for 4 weeks, we hit 5.1%. The weekly briefs saved us hours of content research.\"— Priya, D2C Brand Owner",
+"\"We were stuck at 2.3% engagement. After using TheHookLab to map competitor hooks for 4 weeks, we hit 5.1%. The weekly briefs saved us hours of content research.\"— Priya, D2C Brand Owner",
  },
  {
  title:"Success Story: Agency Growth",
  description:
-"\"As an agency managing 8 Instagram accounts, labhook cut our research time by 80%. We now show clients hard data on competitive hooks. They love it.\"— Rahul, Agency Founder",
+"\"As an agency managing 8 Instagram accounts, TheHookLab cut our research time by 80%. We now show clients hard data on competitive hooks. They love it.\"— Rahul, Agency Founder",
  },
  ],
  audiences: [
@@ -76,12 +76,12 @@ const data: FeaturePageData = {
 "Every 4 hours. If a competitor posts a new Reel, our AI analyzes it within 4 hours and includes it in your strategic insights.",
  },
  {
- question:"Will Instagram block me for using labhook? ",
+ question:"Will Instagram block me for using TheHookLab? ",
  answer:
 "No. We use public data only — the same data you see when you visit Instagram.com. We don't violate Instagram's terms or 'hack' any accounts.",
  },
  {
- question:"Does labhook track Stories as well as Reels? ",
+ question:"Does TheHookLab track Stories as well as Reels? ",
  answer:
 "Currently, we focus on Reels (highest reach impact). Story tracking and analysis are planned for Q3 2026.",
  },

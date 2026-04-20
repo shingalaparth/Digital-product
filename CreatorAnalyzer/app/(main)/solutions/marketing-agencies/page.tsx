@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SolutionPageTemplate, type SolutionPageData } from "../../../../components/SolutionPageTemplate";
 
 export const metadata: Metadata = {
-    title: "Competitor Analysis for Marketing Agencies | labhook",
+    title: "Competitor Analysis for Marketing Agencies | TheHookLab",
     description:
         "White-label Reel analysis for agencies. Sell competitor reports for ₹50K. Your cost: ₹4,999/month. Win social clients. Enterprise plan for 5–20+ accounts.",
 };
@@ -15,7 +15,7 @@ const data: SolutionPageData = {
     eyebrow: "FOR MARKETING AGENCIES",
     title: "Sell Competitor Analysis for ₹50,000. Your Cost? ₹2,499/Month.",
     subtitle:
-        "Agencies win clients with strategy, not just execution. labhook gives your team the data to back up recommendations with white-label reports you can sell at a 10x markup.",
+        "Agencies win clients with strategy, not just execution. TheHookLab gives your team the data to back up recommendations with white-label reports you can sell at a 10x markup.",
     hook: "A competitor analysis service that costs you ₹2,499 to deliver but sells for ₹50K quarterly? That's ₹190K annual margin on top of your standard retainer.",
     painPoints: [
         "Social media is becoming a commodity. Everyone offers management, but few offer data-backed strategy.",
@@ -33,7 +33,7 @@ const data: SolutionPageData = {
         {
             title: "Save 20+ Hours of Billable Labor",
             description:
-                "Stop assigning manual research. labhook monitors your client's niche 24/7. Your strategist spends 2 hours customizing the brief instead of 20 hours gathering data.",
+                "Stop assigning manual research. TheHookLab monitors your client's niche 24/7. Your strategist spends 2 hours customizing the brief instead of 20 hours gathering data.",
         },
         {
             title: "Premium Positioning in Pitches",
@@ -53,13 +53,13 @@ const data: SolutionPageData = {
     ],
     testimonial: {
         quote:
-            "We were commodity players. Three months after adding labhook, competitor analysis became 30% of our social revenue. We now pitch retainers at ₹75K instead of ₹45K because we have a real differentiator.",
+            "We were commodity players. Three months after adding TheHookLab, competitor analysis became 30% of our social revenue. We now pitch retainers at ₹75K instead of ₹45K because we have a real differentiator.",
         name: "Agency Director",
         role: "15-Person Team, ₹1.2 Cr Revenue",
     },
     faq: [
         {
-            question: "Can we fully white-label and hide labhook's branding? ",
+            question: "Can we fully white-label and hide TheHookLab's branding? ",
             answer:
                 "Yes. Our Enterprise and Freelancer plans allow for full white-labeling. Add your logo, insights, and analyst name. Clients see your agency's work, not our tool.",
         },
@@ -76,7 +76,7 @@ const data: SolutionPageData = {
         {
             question: "Will this also help in the sales/pitching process? ",
             answer:
-                "Agencies using labhook during the pre-sales phase report a 2x higher close rate. Showing a potential client their competitor's gaps before you even sign them is a massive win.",
+                "Agencies using TheHookLab during the pre-sales phase report a 2x higher close rate. Showing a potential client their competitor's gaps before you even sign them is a massive win.",
         },
     ],
 };

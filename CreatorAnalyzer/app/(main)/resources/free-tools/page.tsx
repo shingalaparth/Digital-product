@@ -4,7 +4,7 @@ import { ArrowRight, Download, CheckCircle2 } from "lucide-react";
 import { Breadcrumbs } from "../../../../components/Breadcrumbs";
 
 export const metadata: Metadata = {
- title:"Free Instagram Analyzer & Social Media Tools | labhook",
+ title:"Free Instagram Analyzer & Social Media Tools | TheHookLab",
  description:
 "Free Instagram analysis tool, competitor snapshot analyzer, viral hook guide, content calendar template, and more. Start analyzing competitors free today.",
 };
@@ -13,7 +13,7 @@ const freeTools = [
  {
  id:"snapshot",
  title:"Free Competitor Snapshot",
- eyebrow:"LABHOOK AI ANALYZER",
+ eyebrow:"TheHookLab AI ANALYZER",
  description:"Analyze 1 competitor profile completely free. Get instant insights into growth, engagement, and content strategy.",
  features: [
 "Profile growth rate (30, 60, 90 days)",
@@ -90,7 +90,7 @@ const faqs = [
  },
  {
  question:"What happens to my data after I download the free tools? ",
- answer:"Your data is yours. We send it via email and don't store it on our servers unless you create a labhook account."
+ answer:"Your data is yours. We send it via email and don't store it on our servers unless you create a TheHookLab account."
  }
 ];
 
@@ -110,7 +110,7 @@ export default function FreeToolsPage() {
  Free Social Media Tools & Analyzers
  </h1>
  <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-body sm:text-lg">
- Get started with labhook's free tools — no credit card, no limits on the first analysis. Understand your competitors in minutes.
+ Get started with TheHookLab's free tools — no credit card, no limits on the first analysis. Understand your competitors in minutes.
  </p>
  </div>
  </section>

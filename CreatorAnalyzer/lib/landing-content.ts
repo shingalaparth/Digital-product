@@ -154,7 +154,7 @@ export type LandingContent = {
 
 export const landingContent: LandingContent = {
   brand: {
-    name: "labhook",
+    name: "TheHookLab",
     shortTagline: "AI-Powered Competitor Intelligence for Social Media.",
     primaryTagline: "See Exactly Why Your Competitor's Content Goes Viral — In 10 Seconds.",
     finalCtaLine: "Stop guessing what to post. Start winning with data.",
@@ -166,12 +166,12 @@ export const landingContent: LandingContent = {
     { label: "Pricing", href: "#pricing" },
   ],
   hero: {
-    eyebrow: "Unlock Your Next Viral Hit with LabHook AI",
+    eyebrow: "Unlock Your Next Viral Hit with TheHookLab AI",
     animatedPrefix: "The Content Engine",
     animatedPhrases: ["viral blueprints", "hidden patterns", "creator secrets", "winning hooks"],
     headline: "Stop Guessing. Start Winning with Data-Driven Content.",
     subheadline:
-      "labhook decodes your competitors' highest-performing content so you can replicate their success—instantly and predictably.",
+      "TheHookLab decodes your competitors' highest-performing content so you can replicate their success—instantly and predictably.",
     profilesAnalyzedLabel: "BRANDS & CREATORS TRUST US",
     profilesAnalyzedCount: "100+",
     searchPlaceholder: "Enter a competitor's @handle to analyze...",
@@ -218,7 +218,7 @@ export const landingContent: LandingContent = {
         "By the time you notice a trend, execute it, edit it, and post it — the algorithm has already moved on. You are always late.",
     },
   ],
-  howItWorksHeadline: "How labhook Works — 3 Steps, 30 Seconds",
+  howItWorksHeadline: "How TheHookLab Works — 3 Steps, 30 Seconds",
   steps: [
     {
       step: 1,
@@ -260,7 +260,7 @@ export const landingContent: LandingContent = {
       heading: "See Trends 2 Weeks Before Everyone Else",
       title: "Benefit 2: Spot Trends Before They Peak",
       description:
-        "Your competitors test content formats for you. labhook detects which new formats are gaining traction before they go mainstream. You post the trend — you don't copy it three weeks too late.",
+        "Your competitors test content formats for you. TheHookLab detects which new formats are gaining traction before they go mainstream. You post the trend — you don't copy it three weeks too late.",
       bullets: [
         "Identifies rising content formats before they peak",
         "Tracks format adoption across your competitor set",
@@ -290,7 +290,7 @@ export const landingContent: LandingContent = {
       heading: "Replace Manual Research With AI That Never Sleeps",
       title: "Benefit 4: Save 10+ Hours Every Week",
       description:
-        "No more manual screenshotting, folder organizing, or 'let me check what competitors are doing.' labhook monitors everything automatically. Updated daily. Analyzed continuously. Delivered weekly.",
+        "No more manual screenshotting, folder organizing, or 'let me check what competitors are doing.' TheHookLab monitors everything automatically. Updated daily. Analyzed continuously. Delivered weekly.",
       bullets: [
         "24/7 automated monitoring of competitor content",
         "Daily data refresh — never miss a viral post",
@@ -303,11 +303,11 @@ export const landingContent: LandingContent = {
   comparison: {
     headline: "See What Your Competitors Don't Want You to Know",
     subtext:
-      "Select up to 5 competitors and labhook surfaces the shared patterns every leader in your niche is using — the hooks that stop the scroll, the posting times that maximize reach, and the content formats that drive real sales.",
+      "Select up to 5 competitors and TheHookLab surfaces the shared patterns every leader in your niche is using — the hooks that stop the scroll, the posting times that maximize reach, and the content formats that drive real sales.",
     cta: "Start Free Competitor Analysis",
     href: "/compare",
   },
-  insightsHeadline: "What You Get With labhook",
+  insightsHeadline: "What You Get With TheHookLab",
   insightsSubheadline: "Everything you need to stop guessing and start growing — powered by AI competitor intelligence that works 24/7 so you don't have to.",
   insights: [
     {
@@ -353,7 +353,7 @@ export const landingContent: LandingContent = {
   ],
   caseStudies: {
     headline: "Real Results. Real Businesses. Real Data.",
-    subheadline: "See how brands, agencies, and creators are growing with labhook's AI-powered competitor intelligence.",
+    subheadline: "See how brands, agencies, and creators are growing with TheHookLab's AI-powered competitor intelligence.",
     items: [
       {
         label: "D2C Brand",
@@ -385,7 +385,7 @@ export const landingContent: LandingContent = {
   testimonials: [
     {
       quote:
-        "Engagement went from 4.2% to 9.8% in 3 months. We now get 5 viral Reels per month instead of 2. labhook showed us exactly what our competitors were doing differently.",
+        "Engagement went from 4.2% to 9.8% in 3 months. We now get 5 viral Reels per month instead of 2. TheHookLab showed us exactly what our competitors were doing differently.",
       name: "Mehul K.",
       detail: "Founder, Diorin (D2C Jewelry Brand)",
     },
@@ -524,7 +524,7 @@ export const landingContent: LandingContent = {
     {
       question: "How does the AI analysis work?",
       answer:
-        "labhook's AI watches your competitors' videos, analyzes visual content, reads transcripts, detects hook formats, identifies content types (product showcase, BTS, tutorial, UGC, trending challenge), and categorizes CTAs. You receive a clean summary — no manual work required. The AI updates its analysis daily.",
+        "TheHookLab's AI watches your competitors' videos, analyzes visual content, reads transcripts, detects hook formats, identifies content types (product showcase, BTS, tutorial, UGC, trending challenge), and categorizes CTAs. You receive a clean summary — no manual work required. The AI updates its analysis daily.",
     },
     {
       question: "Can I cancel anytime?",
@@ -549,7 +549,7 @@ export const landingContent: LandingContent = {
     {
       question: "How does the manual vs AI analysis compare in price?",
       answer:
-        "labhook Starter (₹999) costs roughly 90% less than hiring a freelancer for manual tracking and provides 24/7 automated analysis that manual research simply can't match.",
+        "TheHookLab Starter (₹999) costs roughly 90% less than hiring a freelancer for manual tracking and provides 24/7 automated analysis that manual research simply can't match.",
     },
     {
       question: "What happens after my 7-day trial ends?",
@@ -559,7 +559,7 @@ export const landingContent: LandingContent = {
   ],
   finalCta: {
     headline: "Never fall short of performance targets",
-    subtext: "labhook does the heavy-lifting to bring you insights that keep you ahead.",
+    subtext: "TheHookLab does the heavy-lifting to bring you insights that keep you ahead.",
     cta: "Talk to Founders",
     trust: "Join 50+ creators and brands who stopped guessing and started winning · 7-day free trial · 30-day money-back guarantee · Cancel anytime",
   },
@@ -568,31 +568,31 @@ export const landingContent: LandingContent = {
     items: [
       {
         title: "For Brands",
-        description: "You sell through social media. So do your competitors. labhook shows you their exact content strategy — which Reels drive sales, which hooks stop the scroll, which posting times maximize reach. Use their data to grow faster, spend less on trial-and-error, and outperform brands with 10x your budget.",
+        description: "You sell through social media. So do your competitors. TheHookLab shows you their exact content strategy — which Reels drive sales, which hooks stop the scroll, which posting times maximize reach. Use their data to grow faster, spend less on trial-and-error, and outperform brands with 10x your budget.",
         perfectFor: "D2C brands, e-commerce stores, restaurants, real estate, startups",
         link: "/solutions/d2c-brands",
-        linkLabel: "See How Brands Use labhook",
+        linkLabel: "See How Brands Use TheHookLab",
       },
       {
         title: "For Creators",
-        description: "You post Reels every day. But are you posting the right Reels? labhook tracks the top creators in your niche and shows you which hooks, formats, and CTAs get them 10x your views. Create smarter, not harder. Know what works before you press record.",
+        description: "You post Reels every day. But are you posting the right Reels? TheHookLab tracks the top creators in your niche and shows you which hooks, formats, and CTAs get them 10x your views. Create smarter, not harder. Know what works before you press record.",
         perfectFor: "Content creators, influencers, coaches, personal brand builders",
         link: "/solutions/content-creators",
-        linkLabel: "See How Creators Use labhook",
+        linkLabel: "See How Creators Use TheHookLab",
       },
       {
         title: "For Agencies",
-        description: "You manage 10 clients. That's 50+ competitors to track. Manual research takes your team 20 hours per week. labhook automates the entire process. White-label the reports. Sell competitor analysis as a ₹50,000 service. Your cost: ₹2,499 per month.",
+        description: "You manage 10 clients. That's 50+ competitors to track. Manual research takes your team 20 hours per week. TheHookLab automates the entire process. White-label the reports. Sell competitor analysis as a ₹50,000 service. Your cost: ₹2,499 per month.",
         perfectFor: "Digital marketing agencies, social media agencies",
         link: "/solutions/marketing-agencies",
-        linkLabel: "See How Agencies Use labhook",
+        linkLabel: "See How Agencies Use TheHookLab",
       },
       {
         title: "For Freelancers",
-        description: "Your clients ask 'why did our competitor get better engagement?' and you have no data-backed answer. labhook gives you that answer in 10 seconds. Offer strategy alongside execution. Charge ₹10,000 more per client. Look like the smartest person in the room.",
+        description: "Your clients ask 'why did our competitor get better engagement?' and you have no data-backed answer. TheHookLab gives you that answer in 10 seconds. Offer strategy alongside execution. Charge ₹10,000 more per client. Look like the smartest person in the room.",
         perfectFor: "Freelance social media managers, marketing consultants, video editors",
         link: "/solutions/social-media-managers",
-        linkLabel: "See How Freelancers Use labhook",
+        linkLabel: "See How Freelancers Use TheHookLab",
       },
     ],
   },

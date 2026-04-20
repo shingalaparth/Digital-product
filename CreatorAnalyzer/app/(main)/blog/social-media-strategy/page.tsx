@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BlogPageTemplate, type BlogPageData } from "../../../../components/BlogPageTemplate";
 
 export const metadata: Metadata = {
- title:"Social Media Content Strategy Guide: Data-Driven Framework 2026 | labhook",
+ title:"Social Media Content Strategy Guide: Data-Driven Framework 2026 | TheHookLab",
  description:
 "Build a winning social media content strategy with audience research, content pillars, hook formulas, posting strategy, and data-driven iteration for consistent growth.",
 };
@@ -151,12 +151,12 @@ const data: BlogPageData = {
  {
  label:"Hook & Format Analysis Feature",
  href:"/features/hook-format-analysis",
- description:"Use labhook to decode which hooks stop the scroll in your niche.",
+ description:"Use TheHookLab to decode which hooks stop the scroll in your niche.",
  },
  ],
  ctaHeadline:"Build a Data-Driven Content Strategy",
  ctaDescription:
-"labhook automates the intelligence side — analyzing what hooks work in your niche, optimal posting times, and delivering weekly strategy briefs with actionable recommendations.",
+"TheHookLab automates the intelligence side — analyzing what hooks work in your niche, optimal posting times, and delivering weekly strategy briefs with actionable recommendations.",
 };
 
 export default function SocialMediaStrategyBlogPage() {

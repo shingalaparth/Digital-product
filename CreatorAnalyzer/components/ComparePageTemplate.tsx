@@ -11,7 +11,7 @@ import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
 
 export type CompareRow = {
     feature: string;
-    labhook: string;
+    TheHookLab: string;
     competitor: string;
 };
 
@@ -82,7 +82,7 @@ export function ComparePageTemplate({ data }: { data: ComparePageData }) {
                                         Feature
                                     </th>
                                     <th className="px-4 py-4 text-center text-sm font-semibold text-primary">
-                                        labhook
+                                        TheHookLab
                                     </th>
                                     <th className="px-4 py-4 text-center text-sm font-semibold text-muted">
                                         {data.competitor}
@@ -96,12 +96,12 @@ export function ComparePageTemplate({ data }: { data: ComparePageData }) {
                                             {row.feature}
                                         </td>
                                         <td className="px-4 py-4 text-center text-sm text-body">
-                                            {row.labhook === "✅" ? (
+                                            {row.TheHookLab === "✅" ? (
                                                 <Check className="mx-auto h-5 w-5 text-primary" />
-                                            ) : row.labhook === "❌" ? (
+                                            ) : row.TheHookLab === "❌" ? (
                                                 <X className="mx-auto h-5 w-5 text-muted/50" />
                                             ) : (
-                                                row.labhook
+                                                row.TheHookLab
                                             )}
                                         </td>
                                         <td className="px-4 py-4 text-center text-sm text-body">
@@ -121,11 +121,11 @@ export function ComparePageTemplate({ data }: { data: ComparePageData }) {
                 </div>
             </section>
 
-            {/* ---- Why labhook Wins ---- */}
+            {/* ---- Why TheHookLab Wins ---- */}
             <section className="border-y border-border py-16 sm:py-24">
                 <div className="section-shell">
                     <h2 className="text-center text-2xl font-bold text-headline sm:text-3xl">
-                        Why labhook Wins
+                        Why TheHookLab Wins
                     </h2>
                     <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2">
                         {data.advantages.map((adv) => (
@@ -150,9 +150,9 @@ export function ComparePageTemplate({ data }: { data: ComparePageData }) {
                         Which Tool Is Right for You?
                     </h2>
                     <div className="mt-8 grid gap-6 sm:mt-10 md:grid-cols-2">
-                        {/* Choose labhook */}
+                        {/* Choose TheHookLab */}
                         <div className="rounded-2xl border border-primary/40 bg-card p-5 sm:p-6">
-                            <h3 className="text-lg font-bold text-primary">Choose labhook If You…</h3>
+                            <h3 className="text-lg font-bold text-primary">Choose TheHookLab If You…</h3>
                             <ul className="mt-4 space-y-3">
                                 {data.whoChooseUs.map((item) => (
                                     <li key={item} className="flex items-start gap-2 text-sm text-body">

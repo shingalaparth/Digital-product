@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"YouTube Analytics & Shorts Intelligence | labhook",
+ title:"YouTube Analytics & Shorts Intelligence | TheHookLab",
  description:
 "YouTube Shorts competitor analysis powered by AI. Track competitor channels, analyze Shorts performance, and get data-driven strategy recommendations. Coming Soon.",
 };
@@ -15,7 +15,7 @@ const data: FeaturePageData = {
  eyebrow:"COMING SOON — Q2 2026",
  title:"YouTube Shorts Competitor Analysis (Early Access)",
  description:
-"labhook is expanding beyond Instagram. Our AI-powered competitive intelligence is coming to YouTube Shorts — with the same hook extraction, format analysis, and strategy briefs you love.",
+"TheHookLab is expanding beyond Instagram. Our AI-powered competitive intelligence is coming to YouTube Shorts — with the same hook extraction, format analysis, and strategy briefs you love.",
  features: [
  {
  title:"YouTube Shorts Roadmap",
@@ -33,7 +33,7 @@ const data: FeaturePageData = {
  {
  title:"Founding Member Beta Program",
  description:
-"Join our early access group and help shape how labhook analyzes YouTube Shorts. Lock in founding member pricing for life.",
+"Join our early access group and help shape how TheHookLab analyzes YouTube Shorts. Lock in founding member pricing for life.",
  items: [
 "Get YouTube analytics 2 weeks before public launch",
 "Founding member price lock (₹999/mo Starter Plan forever)",
@@ -72,12 +72,12 @@ const data: FeaturePageData = {
  {
  question:"When exactly does YouTube analytics launch? ",
  answer:
-"Public launch is May 2026. Current labhook users get early access Beta in April 2026 at no additional cost.",
+"Public launch is May 2026. Current TheHookLab users get early access Beta in April 2026 at no additional cost.",
  },
  {
  question:"Will YouTube analytics cost extra? ",
  answer:
-"No. All active labhook subscribers (on any plan) will get YouTube Shorts analysis included automatically at no additional cost when it launches.",
+"No. All active TheHookLab subscribers (on any plan) will get YouTube Shorts analysis included automatically at no additional cost when it launches.",
  },
  {
  question:"Can I analyze Instagram and YouTube in the same dashboard? ",

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ComparePageTemplate, type ComparePageData } from "../../../../components/ComparePageTemplate";
 
 export const metadata: Metadata = {
- title:"labhook vs Socialinsider – AI Concept Analysis Wins on Budget",
+ title:"TheHookLab vs Socialinsider – AI Concept Analysis Wins on Budget",
  description:
-"Compare labhook vs Socialinsider. Get AI-powered reel concept extraction, India-first features & WhatsApp briefs at ₹999/mo. 8x cheaper than Socialinsider.",
+"Compare TheHookLab vs Socialinsider. Get AI-powered reel concept extraction, India-first features & WhatsApp briefs at ₹999/mo. 8x cheaper than Socialinsider.",
 };
 
 const data: ComparePageData = {
@@ -13,30 +13,30 @@ const data: ComparePageData = {
  { label:"vs Socialinsider", href:"/compare/vs-socialinsider"},
  ],
  competitor:"Socialinsider",
- title:"labhook vs Socialinsider: Better Competitor Intel for Indian Creators",
+ title:"TheHookLab vs Socialinsider: Better Competitor Intel for Indian Creators",
  description:
-"Both track competitor social media performance, but they're built for different markets and budgets. See how labhook compares — AI-first, India-focused, at a fraction of the cost.",
+"Both track competitor social media performance, but they're built for different markets and budgets. See how TheHookLab compares — AI-first, India-focused, at a fraction of the cost.",
  comparisonTable: [
- { feature:"Pricing (Monthly)", labhook:"₹999–₹4,999", competitor:"$99–$199 (~₹8,300–₹16,600)"},
- { feature:"AI Concept Extraction", labhook:"✅", competitor:"❌"},
- { feature:"India-First Features", labhook:"✅", competitor:"❌"},
- { feature:"Festival Calendar", labhook:"✅", competitor:"❌"},
- { feature:"WhatsApp Delivery", labhook:"✅", competitor:"❌"},
- { feature:"Weekly AI Strategy Briefs", labhook:"✅", competitor:"❌"},
- { feature:"Follower & Engagement Tracking", labhook:"✅", competitor:"✅"},
- { feature:"Enterprise Benchmarking", labhook:"Up to 20 competitors", competitor:"500+ brands"},
- { feature:"Best For", labhook:"Indian D2C, creators, agencies", competitor:"Global enterprises"},
+ { feature:"Pricing (Monthly)", TheHookLab:"₹999–₹4,999", competitor:"$99–$199 (~₹8,300–₹16,600)"},
+ { feature:"AI Concept Extraction", TheHookLab:"✅", competitor:"❌"},
+ { feature:"India-First Features", TheHookLab:"✅", competitor:"❌"},
+ { feature:"Festival Calendar", TheHookLab:"✅", competitor:"❌"},
+ { feature:"WhatsApp Delivery", TheHookLab:"✅", competitor:"❌"},
+ { feature:"Weekly AI Strategy Briefs", TheHookLab:"✅", competitor:"❌"},
+ { feature:"Follower & Engagement Tracking", TheHookLab:"✅", competitor:"✅"},
+ { feature:"Enterprise Benchmarking", TheHookLab:"Up to 20 competitors", competitor:"500+ brands"},
+ { feature:"Best For", TheHookLab:"Indian D2C, creators, agencies", competitor:"Global enterprises"},
  ],
  advantages: [
  {
  title:"AI That Actually Reads Your Content",
  description:
-"Socialinsider shows you what happened (5K likes). labhook shows you WHY — extracting exact hooks, narrative patterns, and emotional triggers. No other tool does this at this price.",
+"Socialinsider shows you what happened (5K likes). TheHookLab shows you WHY — extracting exact hooks, narrative patterns, and emotional triggers. No other tool does this at this price.",
  },
  {
  title:"8x Cheaper, Built for Your Budget",
  description:
-"At ₹999/month, labhook is 8–16x cheaper than Socialinsider. Indian D2C brands with ₹10–50L revenue can finally afford competitor intelligence.",
+"At ₹999/month, TheHookLab is 8–16x cheaper than Socialinsider. Indian D2C brands with ₹10–50L revenue can finally afford competitor intelligence.",
  },
  {
  title:"Designed for India",
@@ -46,7 +46,7 @@ const data: ComparePageData = {
  {
  title:"Weekly Strategy Briefs, Not Dashboards",
  description:
-"Socialinsider requires you to log in and interpret data. labhook sends AI-generated briefs to WhatsApp every Monday: 'Here's what competitors' winning reels have in common.'",
+"Socialinsider requires you to log in and interpret data. TheHookLab sends AI-generated briefs to WhatsApp every Monday: 'Here's what competitors' winning reels have in common.'",
  },
  ],
  whoChooseUs: [
@@ -63,10 +63,10 @@ const data: ComparePageData = {
 "Already integrated with Salesforce/HubSpot stack",
  ],
  faq: [
- { question:"Can labhook replace Socialinsider? ", answer:"For competitor analysis in India, yes. For enterprise benchmarking across global markets, no. Most Indian D2C brands never needed Socialinsider's scale."},
- { question:"Do I need both? ", answer:"Rarely. Choose based on your company size and market focus. If you're in India under ₹1Cr annual spend, labhook is all you need."},
- { question:"What if I'm tracking global competitors from India? ", answer:"labhook's AI concept extraction works across Instagram globally. You get competitive advantage through AI insights, not global benchmarks."},
- { question:"Does labhook have the same historical data depth? ", answer:"labhook provides 90-day rolling historical data. Socialinsider may have deeper archives, but for reel strategy, 90-day trends matter most."},
+ { question:"Can TheHookLab replace Socialinsider? ", answer:"For competitor analysis in India, yes. For enterprise benchmarking across global markets, no. Most Indian D2C brands never needed Socialinsider's scale."},
+ { question:"Do I need both? ", answer:"Rarely. Choose based on your company size and market focus. If you're in India under ₹1Cr annual spend, TheHookLab is all you need."},
+ { question:"What if I'm tracking global competitors from India? ", answer:"TheHookLab's AI concept extraction works across Instagram globally. You get competitive advantage through AI insights, not global benchmarks."},
+ { question:"Does TheHookLab have the same historical data depth? ", answer:"TheHookLab provides 90-day rolling historical data. Socialinsider may have deeper archives, but for reel strategy, 90-day trends matter most."},
  ],
  relatedComparisons: [
  { label:"vs Sprout Social", href:"/compare/vs-sprout-social"},

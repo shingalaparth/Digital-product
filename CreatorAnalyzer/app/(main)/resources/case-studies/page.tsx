@@ -4,9 +4,9 @@ import { ArrowUpRight, TrendingUp, Clock, Users, ArrowRight } from "lucide-react
 import { Breadcrumbs } from "../../../../components/Breadcrumbs";
 
 export const metadata: Metadata = {
- title:"Social Media Competitor Analysis Case Studies | labhook",
+ title:"Social Media Competitor Analysis Case Studies | TheHookLab",
  description:
-"See how D2C brands, agencies, and creators use labhook to analyze competitors and boost engagement. Real results, real metrics, real growth.",
+"See how D2C brands, agencies, and creators use TheHookLab to analyze competitors and boost engagement. Real results, real metrics, real growth.",
 };
 
 const caseStudies = [
@@ -22,7 +22,7 @@ const caseStudies = [
  { label:"Revenue Impact", value:"+34%", icon: <ArrowUpRight className="h-5 w-5"/> },
  ],
  challenge:"Mehul spent 3-4 hours weekly manually tracking 8+ competitors across Instagram, TikTok, and YouTube. He couldn't scale without hiring a full-time analyst.",
- solution:"Implemented labhook to auto-track 12 competitors with daily updates, trending hook alerts via WhatsApp, and automated content performance summaries.",
+ solution:"Implemented TheHookLab to auto-track 12 competitors with daily updates, trending hook alerts via WhatsApp, and automated content performance summaries.",
  results: [
 "Before: 4.2% engagement → After: 9.8% engagement",
 "Before: 2 viral Reels/mo → After: 5 viral Reels/mo",
@@ -43,7 +43,7 @@ const caseStudies = [
  { label:"Avg Engagement", value:"+47%", icon: <TrendingUp className="h-5 w-5"/> },
  ],
  challenge:"Managing 6 mid-sized brands, Priya struggled to justify content recommendations with data and delivering consistent results without a baseline.",
- solution:"Used labhook to build custom competitive intelligence briefing reports for each client, showing content gaps and trending hook frameworks.",
+ solution:"Used TheHookLab to build custom competitive intelligence briefing reports for each client, showing content gaps and trending hook frameworks.",
  results: [
 "Retainer raised from ₹15k to ₹24k per month per client",
 "Proposal conversion rate jumped from 35% to 68%",
@@ -64,7 +64,7 @@ const caseStudies = [
  { label:"Organic Impact", value:"+23%", icon: <TrendingUp className="h-5 w-5"/> },
  ],
  challenge:"Understanding organic competitors for 25+ DTC clients was too slow. Creative direction decisions took 2 weeks per competitor.",
- solution:"Integrated labhook alerts into Slack. The team now identifies trending hooks 48h before they peak, enabling 40% more campaign concepts monthly.",
+ solution:"Integrated TheHookLab alerts into Slack. The team now identifies trending hooks 48h before they peak, enabling 40% more campaign concepts monthly.",
  results: [
 "Time to strategic recommendation reduced from 14 to 3 days",
 "Creative throughput increased by 40% monthly",
@@ -91,7 +91,7 @@ export default function CaseStudiesPage() {
  Real Metrics, Real Growth Stories
  </h1>
  <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-body sm:text-lg">
- See how brands, agencies, and creators are using labhook to stay ahead of the competition and grow their social media presence.
+ See how brands, agencies, and creators are using TheHookLab to stay ahead of the competition and grow their social media presence.
  </p>
  </div>
  </section>
@@ -188,7 +188,7 @@ export default function CaseStudiesPage() {
  Ready to Write Your Success Story?
  </h2>
  <p className="mx-auto mt-3 max-w-xl text-base text-body">
- Join 500+ brands and creators who use labhook to automate their competitor intelligence.
+ Join 500+ brands and creators who use TheHookLab to automate their competitor intelligence.
  </p>
  <div className="mt-6 flex justify-center">
  <Link

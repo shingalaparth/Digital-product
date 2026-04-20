@@ -5,21 +5,21 @@ import { AnalyticsScripts } from "../components/AnalyticsScripts";
 import"./globals.css";
 
 export const metadata: Metadata = {
- title:"labhook — AI-Powered Competitor Intelligence for Social Media",
+ title:"TheHookLab — AI-Powered Competitor Intelligence for Social Media",
  description:
-"Stop guessing what to post. labhook uses AI to analyze competitor Reels, hooks, and content strategy — so you know exactly what works. Start free.",
- metadataBase: new URL("https://labhook.com"),
+"Stop guessing what to post. TheHookLab uses AI to analyze competitor Reels, hooks, and content strategy — so you know exactly what works. Start free.",
+ metadataBase: new URL("https://TheHookLab.com"),
  openGraph: {
- title:"labhook | The viral formula decoded",
+ title:"TheHookLab | The viral formula decoded",
  description:
 "Decode why any creator's reels go viral. In seconds. Compare creators and extract shared winning patterns.",
  type:"website",
  images: [
  {
- url:"/og-labhook.png",
+ url:"/og-TheHookLab.png",
  width: 1200,
  height: 630,
- alt:"labhook landing page preview",
+ alt:"TheHookLab landing page preview",
  },
  ],
  },
