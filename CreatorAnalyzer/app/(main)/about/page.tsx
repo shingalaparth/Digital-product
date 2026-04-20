@@ -31,7 +31,7 @@ const values = [
  { 
  icon: Users, 
  title:"Community Growth", 
- description:"We celebrate our customers' wins as our own. When your engagement grows, ReelDNA wins."
+ description:"We celebrate our customers' wins as our own. When your engagement grows, labhook wins."
  },
 ];
 
@@ -99,7 +99,7 @@ export default function AboutPage() {
  transition={{ duration: 0.6, delay: 0.2 }}
  className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-body sm:text-xl"
  >
- ReelDNA is independent social media intelligence platform designed to put enterprise-grade AI in the pockets of every Indian entrepreneur.
+ labhook is independent social media intelligence platform designed to put enterprise-grade AI in the pockets of every Indian entrepreneur.
  </motion.p>
  </div>
  </section>
@@ -134,7 +134,7 @@ export default function AboutPage() {
  <section className="py-16 sm:py-16">
  <div className="section-shell">
  <div className="text-center mb-16">
- <h2 className="text-3xl font-bold text-headline sm:text-5xl italic tracking-tighter">Why ReelDNA Is Different</h2>
+ <h2 className="text-3xl font-bold text-headline sm:text-5xl italic tracking-tighter">Why labhook Is Different</h2>
  </div>
  <div className="grid gap-6 md:grid-cols-3">
  {differentiators.map((d) => {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"Instagram Analytics & Competitor Intelligence | ReelDNA",
+ title:"Instagram Analytics & Competitor Intelligence | labhook",
  description:
 "Deep Instagram Reel analytics with AI competitor intelligence. Track competitors, analyze hooks & formats, get weekly strategy briefs. Built for Indian creators.",
 };
@@ -15,12 +15,12 @@ const data: FeaturePageData = {
  eyebrow:"PLATFORM",
  title:"AI-Powered Instagram Competitor Analysis for Indian D2C Brands",
  description:
-"ReelDNA gives you AI-driven insights into what makes your competitors' Instagram Reels go viral. Extract winning hooks, formats, and posting strategies in seconds — then execute your own winning content.",
+"labhook gives you AI-driven insights into what makes your competitors' Instagram Reels go viral. Extract winning hooks, formats, and posting strategies in seconds — then execute your own winning content.",
  features: [
  {
- title:"How ReelDNA Beats Native Insights",
+ title:"How labhook Beats Native Insights",
  description:
-"Instagram Insights shows YOUR performance. ReelDNA shows your competitors' gold mine, extracting the 'why' behind every viral view.",
+"Instagram Insights shows YOUR performance. labhook shows your competitors' gold mine, extracting the 'why' behind every viral view.",
  items: [
 "Competitor Reel Analysis: Real-time AI extraction (Not available in native)",
 "Hook Identification: Opening technique mapping (Not available in native)",
@@ -47,12 +47,12 @@ const data: FeaturePageData = {
  {
  title:"Success Story: D2C Fashion",
  description:
-"\"We were stuck at 2.3% engagement. After using ReelDNA to map competitor hooks for 4 weeks, we hit 5.1%. The weekly briefs saved us hours of content research.\"— Priya, D2C Brand Owner",
+"\"We were stuck at 2.3% engagement. After using labhook to map competitor hooks for 4 weeks, we hit 5.1%. The weekly briefs saved us hours of content research.\"— Priya, D2C Brand Owner",
  },
  {
  title:"Success Story: Agency Growth",
  description:
-"\"As an agency managing 8 Instagram accounts, ReelDNA cut our research time by 80%. We now show clients hard data on competitive hooks. They love it.\"— Rahul, Agency Founder",
+"\"As an agency managing 8 Instagram accounts, labhook cut our research time by 80%. We now show clients hard data on competitive hooks. They love it.\"— Rahul, Agency Founder",
  },
  ],
  audiences: [
@@ -76,12 +76,12 @@ const data: FeaturePageData = {
 "Every 4 hours. If a competitor posts a new Reel, our AI analyzes it within 4 hours and includes it in your strategic insights.",
  },
  {
- question:"Will Instagram block me for using ReelDNA? ",
+ question:"Will Instagram block me for using labhook? ",
  answer:
 "No. We use public data only — the same data you see when you visit Instagram.com. We don't violate Instagram's terms or 'hack' any accounts.",
  },
  {
- question:"Does ReelDNA track Stories as well as Reels? ",
+ question:"Does labhook track Stories as well as Reels? ",
  answer:
 "Currently, we focus on Reels (highest reach impact). Story tracking and analysis are planned for Q3 2026.",
  },

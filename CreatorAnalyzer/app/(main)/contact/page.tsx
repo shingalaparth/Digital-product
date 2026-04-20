@@ -7,8 +7,8 @@ import { Breadcrumbs } from "../../../components/Breadcrumbs";
 
 const channels = [
  { icon: MessageCircle, title:"WhatsApp (Fastest)", detail:"+91-XXXXX-XXXXX", response:"15–60 min", best:"Quick questions, billing, onboarding"},
- { icon: Mail, title:"Email Support", detail:"hello@reeldna.com", response:"4–24 hours", best:"Detailed issues, feature requests, partnerships"},
- { icon: Phone, title:"Sales & Demos", detail:"sales@reeldna.com", response:"Same day", best:"Custom pricing, demos, enterprise inquiries"},
+ { icon: Mail, title:"Email Support", detail:"hello@labhook.com", response:"4–24 hours", best:"Detailed issues, feature requests, partnerships"},
+ { icon: Phone, title:"Sales & Demos", detail:"sales@labhook.com", response:"Same day", best:"Custom pricing, demos, enterprise inquiries"},
 ];
 
 const responseTimes = [
@@ -50,7 +50,7 @@ export default function ContactPage() {
  GET IN TOUCH
  </p>
  <h1 className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-headline sm:text-4xl lg:text-5xl">
- Contact ReelDNA
+ Contact labhook
  </h1>
  <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-body sm:text-lg">
  We love hearing from our users. Reach out via WhatsApp, email, or the form below —
@@ -182,7 +182,7 @@ export default function ContactPage() {
  <h3 className="font-bold text-headline">Office</h3>
  </div>
  <p className="mt-2 text-sm text-body">
- ReelDNA HQ — India
+ labhook HQ — India
  </p>
  <p className="text-sm text-muted">By appointment only</p>
  </div>

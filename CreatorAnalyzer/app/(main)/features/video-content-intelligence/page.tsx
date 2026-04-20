@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"Video Content Intelligence – AI Reel Analysis | ReelDNA",
+ title:"Video Content Intelligence – AI Reel Analysis | labhook",
  description:
 "Understand why Reels go viral with AI video analysis. Extract hooks, formats, CTAs from competitor videos. See what actually works in your niche.",
 };

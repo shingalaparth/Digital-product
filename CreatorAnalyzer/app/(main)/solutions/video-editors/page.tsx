@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { SolutionPageTemplate, type SolutionPageData } from "../../../../components/SolutionPageTemplate";
 
 export const metadata: Metadata = {
- title:"Video Editor Tools | Reel Strategy Service | ReelDNA",
+ title:"Video Editor Tools | Reel Strategy Service | labhook",
  description:
-"Video editors: stop guessing Reel formats. Show clients data-backed recommendations. Upgrade from editor to strategist. Charge 2x. ReelDNA for freelance editors.",
+"Video editors: stop guessing Reel formats. Show clients data-backed recommendations. Upgrade from editor to strategist. Charge 2x. labhook for freelance editors.",
 };
 
 const data: SolutionPageData = {
@@ -15,7 +15,7 @@ const data: SolutionPageData = {
  eyebrow:"FOR VIDEO EDITORS",
  title:"Stop Guessing What Reel Format Clients Need. Show Data. Charge for Strategy.",
  subtitle:
-"Clients hire you for editing, but the ones paying ₹10–15K per Reel are also paying for smart recommendations on what format will win. ReelDNA gives you the data to justify premium pricing.",
+"Clients hire you for editing, but the ones paying ₹10–15K per Reel are also paying for smart recommendations on what format will win. labhook gives you the data to justify premium pricing.",
  hook:"Top video editors stopped being editors; they became content strategists who happen to edit. Same service. 2x the price. All backed by data.",
  painPoints: [
 "You charge ₹5–8K per Reel for simple editing, while competitors charge ₹12K+ by mentioning 'format strategy'.",
@@ -28,7 +28,7 @@ const data: SolutionPageData = {
  {
  title:"Data-Backed Format Recommendations",
  description:
-"When a client needs a high-conversion Reel, run their niche through ReelDNA to see which format (Tutorial, Social Proof, etc.) drives the most saves and shares. Stop guessing.",
+"When a client needs a high-conversion Reel, run their niche through labhook to see which format (Tutorial, Social Proof, etc.) drives the most saves and shares. Stop guessing.",
  },
  {
  title:"Upgrade to 'Strategy + Editing' Services",
@@ -53,7 +53,7 @@ const data: SolutionPageData = {
  ],
  testimonial: {
  quote:
-"I was charging ₹6K per Reel. ReelDNA let me analyze what format works for each niche. I now sell 'Strategic Reel Editing' at ₹12K. 60% of my clients upgrade. Revenue jumped from ₹120K to ₹180K/month.",
+"I was charging ₹6K per Reel. labhook let me analyze what format works for each niche. I now sell 'Strategic Reel Editing' at ₹12K. 60% of my clients upgrade. Revenue jumped from ₹120K to ₹180K/month.",
  name:"Freelance Video Editor",
  role:"20 Reels/Month Revenue Growth",
  },

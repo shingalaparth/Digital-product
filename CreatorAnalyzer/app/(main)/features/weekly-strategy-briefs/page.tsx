@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"AI Weekly Strategy Briefs – Content Plans Every Monday | ReelDNA",
+ title:"AI Weekly Strategy Briefs – Content Plans Every Monday | labhook",
  description:
 "Get actionable weekly strategy briefs every Monday. AI-curated competitor insights + suggested content concepts delivered via email & WhatsApp.",
 };
@@ -15,7 +15,7 @@ const data: FeaturePageData = {
  eyebrow:"FEATURE",
  title:"Your Personalized Growth Roadmap, Every Monday Morning",
  description:
-"Stop starting your week with 'What should I post?'. ReelDNA delivers a custom, data-backed content plan to your inbox every Monday at 8 AM, so you can focus on creating, not researching.",
+"Stop starting your week with 'What should I post?'. labhook delivers a custom, data-backed content plan to your inbox every Monday at 8 AM, so you can focus on creating, not researching.",
  features: [
  {
  title:"The Weekly Content Blueprint",

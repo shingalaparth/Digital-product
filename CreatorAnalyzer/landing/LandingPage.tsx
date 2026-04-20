@@ -341,7 +341,7 @@ export function LandingPage() {
                     {/* Interactive Timeline (Desktop & Mobile) */}
                     <div className="hidden md:block relative mt-24 mb-16 max-w-6xl mx-auto h-[350px]">
                         {/* Horizontal Line */}
-                        <div className="absolute top-1/2 left-[2%] right-[2%] h-[1px] bg-border z-0" />
+                        <div className="absolute top-1/2 left-[2%] right-[2%] h-[1px] bg-zinc-300 z-0" />
 
                         <div className="flex w-full h-full justify-between relative z-10 items-center">
                             {landingContent.painSteps.map((step, idx) => {
@@ -356,7 +356,7 @@ export function LandingPage() {
 
                                         {/* Vertical Connector */}
                                         <div 
-                                            className={`absolute left-1/2 w-[1px] bg-border -translate-x-1/2 transition-colors duration-300 group-hover:bg-primary/40 z-10 ${
+                                            className={`absolute left-1/2 w-[1px] bg-zinc-300 -translate-x-1/2 transition-colors duration-300 group-hover:bg-primary/40 z-10 ${
                                                 isTop ? 'bottom-1/2 h-8 lg:h-10' : 'top-1/2 h-8 lg:h-10'
                                             }`} 
                                         />
@@ -380,7 +380,7 @@ export function LandingPage() {
                     {/* Interactive Timeline (Mobile) */}
                     <div className="md:hidden mt-16 mb-20 space-y-8 relative max-w-sm mx-auto px-4">
                         {/* Vertical Line */}
-                        <div className="absolute left-[35px] top-4 bottom-4 w-[1px] bg-border" />
+                        <div className="absolute left-[35px] top-4 bottom-4 w-[1px] bg-zinc-300" />
                         
                         {landingContent.painSteps.map((step, idx) => (
                             <div key={idx} className="relative flex items-start gap-6 group">

@@ -4,17 +4,17 @@ import { Search, BookOpen, CreditCard, Zap, LifeBuoy, Terminal, MessageSquare, M
 import { Breadcrumbs } from "../../../../components/Breadcrumbs";
 
 export const metadata: Metadata = {
- title:"Help Center & Documentation | ReelDNA Support",
+ title:"Help Center & Documentation | labhook Support",
  description:
-"ReelDNA help center with guides for getting started, billing, features, troubleshooting, and API docs. Search for answers or contact support.",
+"labhook help center with guides for getting started, billing, features, troubleshooting, and API docs. Search for answers or contact support.",
 };
 
 const categories = [
  {
  title:"Getting Started",
  icon: <Zap className="h-6 w-6"/>,
- description:"Start here if you're new to ReelDNA. Account setup and first tracking guides.",
- articles: ["What is ReelDNA? ","Sign Up & Create Account","Add Your First Competitor","Dashboard Tour"],
+ description:"Start here if you're new to labhook. Account setup and first tracking guides.",
+ articles: ["What is labhook? ","Sign Up & Create Account","Add Your First Competitor","Dashboard Tour"],
  },
  {
  title:"Account & Billing",
@@ -25,7 +25,7 @@ const categories = [
  {
  title:"Features Guide",
  icon: <BookOpen className="h-6 w-6"/>,
- description:"Deep dives into how to use ReelDNA's core intelligence features.",
+ description:"Deep dives into how to use labhook's core intelligence features.",
  articles: ["Competitor Snapshot","Real-Time Alerts","Growth Analytics","Exporting Reports"],
  },
  {
@@ -37,7 +37,7 @@ const categories = [
  {
  title:"API Documentation",
  icon: <Terminal className="h-6 w-6"/>,
- description:"For developers integrating ReelDNA into custom agency workflows.",
+ description:"For developers integrating labhook into custom agency workflows.",
  articles: ["API Overview","Authentication","Endpoints Reference","Rate Limits & Quotas"],
  },
 ];

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"Hashtag Strategy Tool – Find High-Impact Tags Competitors Use | ReelDNA",
+ title:"Hashtag Strategy Tool – Find High-Impact Tags Competitors Use | labhook",
  description:
 "Stop using random hashtags. Analyze competitor hashtags, find gaps, and get volume vs. competition scoring for maximum reach and real engagement.",
 };
@@ -20,7 +20,7 @@ const data: FeaturePageData = {
  {
  title:"Competitor Hashtag Intelligence",
  description:
-"ReelDNA doesn't just list hashtags — it scores them based on real-world performance patterns in your specific niche.",
+"labhook doesn't just list hashtags — it scores them based on real-world performance patterns in your specific niche.",
  items: [
 "Volume Scoring: Distinguish between 'reach black holes' and 'niche gems'",
 "Competition scoring: Identify hashtags where you can actually rank",

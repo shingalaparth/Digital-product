@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { SolutionPageTemplate, type SolutionPageData } from "../../../../components/SolutionPageTemplate";
 
 export const metadata: Metadata = {
- title:"Content Creator Tools | Reel Analytics for Influencers | ReelDNA",
+ title:"Content Creator Tools | Reel Analytics for Influencers | labhook",
  description:
-"Analyze top creators in your niche. Find winning hooks, formats, and trends. Level up your content. Get better brand deals. ReelDNA for influencers.",
+"Analyze top creators in your niche. Find winning hooks, formats, and trends. Level up your content. Get better brand deals. labhook for influencers.",
 };
 
 const data: SolutionPageData = {
@@ -15,7 +15,7 @@ const data: SolutionPageData = {
  eyebrow:"FOR CONTENT CREATORS",
  title:"I Analyzed 200 Reels in Your Niche. Here Are the 5 Hooks That Get 10x More Views.",
  subtitle:
-"You know you're capable of viral content, but you're guessing on hooks, formats, and trends. ReelDNA reveals exactly what top creators in your niche are doing — so you can stop trying random ideas and start posting with data.",
+"You know you're capable of viral content, but you're guessing on hooks, formats, and trends. labhook reveals exactly what top creators in your niche are doing — so you can stop trying random ideas and start posting with data.",
  hook:"The creators negotiating ₹10L+ brand deals aren't doing it with 100K followers. They're doing it with 50K followers and a 12% engagement rate. Data makes the difference.",
  painPoints: [
 "I post 3x a week and sometimes get 10K views, other times only 500. I have no idea what's different.",
@@ -53,7 +53,7 @@ const data: SolutionPageData = {
  ],
  testimonial: {
  quote:
-"I was stuck at 50K views. ReelDNA showed me the specific hook structure top fashion creators use. First post: 200K views. Next: 280K. Brands went from ₹75K offers to ₹250K offers. I made the tool cost back on my first deal.",
+"I was stuck at 50K views. labhook showed me the specific hook structure top fashion creators use. First post: 200K views. Next: 280K. Brands went from ₹75K offers to ₹250K offers. I made the tool cost back on my first deal.",
  name:"Fashion Creator",
  role:"150K Followers, Beauty & Style Niche",
  },
@@ -64,7 +64,7 @@ const data: SolutionPageData = {
 "Absolutely. New creators benefit most by learning what works before wasting time on random content. Start with data. Grow faster. Get brand deals sooner.",
  },
  {
- question:"Does ReelDNA analyze creators in all niches? ",
+ question:"Does labhook analyze creators in all niches? ",
  answer:
 "We cover all major niches including Fashion, Beauty, Fitness, Tech, Food, and Travel. If your niche is highly specific, you can input 5–10 creators manually to monitor.",
  },

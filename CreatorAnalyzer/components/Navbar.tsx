@@ -130,15 +130,13 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-in-out ${
-        isNavVisible ? "translate-y-0" : "-translate-y-full"
-      } ${
-        isScrolled ? "bg-bg border-b border-border shadow-sm" : "bg-transparent border-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-in-out ${isNavVisible ? "translate-y-0" : "-translate-y-full"
+        } ${isScrolled ? "bg-bg border-b border-border shadow-sm" : "bg-transparent border-transparent"
+        }`}
     >
       <nav aria-label="Primary">
         <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 sm:px-6 lg:px-8">
-          
+
           {/* ---- Logo ---- */}
           <Link
             href="/"
@@ -146,7 +144,7 @@ export function Navbar() {
             onClick={(e) => handleLinkClick(e, "/")}
           >
             <span className="text-xl font-bold tracking-tight text-headline">
-              Reel<span className="text-primary">DNA</span>
+              Lab<span className="text-primary">Hook</span>
             </span>
           </Link>
 
@@ -164,26 +162,23 @@ export function Navbar() {
                     <Link
                       href={item.href}
                       onClick={(e) => handleLinkClick(e, item.href!)}
-                      className={`text-[14px] font-semibold transition-colors ${
-                        pathname === item.href ? "text-headline" : "text-body hover:text-headline"
-                      }`}
+                      className={`text-[14px] font-semibold transition-colors ${pathname === item.href ? "text-headline" : "text-body hover:text-headline"
+                        }`}
                     >
                       {item.label}
                     </Link>
                   ) : (
                     <button
                       type="button"
-                      className={`flex items-center gap-1 text-[14px] font-semibold transition-colors ${
-                        openDropdown === item.label || (item.children && pathname.startsWith(`/${item.label.toLowerCase()}`))
+                      className={`flex items-center gap-1 text-[14px] font-semibold transition-colors ${openDropdown === item.label || (item.children && pathname.startsWith(`/${item.label.toLowerCase()}`))
                           ? "text-headline"
                           : "text-body hover:text-headline"
-                      }`}
+                        }`}
                     >
                       {item.label}
                       <ChevronDown
-                        className={`h-3.5 w-3.5 opacity-50 transition-transform duration-200 ${
-                          openDropdown === item.label ? "rotate-180" : ""
-                        }`}
+                        className={`h-3.5 w-3.5 opacity-50 transition-transform duration-200 ${openDropdown === item.label ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
                   )}
@@ -191,11 +186,10 @@ export function Navbar() {
                   {/* Dropdown panel */}
                   {item.children && (
                     <div
-                      className={`absolute left-1/2 top-full -translate-x-1/2 pt-1 transition-all duration-200 w-max ${
-                        openDropdown === item.label
+                      className={`absolute left-1/2 top-full -translate-x-1/2 pt-1 transition-all duration-200 w-max ${openDropdown === item.label
                           ? "visible translate-y-0 opacity-100"
                           : "invisible translate-y-2 opacity-0"
-                      }`}
+                        }`}
                     >
                       <div className="min-w-[280px] rounded-xl border border-border bg-card p-3 shadow-soft backdrop-blur-xl">
                         {item.children.map((child) => (
@@ -203,9 +197,8 @@ export function Navbar() {
                             key={child.href}
                             href={child.href}
                             onClick={(e) => handleLinkClick(e, child.href)}
-                            className={`flex flex-col gap-1 rounded-lg px-4 py-3 transition-colors hover:bg-surface ${
-                              pathname === child.href ? "bg-surface" : ""
-                            }`}
+                            className={`flex flex-col gap-1 rounded-lg px-4 py-3 transition-colors hover:bg-surface ${pathname === child.href ? "bg-surface" : ""
+                              }`}
                           >
                             <span className="flex items-center gap-2 text-[14px] font-semibold text-headline tracking-tight">
                               {child.label}
@@ -262,9 +255,8 @@ export function Navbar() {
 
       {/* ---- Mobile drawer ---- */}
       <div
-        className={`fixed right-0 top-0 bottom-0 z-40 w-full max-w-sm overflow-y-auto bg-card border-l border-border px-6 py-8 shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed right-0 top-0 bottom-0 z-40 w-full max-w-sm overflow-y-auto bg-card border-l border-border px-6 py-8 shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
         aria-hidden={!isMenuOpen}
       >
         <div className="flex justify-end mb-8">
@@ -299,18 +291,16 @@ export function Navbar() {
                   >
                     {item.label}
                     <ChevronDown
-                      className={`h-5 w-5 opacity-50 transition-transform duration-200 ${
-                        mobileExpanded === item.label ? "rotate-180" : ""
-                      }`}
+                      className={`h-5 w-5 opacity-50 transition-transform duration-200 ${mobileExpanded === item.label ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
 
                   <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      mobileExpanded === item.label
+                    className={`overflow-hidden transition-all duration-300 ${mobileExpanded === item.label
                         ? "max-h-[800px] opacity-100 mb-2"
                         : "max-h-0 opacity-0"
-                    }`}
+                      }`}
                   >
                     <div className="flex flex-col gap-1 border-l-2 border-borderbg ml-3 pl-4 pt-2">
                       {item.children?.map((child) => (

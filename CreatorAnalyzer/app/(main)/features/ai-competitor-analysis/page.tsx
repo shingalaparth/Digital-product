@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePageTemplate, type FeaturePageData } from "../../../../components/FeaturePageTemplate";
 
 export const metadata: Metadata = {
- title:"AI Competitor Analysis – 24/7 Automated Tracking | ReelDNA",
+ title:"AI Competitor Analysis – 24/7 Automated Tracking | labhook",
  description:
 "Track competitors 24/7 with AI. Get real-time alerts on competitor moves, content strategies, and engagement shifts. Built for Indian D2C brands.",
 };
