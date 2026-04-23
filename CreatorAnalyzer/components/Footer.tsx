@@ -9,8 +9,8 @@ const columns = [
     links: [
       { label: "Features", href: "/#features" },
       { label: "Pricing", href: "/pricing" },
-      { label: "Platforms", href: "/platforms/instagram-analytics" },
-      { label: "What's New", href: "/#" },
+      { label: "Instagram Analytics", href: "/platforms/instagram-analytics" },
+      { label: "LinkedIn Analytics", href: "/platforms/linkedin-analytics" },
     ],
   },
   {
@@ -21,27 +21,6 @@ const columns = [
       { label: "For Marketing Agencies", href: "/solutions/marketing-agencies" },
       { label: "For Content Creators", href: "/solutions/content-creators" },
       { label: "For Video Editors", href: "/solutions/video-editors" },
-      { label: "For Coaches", href: "/#" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "Blog", href: "/blog" },
-      { label: "Case Studies", href: "/resources/case-studies" },
-      { label: "Free Tools", href: "/resources/free-tools" },
-      { label: "Help Center", href: "/resources/help-center" },
-      { label: "Competitor Analysis Guide", href: "/blog/competitor-analysis" },
-      { label: "Content Strategy Guide", href: "/blog/social-media-strategy" },
-      { label: "Industry Guides", href: "/blog/industry-guides" },
-    ],
-  },
-  {
-    title: "Compare",
-    links: [
-      { label: "vs Socialinsider", href: "/compare/vs-socialinsider" },
-      { label: "vs Sprout Social", href: "/compare/vs-sprout-social" },
-      { label: "vs Not Just Analytics", href: "/compare/vs-not-just-analytics" },
     ],
   },
   {
@@ -49,8 +28,6 @@ const columns = [
     links: [
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
-      { label: "Privacy Policy", href: "/#" },
-      { label: "Terms of Service", href: "/#" },
     ],
   },
 ];

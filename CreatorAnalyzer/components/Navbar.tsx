@@ -22,13 +22,10 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Features",
     children: [
-      { label: "AI Competitor Analysis", href: "/features/ai-competitor-analysis", description: "24/7 automated competitor tracking" },
-      { label: "Video Content Intelligence", href: "/features/video-content-intelligence", description: "Deep analysis of reel performance" },
-      { label: "Weekly Strategy Briefs", href: "/features/weekly-strategy-briefs", description: "AI-generated action plans every Monday" },
-      { label: "Hook & Format Analysis", href: "/features/hook-format-analysis", description: "Decode what stops the scroll" },
-      { label: "Content Calendar AI", href: "/features/content-calendar-ai", description: "AI-powered content planning" },
-      { label: "Hashtag Strategy", href: "/features/hashtag-strategy", description: "Data-driven hashtag research" },
-      { label: "Industry Benchmarks", href: "/features/industry-benchmarks", description: "Compare against your niche" },
+      { label: "Deep Reel Analyzer", href: "/features/deep-reel-analyzer", description: "5-mode breakdown of any reel" },
+      { label: "Content Mix Engine", href: "/features/content-mix", description: "Merge viral elements into new concepts" },
+      { label: "Facebook Ads Library", href: "/features/ads-library", description: "Track competitor ad creatives" },
+      { label: "AI Template Generation", href: "/features/ai-templates", description: "Custom analysis for your niche" },
     ],
   },
   {
@@ -45,27 +42,10 @@ const NAV_ITEMS: NavItem[] = [
     label: "Platforms",
     children: [
       { label: "Instagram Analytics", href: "/platforms/instagram-analytics" },
-      { label: "YouTube Analytics", href: "/platforms/youtube-analytics", badge: "Coming Soon" },
+      { label: "LinkedIn Analytics", href: "/platforms/linkedin-analytics" },
     ],
   },
   { label: "Pricing", href: "/pricing" },
-  {
-    label: "Compare",
-    children: [
-      { label: "vs Socialinsider", href: "/compare/vs-socialinsider" },
-      { label: "vs Sprout Social", href: "/compare/vs-sprout-social" },
-      { label: "vs Not Just Analytics", href: "/compare/vs-not-just-analytics" },
-    ],
-  },
-  {
-    label: "Resources",
-    children: [
-      { label: "Blog", href: "/blog", description: "Guides, frameworks & growth strategies" },
-      { label: "Case Studies", href: "/resources/case-studies", description: "Real results from D2C brands, agencies & creators" },
-      { label: "Free Tools", href: "/resources/free-tools", description: "Free competitor snapshot & templates" },
-      { label: "Help Center", href: "/resources/help-center", description: "120+ articles, guides & API docs" },
-    ],
-  },
 ];
 
 export function Navbar() {
@@ -223,8 +203,10 @@ export function Navbar() {
             {/* Right-side buttons */}
             <div className="flex items-center gap-4">
               <Link
-                href="/pricing"
-                onClick={(e) => handleLinkClick(e, "/pricing")}
+                href="https://app.thehooklab.in/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => handleLinkClick(e, "https://app.thehooklab.in/login")}
                 className="rounded-lg bg-headline px-6 py-2.5 text-[14px] font-semibold text-white transition hover:bg-headline/90 shadow-soft"
               >
                 Start Free Trial
@@ -328,8 +310,10 @@ export function Navbar() {
           {/* Mobile CTA buttons */}
           <div className="mt-8 flex flex-col pt-6 border-t border-border">
             <Link
-              href="/pricing"
-              onClick={(e) => handleLinkClick(e, "/pricing")}
+              href="https://app.thehooklab.in/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => handleLinkClick(e, "https://app.thehooklab.in/login")}
               className="w-full rounded-lg bg-headline py-4 text-center text-[15px] font-bold text-white shadow-soft transition-colors hover:bg-headline/90"
             >
               Start Free Trial

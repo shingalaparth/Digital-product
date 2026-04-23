@@ -296,7 +296,7 @@ export function LandingPage() {
                                 />
                             </span>
                         </span>
-                    </h1>   
+                    </h1>
 
                     {/* Subheadline */}
                     <p className="mt-5 max-w-lg text-[15px] font-normal leading-relaxed text-muted sm:mt-6 sm:text-lg">
@@ -311,19 +311,26 @@ export function LandingPage() {
             </section>
 
 
-            <section data-testid="section-3" className="relative overflow-hidden border-y border-border py-10 sm:py-14 bg-surface/50">
-
-                <div className="section-shell relative z-10 grid gap-10 text-center md:grid-cols-4">
-                    {landingContent.stats.map((item) => (
-                        <div key={item.label} className="group transition-transform duration-300 hover:scale-[1.02]">
-                            <p className="text-5xl font-black italic tracking-tighter text-primary sm:text-4xl lg:text-5xl">
-                                {item.value}
-                            </p>
-                            <p className="mt-4 text-sm font-medium text-muted sm:text-base lg:text-md">
-                                {item.label}
-                            </p>
-                        </div>
-                    ))}
+            <section data-testid="section-3" className="relative overflow-hidden py-16 sm:py-24 bg-gradient-to-b from-primary/10 via-primary/5 to-transparent">
+                <div className="section-shell relative">
+                    <h2 className="text-center text-xl font-bold text-headline mb-10 sm:mb-14 sm:text-3xl lg:text-4xl">
+                        What creators see after using TheHookLab
+                    </h2>
+                    <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
+                        {landingContent.stats.map((item) => (
+                            <div 
+                                key={item.label} 
+                                className="flex flex-col items-center justify-center rounded-2xl bg-card p-8 shadow-sm border border-primary/10 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md hover:border-primary/30"
+                            >
+                                <p className="text-5xl font-black tracking-tight text-primary sm:text-6xl">
+                                    {item.value}
+                                </p>
+                                <p className="mt-4 text-center text-sm font-medium text-muted sm:text-base">
+                                    {item.label}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
@@ -333,7 +340,7 @@ export function LandingPage() {
                         <h2 className="mx-auto max-w-4xl text-2xl font-bold leading-tight text-headline sm:text-3xl lg:text-4xl">
                             {landingContent.painHeadline}
                         </h2>
-                        <p className="mx-auto mt-4 max-w-2xl text-base text-muted sm:mt-6 sm:text-lg">
+                        <p className="mx-auto mt-2 max-w-2xl text-base text-muted sm:mt-6 sm:text-lg">
                             {landingContent.painSubheadline}
                         </p>
                     </div>
@@ -348,24 +355,22 @@ export function LandingPage() {
                                 const isTop = idx % 2 === 0;
                                 return (
                                     <div key={idx} className="relative flex-1 flex justify-center group cursor-default">
-                                        
+
                                         {/* Step Node */}
                                         <div className="bg-card border border-border px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-[11px] font-bold text-headline uppercase tracking-widest transition-all duration-300 group-hover:border-primary/40 group-hover:bg-primary/5 group-hover:text-primary group-hover:shadow-[0_0_15px_rgba(255,95,38,0.15)] relative z-20">
                                             Step {idx + 1}
                                         </div>
 
                                         {/* Vertical Connector */}
-                                        <div 
-                                            className={`absolute left-1/2 w-[1px] bg-zinc-300 -translate-x-1/2 transition-colors duration-300 group-hover:bg-primary/40 z-10 ${
-                                                isTop ? 'bottom-1/2 h-8 lg:h-10' : 'top-1/2 h-8 lg:h-10'
-                                            }`} 
+                                        <div
+                                            className={`absolute left-1/2 w-[1px] bg-zinc-300 -translate-x-1/2 transition-colors duration-300 group-hover:bg-primary/40 z-10 ${isTop ? 'bottom-1/2 h-8 lg:h-10' : 'top-1/2 h-8 lg:h-10'
+                                                }`}
                                         />
 
                                         {/* Content Box */}
-                                        <div 
-                                            className={`absolute left-1/2 w-[150px] lg:w-[220px] -translate-x-1/2 text-center p-2 transition-all duration-300 ${
-                                                isTop ? 'bottom-[calc(50%+2rem)] lg:bottom-[calc(50%+2.5rem)]' : 'top-[calc(50%+2rem)] lg:top-[calc(50%+2.5rem)]'
-                                            }`}
+                                        <div
+                                            className={`absolute left-1/2 w-[150px] lg:w-[220px] -translate-x-1/2 text-center p-2 transition-all duration-300 ${isTop ? 'bottom-[calc(50%+2rem)] lg:bottom-[calc(50%+2.5rem)]' : 'top-[calc(50%+2rem)] lg:top-[calc(50%+2.5rem)]'
+                                                }`}
                                         >
                                             <p className="text-[13px] sm:text-sm text-body font-medium leading-relaxed group-hover:text-headline transition-colors duration-300">
                                                 {step}
@@ -381,7 +386,7 @@ export function LandingPage() {
                     <div className="md:hidden mt-16 mb-20 space-y-8 relative max-w-sm mx-auto px-4">
                         {/* Vertical Line */}
                         <div className="absolute left-[35px] top-4 bottom-4 w-[1px] bg-zinc-300" />
-                        
+
                         {landingContent.painSteps.map((step, idx) => (
                             <div key={idx} className="relative flex items-start gap-6 group">
                                 <div className="relative z-10 flex-shrink-0 bg-card border border-border h-10 w-10 rounded-full flex items-center justify-center text-[10px] font-bold text-headline transition-all duration-300 group-hover:border-primary/40 group-hover:bg-primary/5 group-hover:text-primary">
@@ -399,31 +404,36 @@ export function LandingPage() {
                         This cycle costs you 8-10 hours every single week and produces zero actionable insights. By the time you copy a trend, your competitor has already moved on to the next one.
                     </div>
 
-                    <div className="mt-12 grid gap-4 sm:mt-20 sm:gap-6 md:grid-cols-3">
-                        {landingContent.pains.map((pain) => {
-                            const Icon = iconFor(pain.icon);
-                            return (
-                                <article
-                                    key={pain.title}
-                                    className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-soft sm:p-8"
-                                >
-                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                                    <div className="absolute left-0 top-0 h-full w-[3px] bg-primary/70 transition-all duration-300 group-hover:w-[5px] group-hover:bg-primary" />
+                </div>
+            </section>
 
-                                    <div className="relative z-10">
-                                        <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-surface border border-border transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/10 sm:h-12 sm:w-12">
-                                            <Icon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6" aria-hidden />
-                                        </div>
-                                        <h3 className="mt-4 text-lg font-bold text-headline transition-colors duration-300 group-hover:text-primary sm:mt-6 sm:text-xl">
-                                            {pain.title}
-                                        </h3>
-                                        <p className="mt-2 text-sm leading-relaxed text-muted transition-colors duration-300 group-hover:text-body/90 sm:mt-3">
-                                            {pain.description}
-                                        </p>
-                                    </div>
-                                </article>
-                            );
-                        })}
+            <section className="relative w-full overflow-hidden">
+                {/* Background Image & Overlay */}
+                <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 hover:scale-105"
+                    style={{ backgroundImage: "url('/bg.png')" }}
+                />
+                <div className="absolute inset-0 bg-zinc-900/80 backdrop-blur-[2px]" />
+                
+                <div className="relative z-5 px-6 py-20 sm:py-32 text-center flex flex-col items-center">
+                    <h2 className="max-w-4xl text-rxl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl mb-12">
+                        {landingContent.singleReelCta.headline}
+                    </h2>
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full sm:w-auto">
+                        <Link
+                            href={landingContent.singleReelCta.primaryCta.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-[15px] font-bold text-bg transition-all hover:brightness-90 hover:scale-[1.02] shadow-soft active:scale-95"
+                        >
+                            {landingContent.singleReelCta.primaryCta.label}
+                        </Link>
+                        <Link
+                            href={landingContent.singleReelCta.secondaryCta.href}
+                            className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-[15px] font-bold text-white transition-all hover:bg-white/10 hover:scale-[1.02] active:scale-95"
+                        >
+                            {landingContent.singleReelCta.secondaryCta.label}
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -547,55 +557,7 @@ export function LandingPage() {
                 </div>
             </section>
 
-            <section id="compare" data-testid="section-7" className="relative overflow-hidden border-y border-border py-16 sm:py-24 lg:py-32 bg-surface/20">
 
-                {/* Premium Floating Background Elements — hidden on mobile */}
-                <div
-                    className="absolute -right-16 top-10 hidden h-80 w-80 animate-subtle-float bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[10deg] md:block"
-                    style={{ "--base-rotate": "-10deg", backgroundImage: 'url("/6.png")' } as React.CSSProperties}
-                />
-                <div
-                    className="absolute left-4 top-24 hidden h-64 w-64 animate-subtle-float-slow bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none rotate-[15deg] blur-[2px] md:block"
-                    style={{ "--base-rotate": "15deg", backgroundImage: 'url("/7.png")' } as React.CSSProperties}
-                />
-                <div
-                    className="absolute bottom-10 left-[45%] hidden h-40 w-40 animate-subtle-float-slower bg-contain bg-no-repeat bg-center opacity-30 pointer-events-none -rotate-[5deg] blur-[4px] lg:block"
-                    style={{ "--base-rotate": "-5deg", backgroundImage: 'url("/8.png")' } as React.CSSProperties}
-                />
-
-                <div className="section-shell relative z-10">
-                    <h2 className="text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">{landingContent.comparison.headline}</h2>
-                    <p className="mt-2 max-w-3xl text-sm text-body sm:mt-3 sm:text-base">{landingContent.comparison.subtext}</p>
-
-                    <div className="mt-6 grid gap-3 sm:mt-8 sm:gap-4 md:grid-cols-3">
-                        {[
-                            { name: "Creator A", pattern: "Question hook", score: "91" },
-                            { name: "Creator B", pattern: "Face-first opener", score: "89" },
-                            { name: "Creator C", pattern: "Curiosity headline", score: "93" },
-                        ].map((creator) => (
-                            <article key={creator.name} className="rounded-xl border border-primary/30 bg-surface p-4 sm:rounded-2xl sm:p-5">
-                                <p className="text-sm font-semibold text-headline">{creator.name}</p>
-                                <p className="mt-1 text-xs text-muted sm:mt-2">Top pattern: {creator.pattern}</p>
-                                <p className="mt-2 inline-flex rounded-full bg-primary/20 px-2 py-1 text-xs font-bold text-primary sm:mt-3">
-                                    Score {creator.score}
-                                </p>
-                            </article>
-                        ))}
-                    </div>
-
-                    <div className="mt-4 rounded-xl border border-primary/40 bg-primary/10 p-4 sm:mt-6 sm:rounded-2xl sm:p-5">
-                        <p className="text-sm font-semibold text-primary">Shared Patterns Found</p>
-                        <p className="mt-1 text-sm text-body sm:mt-2">High-retention hooks, 18-24 second duration, and comment-led CTAs.</p>
-                    </div>
-
-                    <Link
-                        href={landingContent.comparison.href || "/compare"}
-                        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-bg transition hover:bg-primary-dark sm:mt-8 sm:w-auto"
-                    >
-                        {landingContent.comparison.cta} <ArrowRight className="h-4 w-4" aria-hidden />
-                    </Link>
-                </div>
-            </section>
 
             <section data-testid="section-8" className="py-16 sm:py-24 lg:py-32">
                 <div className="section-shell">
@@ -749,104 +711,7 @@ export function LandingPage() {
                 </div>
             </section>
 
-            {/* ── Case Studies Section ── */}
-            <section data-testid="section-case-studies" className="relative overflow-hidden py-16 sm:py-24 lg:py-32">
-                <div className="hero-section absolute inset-0 opacity-[0.06]" />
 
-                <div className="section-shell relative z-10">
-                    <div className="text-center">
-                        <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
-                            Case Studies
-                        </span>
-                        <h2 className="mt-4 text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">
-                            {landingContent.caseStudies.headline}
-                        </h2>
-                        <p className="mx-auto mt-3 max-w-2xl text-sm text-muted sm:text-base">
-                            {landingContent.caseStudies.subheadline}
-                        </p>
-                    </div>
-
-                    <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-6 md:grid-cols-3">
-                        {landingContent.caseStudies.items.map((study) => (
-                            <article
-                                key={study.title}
-                                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-soft sm:p-6"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                                <div className="relative z-10">
-                                    <span className="inline-flex rounded-full bg-surface px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary border border-border">
-                                        {study.label}
-                                    </span>
-                                    <h3 className="mt-3 text-base font-bold text-headline sm:text-lg">{study.title}</h3>
-                                    <div className="mt-4 flex items-baseline gap-2">
-                                        <span className="text-3xl font-black text-primary sm:text-4xl">{study.metric}</span>
-                                        <span className="text-xs font-semibold uppercase tracking-wider text-muted">{study.metricLabel}</span>
-                                    </div>
-                                    <p className="mt-3 text-sm leading-relaxed text-muted">{study.description}</p>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ── Testimonials Section ── */}
-            <section data-testid="section-9" className="border-y border-border py-16 sm:py-24 lg:py-32">
-                <div className="section-shell">
-                    <h2 className="text-center text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">
-                        {landingContent.testimonialsHeadline}
-                    </h2>
-                    <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
-                        {landingContent.testimonials.map((testimonial) => (
-                            <article key={testimonial.name} className="card p-5 sm:p-6">
-                                <div className="mb-3 h-9 w-9 rounded-full bg-surface sm:mb-4 sm:h-10 sm:w-10" aria-hidden />
-                                <p className="text-sm leading-relaxed text-body">{testimonial.quote}</p>
-                                <p className="mt-3 text-sm font-semibold text-headline sm:mt-4">{testimonial.name}</p>
-                                <p className="text-xs text-muted">{testimonial.detail}</p>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ── Free Tools & Resources Section ── */}
-            <section data-testid="section-free-tools" className="relative overflow-hidden py-16 sm:py-24 lg:py-32">
-                <div className="hero-section absolute inset-0 opacity-[0.04]" />
-
-                <div className="section-shell relative z-10">
-                    <div className="text-center">
-                        <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
-                            Free Resources
-                        </span>
-                        <h2 className="mt-4 text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">
-                            {landingContent.freeTools.headline}
-                        </h2>
-                        <p className="mx-auto mt-3 max-w-2xl text-sm text-muted sm:text-base">
-                            {landingContent.freeTools.subheadline}
-                        </p>
-                    </div>
-
-                    <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
-                        {landingContent.freeTools.items.map((tool) => (
-                            <article
-                                key={tool.title}
-                                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-soft sm:p-6"
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                                <div className="relative z-10">
-                                    <h3 className="text-base font-bold text-headline transition-colors group-hover:text-primary sm:text-lg">{tool.title}</h3>
-                                    <p className="mt-2 text-sm leading-relaxed text-muted">{tool.description}</p>
-                                    <div className="mt-4">
-                                        <span className="inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors group-hover:text-primary-dark">
-                                            {tool.cta} <ArrowRight className="h-3.5 w-3.5" />
-                                        </span>
-                                    </div>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             <section id="pricing" data-testid="section-10" className="py-16 sm:py-24 lg:py-32">
                 <div className="section-shell">
@@ -878,7 +743,7 @@ export function LandingPage() {
                         </div>
                         <span className="inline-flex items-center rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary">
                             {yearlyDiscountLabel}
-                        </span>
+                        </span> 
                     </div>
 
                     <div className="mt-8 flex justify-center">
@@ -888,7 +753,7 @@ export function LandingPage() {
                         </div>
                     </div>
 
-                    <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <div className="mx-auto max-w-6xl mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-3 lg:grid-cols-3">
                         {landingContent.pricing.map((tier) => {
                             const price = billingCycle === "annual" ? tier.priceAnnual : tier.priceMonthly;
                             const subtitle = billingCycle === "annual" ? tier.subtitleAnnual : tier.subtitleMonthly;
@@ -929,7 +794,9 @@ export function LandingPage() {
 
                                     <div className="mt-8">
                                         <Link
-                                            href="/pricing"// Link to full pricing or checkout
+                                            href={tier.upcoming ? "/pricing" : "https://app.thehooklab.in/login"}
+                                            target={tier.upcoming ? undefined : "_blank"}
+                                            rel={tier.upcoming ? undefined : "noopener noreferrer"}
                                             className={classNames(
                                                 "inline-flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold transition",
                                                 tier.featured
@@ -937,7 +804,7 @@ export function LandingPage() {
                                                     : "border border-primary/20 bg-primary/5 text-primary hover:bg-primary/10"
                                             )}
                                         >
-                                            {tier.key === "agency" ? "Contact Sales" : "Start Free Trial"}
+                                            {tier.upcoming ? "Join Waitlist" : "Start Free Now"}
                                         </Link>
                                     </div>
                                 </article>
@@ -997,14 +864,7 @@ export function LandingPage() {
                                 })}
                             </div>
 
-                            <div className="mt-8">
-                                <a
-                                    href="#"
-                                    className="inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-primary-dark sm:text-base"
-                                >
-                                    Browse Help Center (120+ articles) <ArrowRight className="h-4 w-4" />
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
