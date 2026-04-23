@@ -94,6 +94,11 @@ a {
   }
 }
 
+@keyframes progressFill {
+  from { height: 0%; }
+  to   { height: 100%; }
+}
+
 .animate-subtle-float {
   animation: subtle-float 3.2s ease-in-out infinite;
 }

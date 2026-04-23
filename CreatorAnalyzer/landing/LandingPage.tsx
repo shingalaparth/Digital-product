@@ -58,6 +58,10 @@ function classNames(...values: Array<string | false | null | undefined>): string
 export function LandingPage() {
     const [billingCycle, setBillingCycle] = useState<BillingCycle>("annual");
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+    const [activeStep, setActiveStep] = useState(0);
+    const [isStepAutoPlaying, setIsStepAutoPlaying] = useState(true);
+    const [activeFeature, setActiveFeature] = useState(0);
+    const [isFeatureAutoPlaying, setIsFeatureAutoPlaying] = useState(true);
     const [heroPhraseIndex, setHeroPhraseIndex] = useState(0);
     const [heroTypedText, setHeroTypedText] = useState("");
     const [heroIsDeleting, setHeroIsDeleting] = useState(false);
@@ -100,6 +104,28 @@ export function LandingPage() {
             window.removeEventListener("message", onMessage);
         };
     }, []);
+
+    // Auto-rotate steps every 7 seconds
+    useEffect(() => {
+        if (!isStepAutoPlaying) return;
+        const totalSteps = landingContent.steps.length;
+        if (totalSteps <= 1) return;
+        const interval = window.setInterval(() => {
+            setActiveStep((prev) => (prev + 1) % totalSteps);
+        }, 7000);
+        return () => window.clearInterval(interval);
+    }, [isStepAutoPlaying]);
+
+    // Auto-rotate features every 6 seconds
+    useEffect(() => {
+        if (!isFeatureAutoPlaying) return;
+        const totalFeatures = landingContent.features.length;
+        if (totalFeatures <= 1) return;
+        const interval = window.setInterval(() => {
+            setActiveFeature((prev) => (prev + 1) % totalFeatures);
+        }, 6000);
+        return () => window.clearInterval(interval);
+    }, [isFeatureAutoPlaying]);
 
     useEffect(() => {
         if (!window.matchMedia) {
@@ -416,7 +442,7 @@ export function LandingPage() {
                 <div className="absolute inset-0 bg-zinc-900/80 backdrop-blur-[2px]" />
                 
                 <div className="relative z-5 px-6 py-20 sm:py-32 text-center flex flex-col items-center">
-                    <h2 className="max-w-4xl text-rxl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl mb-12">
+                    <h2 className="max-w-4xl text-2xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl mb-12">
                         {landingContent.singleReelCta.headline}
                     </h2>
                     <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full sm:w-auto">
@@ -442,57 +468,184 @@ export function LandingPage() {
                 id="how-it-works"
                 data-testid="section-5"
                 ref={howItWorksRef}
-                className="relative overflow-hidden border-y border-border py-16 sm:py-24 lg:py-32 bg-surface/30"
+                className="relative overflow-hidden py-16 sm:py-24 lg:py-32 bg-surface/30 border-y border-border"
             >
-
-
                 <div className="section-shell relative z-10">
-                    <h2 className="text-center text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
+                    <h2 className="text-center text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl mb-12 lg:mb-16">
                         <span className="text-primary">
                             {landingContent.howItWorksHeadline}
                         </span>
                     </h2>
 
-                    <div className="relative mt-10 grid gap-8 sm:mt-16 lg:grid-cols-3">
-                        {/* Vertical connector line for mobile */}
-                        <div className="absolute left-8 top-8 bottom-8 w-px border-l border-dashed border-border lg:hidden" />
+                    <div className="grid gap-0 lg:grid-cols-[1fr_2fr] items-center bg-card rounded-3xl border border-border overflow-hidden shadow-sm">
+                        {/* Left Side: Steps Navigation */}
+                        <div className="flex flex-col border-r border-border h-full bg-surface/50">
+                            {landingContent.steps.map((step, index) => {
+                                const isActive = activeStep === index;
+                                return (
+                                    <button
+                                        key={step.step}
+                                        onClick={() => { setActiveStep(index); setIsStepAutoPlaying(false); }}
+                                        className={classNames(
+                                            "relative flex flex-col items-start p-6 sm:p-8 text-left transition-all duration-300 overflow-hidden",
+                                            isActive 
+                                                ? "bg-card" 
+                                                : "border-transparent hover:bg-card/50",
+                                            index !== landingContent.steps.length - 1 ? "border-b border-border" : ""
+                                        )}
+                                    >
+                                        {/* Static left border base */}
+                                        <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-border" />
+                                        {/* Animated progress line */}
+                                        {isActive && (
+                                            <div
+                                                key={`step-progress-${index}-${isStepAutoPlaying}`}
+                                                className="absolute left-0 top-0 w-[3px] bg-primary"
+                                                style={{
+                                                    height: "0%",
+                                                    animation: isStepAutoPlaying ? "progressFill 7s linear forwards" : "none",
+                                                }}
+                                            />
+                                        )}
+                                        {/* Always-visible active highlight when auto-play is off */}
+                                        {isActive && !isStepAutoPlaying && (
+                                            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary" />
+                                        )}
+                                        <div className="flex items-center gap-4 mb-2">
+                                            <div className={classNames(
+                                                "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border transition-colors",
+                                                isActive ? "border-primary text-primary" : "border-muted text-muted"
+                                            )}>
+                                                <span className="text-sm font-bold">{step.step}</span>
+                                            </div>
+                                            <h3 className={classNames(
+                                                "text-lg font-bold transition-colors",
+                                                isActive ? "text-headline" : "text-muted"
+                                            )}>
+                                                {step.title}
+                                            </h3>
+                                        </div>
+                                        <p className={classNames(
+                                            "pl-12 text-sm leading-relaxed transition-colors",
+                                            isActive ? "text-body" : "text-muted"
+                                        )}>
+                                            {step.description}
+                                        </p>
+                                    </button>
+                                );
+                            })}
+                        </div>
 
-                        {landingContent.steps.map((step, index) => (
-                            <article key={step.step} className="group relative">
-                                {index < landingContent.steps.length - 1 && (
-                                    <div className="absolute left-[50%] top-8 hidden h-px w-full border-t border-dashed border-border lg:block" />
-                                )}
+                        {/* Right Side: Visual Display */}
+                        <div className="relative aspect-square w-full overflow-hidden bg-gradient-to-br from-indigo-950 via-blue-950 to-zinc-900 lg:aspect-auto lg:h-full min-h-[400px]">
+                            {/* Subtle grid overlay */}
+                            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
 
-                                <div className="relative flex flex-row items-start gap-4 text-left lg:flex-col lg:items-center lg:text-center">
-                                    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-border bg-card transition-all duration-300 group-hover:border-primary/50 group-hover:bg-primary/5 group-hover:shadow-primary/10 sm:h-16 sm:w-16">
-                                        <span className="text-2xl font-black text-primary transition-transform duration-300 group-hover:scale-110 sm:text-3xl">
-                                            {step.step}
-                                        </span>
+                            {/* Step 0: Add Competitors */}
+                            <div className={classNames(
+                                "absolute inset-0 transition-all duration-700 flex items-center justify-center p-6 sm:p-10",
+                                activeStep === 0 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+                            )}>
+                                <div className="w-full max-w-sm rounded-2xl border border-white/15 bg-white/8 backdrop-blur-xl shadow-2xl overflow-hidden">
+                                    <div className="px-5 py-4 border-b border-white/10 flex items-center gap-3">
+                                        <div className="flex gap-1.5">
+                                            <div className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+                                            <div className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
+                                            <div className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
+                                        </div>
+                                        <span className="text-[11px] text-white/40 font-mono">Add Competitor</span>
                                     </div>
-                                    <div>
-                                        <h3 className="text-lg font-bold text-headline sm:text-xl lg:mt-6">{step.title}</h3>
-                                        <p className="mt-1 text-sm leading-relaxed text-muted sm:mt-2 lg:px-4">{step.description}</p>
+                                    <div className="p-5 flex flex-col gap-4">
+                                        <div className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 px-4 py-3">
+                                            <div className="h-4 w-4 rounded-full bg-primary/60 flex-shrink-0 animate-pulse" />
+                                            <span className="text-sm text-white/70 font-mono">@instagram/competitor_handle</span>
+                                        </div>
+                                        <div className="grid grid-cols-3 gap-2">
+                                            {["@viralcreator", "@contentlab", "@reelmaster"].map(h => (
+                                                <div key={h} className="rounded-lg bg-white/5 border border-white/8 p-2 text-center">
+                                                    <div className="h-7 w-7 rounded-full bg-primary/30 mx-auto mb-2" />
+                                                    <span className="text-[10px] text-white/50">{h}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="rounded-xl bg-primary/20 border border-primary/30 px-4 py-3 flex items-center justify-between">
+                                            <span className="text-xs text-white font-semibold">Scraping latest 30 reels…</span>
+                                            <div className="h-4 w-4 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-2 text-center">
+                                            <div className="rounded-lg bg-white/5 border border-white/10 p-3">
+                                                <p className="text-primary text-lg font-black">142K</p>
+                                                <p className="text-[10px] text-white/40">Avg Views</p>
+                                            </div>
+                                            <div className="rounded-lg bg-white/5 border border-white/10 p-3">
+                                                <p className="text-primary text-lg font-black">8.4%</p>
+                                                <p className="text-[10px] text-white/40">Eng. Rate</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </article>
-                        ))}
-                    </div>
+                            </div>
 
-                    <div className="mt-10 rounded-3xl border border-primary/20 bg-card/50 p-1 backdrop-blur-sm sm:mt-16">
-                        <div className="rounded-[calc(1.5rem-4px)] border border-border bg-surface/50 p-5 text-center sm:p-8 lg:p-10">
-                            <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
-                                Instant Processing
-                            </span>
-                            <p className="mt-4 text-base font-medium text-headline sm:mt-6 sm:text-lg md:text-xl">
-                                Search creator <span className="mx-1 text-primary sm:mx-2">→</span>
-                                ranked viral reels <span className="mx-1 text-primary sm:mx-2">→</span>
-                                AI blueprint screen.
-                            </p>
-                            <div className="mt-6 flex justify-center gap-2 sm:mt-8">
-                                {[1, 2, 3, 4].map((i) => (
-                                    <div key={i} className="h-1.5 w-1.5 rounded-full bg-primary/20" />
-                                ))}
-                                <div className="h-1.5 w-12 rounded-full bg-primary/40 animate-pulse" />
+                            {/* Step 1: Deep Analyze Reel */}
+                            <div className={classNames(
+                                "absolute inset-0 transition-all duration-700 flex items-center justify-center p-6 sm:p-10",
+                                activeStep === 1 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+                            )}>
+                                <div className="w-full max-w-sm rounded-2xl border border-white/15 bg-white/8 backdrop-blur-xl shadow-2xl overflow-hidden">
+                                    <div className="px-5 py-4 border-b border-white/10">
+                                        <span className="text-xs font-bold text-primary uppercase tracking-wider">Deep Reel Analyzer</span>
+                                        <p className="text-[11px] text-white/40 mt-0.5 font-mono">reel_id: CX9f2kL</p>
+                                    </div>
+                                    <div className="p-5 flex flex-col gap-3">
+                                        {[
+                                            { label: "Hook Analysis", value: "Strong curiosity gap in first 1.2s", score: 94, color: "bg-green-400" },
+                                            { label: "Script Structure", value: "AIDA framework with hard cut loop", score: 88, color: "bg-primary" },
+                                            { label: "Director's Pacing", value: "7 cuts in 15s — peak retention pattern", score: 91, color: "bg-blue-400" },
+                                            { label: "Recreation Blueprint", value: "3-step script template generated", score: 100, color: "bg-green-400" },
+                                        ].map((item) => (
+                                            <div key={item.label} className="rounded-lg bg-white/5 border border-white/8 p-3">
+                                                <div className="flex items-center justify-between mb-1.5">
+                                                    <span className="text-[11px] font-semibold text-white/70">{item.label}</span>
+                                                    <span className="text-[11px] font-black text-primary">{item.score}</span>
+                                                </div>
+                                                <div className="h-1 w-full rounded-full bg-white/10">
+                                                    <div className={`h-1 rounded-full ${item.color}`} style={{ width: `${item.score}%` }} />
+                                                </div>
+                                                <p className="text-[10px] text-white/40 mt-1.5">{item.value}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Step 2: Content Blueprint */}
+                            <div className={classNames(
+                                "absolute inset-0 transition-all duration-700 flex items-center justify-center p-6 sm:p-10",
+                                activeStep === 2 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+                            )}>
+                                <div className="w-full max-w-sm rounded-2xl border border-white/15 bg-white/8 backdrop-blur-xl shadow-2xl overflow-hidden">
+                                    <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between">
+                                        <span className="text-xs font-bold text-white/80 uppercase tracking-wider">Content Blueprint</span>
+                                        <span className="text-[10px] rounded-full bg-green-500/20 border border-green-500/40 text-green-400 px-2 py-0.5 font-bold">Ready</span>
+                                    </div>
+                                    <div className="p-5 flex flex-col gap-3">
+                                        <div className="rounded-lg bg-primary/15 border border-primary/25 p-3">
+                                            <p className="text-[10px] text-primary font-bold uppercase tracking-wider mb-1">Hook (0-2s)</p>
+                                            <p className="text-xs text-white/80">&quot;Nobody talks about why your Reel flops — until now.&quot;</p>
+                                        </div>
+                                        <div className="rounded-lg bg-white/5 border border-white/8 p-3">
+                                            <p className="text-[10px] text-white/50 font-bold uppercase tracking-wider mb-1">Problem (2-8s)</p>
+                                            <p className="text-xs text-white/70">Creators waste 10hrs/week on guesswork. Reveal the pain point fast.</p>
+                                        </div>
+                                        <div className="rounded-lg bg-white/5 border border-white/8 p-3">
+                                            <p className="text-[10px] text-white/50 font-bold uppercase tracking-wider mb-1">Solution (8-20s)</p>
+                                            <p className="text-xs text-white/70">TheHookLab deconstructs viral reels into a step-by-step recreation guide.</p>
+                                        </div>
+                                        <div className="rounded-xl bg-primary text-white text-center py-2.5 text-sm font-bold shadow-lg shadow-primary/30 cursor-pointer hover:brightness-110 transition-all">
+                                            Copy Script Template
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -500,64 +653,121 @@ export function LandingPage() {
             </section>
 
             <section id="features" data-testid="section-6" className="py-16 sm:py-24 lg:py-32">
-                <div className="section-shell space-y-8 sm:space-y-16">
-                    {landingContent.features.map((feature, index) => {
-                        const Icon = iconFor(feature.icon);
-                        const isReverse = index % 2 === 1;
-
-                        return (
-                            <article
-                                key={feature.key}
-                                className={classNames(
-                                    "grid gap-6 rounded-2xl border border-border bg-card p-5 sm:gap-8 sm:rounded-3xl sm:p-8 md:grid-cols-2 md:items-center transition-all duration-300",
-                                    feature.href ? "hover:border-primary/40 hover:shadow-soft" : "",
-                                    isReverse ? "md:[&>*:first-child]:order-2" : "",
-                                )}
-                            >
-                                <div>
-                                    <div className="inline-flex items-center gap-2 text-primary">
-                                        <Icon className="h-5 w-5" aria-hidden />
-                                        <span className="text-sm font-semibold">{feature.title}</span>
-                                    </div>
-                                    <h3 className="mt-3 text-xl font-bold text-headline sm:text-2xl">{feature.heading}</h3>
-                                    <p className="mt-2 text-sm leading-relaxed text-body sm:mt-3">{feature.description}</p>
-                                    <ul className="mt-3 space-y-2 sm:mt-4">
-                                        {feature.bullets.map((bullet) => (
-                                            <li key={bullet} className="flex items-start gap-2 text-sm text-muted">
-                                                <Check className="mt-[2px] h-4 w-4 flex-shrink-0 text-primary" aria-hidden />
-                                                <span>{bullet}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    {feature.href && (
-                                        <div className="mt-6">
-                                            <Link
-                                                href={feature.href}
-                                                className="inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-primary-dark"
-                                            >
-                                                Learn more about {feature.title} <ArrowRight className="h-3.5 w-3.5" />
-                                            </Link>
+                <div className="section-shell">
+                    <h2 className="text-center text-2xl font-bold tracking-tight text-headline sm:text-3xl lg:text-4xl mb-12 lg:mb-16">
+                        Unlock the power of <span className="text-primary">AI Engineering</span>
+                    </h2>
+                    
+                    <div className="grid gap-0 lg:grid-cols-[1fr_2fr] items-start bg-card rounded-3xl border border-border overflow-hidden shadow-sm">
+                        {/* Left Side: Features Navigation */}
+                        <div className="flex flex-col border-r border-border h-full bg-surface/50">
+                            {landingContent.features.map((feature, index) => {
+                                const isActive = activeFeature === index;
+                                const Icon = iconFor(feature.icon);
+                                return (
+                                    <button
+                                        key={feature.key}
+                                        onClick={() => { setActiveFeature(index); setIsFeatureAutoPlaying(false); }}
+                                        className={classNames(
+                                            "relative flex flex-col items-start p-6 sm:p-8 text-left transition-all duration-300 overflow-hidden",
+                                            isActive 
+                                                ? "bg-card" 
+                                                : "border-transparent hover:bg-card/50",
+                                            index !== landingContent.features.length - 1 ? "border-b border-border" : ""
+                                        )}
+                                    >
+                                        {/* Static left border base */}
+                                        <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-border" />
+                                        {/* Animated progress line */}
+                                        {isActive && (
+                                            <div
+                                                key={`feat-progress-${index}-${isFeatureAutoPlaying}`}
+                                                className="absolute left-0 top-0 w-[3px] bg-primary"
+                                                style={{
+                                                    height: "0%",
+                                                    animation: isFeatureAutoPlaying ? "progressFill 6s linear forwards" : "none",
+                                                }}
+                                            />
+                                        )}
+                                        {/* Always-visible active highlight when auto-play is off */}
+                                        {isActive && !isFeatureAutoPlaying && (
+                                            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary" />
+                                        )}
+                                        <div className="flex items-center gap-4 mb-2">
+                                            <div className={classNames(
+                                                "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border transition-colors",
+                                                isActive ? "border-primary text-primary" : "border-muted text-muted"
+                                            )}>
+                                                <Icon className="h-4 w-4" />
+                                            </div>
+                                            <h3 className={classNames(
+                                                "text-lg font-bold transition-colors",
+                                                isActive ? "text-headline" : "text-muted"
+                                            )}>
+                                                {feature.title}
+                                            </h3>
                                         </div>
-                                    )}
-                                </div>
+                                        {isActive && (
+                                            <div className="pl-12 mt-2 space-y-4 animate-in fade-in slide-in-from-top-2 duration-500">
+                                                <p className="text-sm leading-relaxed text-body">
+                                                    {feature.description}
+                                                </p>
+                                                {feature.href && (
+                                                    <Link
+                                                        href={feature.href}
+                                                        className="inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-primary-dark"
+                                                    >
+                                                        Learn more <ArrowRight className="h-3.5 w-3.5" />
+                                                    </Link>
+                                                )}
+                                            </div>
+                                        )}
+                                    </button>
+                                );
+                            })}
+                        </div>
 
-                                <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-gradient-to-br from-surface to-card transition-colors sm:aspect-video sm:rounded-2xl">
-                                    {feature.href ? (
-                                        <Link href={feature.href} className="absolute inset-0 z-10" aria-label={`View ${feature.title}`} />
-                                    ) : null}
-                                    <div
-                                        className="absolute inset-2 bg-cover bg-center rounded-lg opacity-80 transition-opacity border border-border/50 sm:inset-4 sm:rounded-xl"
-                                        style={{ backgroundImage: `url("/${[5, 2, 8, 7][index]}.png")` }}
-                                    />
-                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(34,197,94,0.1),transparent)]" />
-                                </div>
-                            </article>
-                        );
-                    })}
+                        {/* Right Side: Visual Display */}
+                        <div className="relative aspect-square w-full overflow-hidden bg-gradient-to-br from-zinc-900 to-black lg:aspect-auto lg:h-full min-h-[500px]">
+                            {landingContent.features.map((feature, index) => {
+                                const isActive = activeFeature === index;
+                                return (
+                                    <div 
+                                        key={feature.key}
+                                        className={classNames(
+                                            "absolute inset-0 transition-all duration-700 transform",
+                                            isActive ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+                                        )}
+                                    >
+                                        {/* Background Image */}
+                                        <div
+                                            className="absolute inset-0 bg-cover bg-center opacity-50 mix-blend-luminosity transition-transform duration-1000"
+                                            style={{ 
+                                                backgroundImage: `url("/${[5, 2, 8, 7][index % 4]}.png")`,
+                                                transform: isActive ? "scale(1.05)" : "scale(1)"
+                                            }}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/40 to-transparent" />
+                                        
+                                        {/* Overlay UI elements */}
+                                        <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 sm:right-10 p-6 sm:p-8 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl shadow-2xl">
+                                            <h4 className="text-xl font-bold text-white mb-4">{feature.heading}</h4>
+                                            <ul className="space-y-3">
+                                                {feature.bullets.slice(0, 3).map((bullet) => (
+                                                    <li key={bullet} className="flex items-start gap-3 text-sm text-zinc-300">
+                                                        <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" aria-hidden />
+                                                        <span>{bullet}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
             </section>
-
-
 
             <section data-testid="section-8" className="py-16 sm:py-24 lg:py-32">
                 <div className="section-shell">
@@ -596,121 +806,6 @@ export function LandingPage() {
                     </div>
                 </div>
             </section>
-
-            <section data-testid="section-use-cases" className="relative overflow-hidden border-y border-border py-16 sm:py-24 lg:py-32 bg-surface/40">
-
-                <div className="section-shell relative z-10">
-                    <div className="text-center">
-                        <h2 className="text-2xl font-bold text-headline sm:text-3xl lg:text-4xl">
-                            {landingContent.useCases.headline}
-                        </h2>
-                    </div>
-
-                    <div className="mt-8 sm:mt-12">
-                        {/* Desktop Tabs */}
-                        <div className="hidden justify-center gap-1 sm:flex">
-                            {landingContent.useCases.items.map((item, index) => (
-                                <button
-                                    key={item.title}
-                                    type="button"
-                                    onClick={() => {
-                                        setActiveUseCaseIndex(index);
-                                        setIsUseCaseAutoRotating(false); // Stop auto-rotate on user click
-                                    }}
-                                    className={classNames(
-                                        "relative rounded-t-xl px-6 py-3 text-sm font-bold transition-all duration-300",
-                                        activeUseCaseIndex === index
-                                            ? "bg-card text-primary border-t border-x border-border"
-                                            : "text-muted hover:text-body"
-                                    )}
-                                >
-                                    {item.title}
-                                    {activeUseCaseIndex === index && (
-                                        <motion.div
-                                            layoutId="activeTab"
-                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                                            initial={false}
-                                        />
-                                    )}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Content Area */}
-                        <div className="rounded-2xl border border-border bg-card p-6 sm:rounded-t-none sm:p-10 min-h-[400px]">
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={activeUseCaseIndex}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.3, ease: "easeOut" }}
-                                    className="grid gap-8 lg:grid-cols-[1.5fr,1fr]"
-                                >
-                                    <div>
-                                        <h3 className="text-xl font-bold text-headline sm:text-2xl">
-                                            {landingContent.useCases.items[activeUseCaseIndex]?.title}
-                                        </h3>
-                                        <p className="mt-4 text-base leading-relaxed text-body sm:text-lg">
-                                            {landingContent.useCases.items[activeUseCaseIndex]?.description}
-                                        </p>
-                                        <div className="mt-6 flex flex-col gap-2">
-                                            <span className="text-xs font-bold uppercase tracking-widest text-primary">Perfect for:</span>
-                                            <p className="text-sm text-muted">{landingContent.useCases.items[activeUseCaseIndex]?.perfectFor}</p>
-                                        </div>
-                                        <div className="mt-8">
-                                            <Link
-                                                href={landingContent.useCases.items[activeUseCaseIndex]?.link || "#"}
-                                                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-bg transition hover:bg-primary-dark"
-                                            >
-                                                {landingContent.useCases.items[activeUseCaseIndex]?.linkLabel} <ArrowRight className="h-4 w-4" />
-                                            </Link>
-                                        </div>
-                                    </div>
-
-                                    <div className="hidden lg:block">
-                                        <motion.div
-                                            key={`img-${activeUseCaseIndex}`}
-                                            initial={{ scale: 0.95, opacity: 0 }}
-                                            animate={{ scale: 1, opacity: 1 }}
-                                            transition={{ duration: 0.5 }}
-                                            className="relative aspect-square overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface to-card"
-                                        >
-                                            <div
-                                                className="absolute inset-4 bg-cover bg-center rounded-xl opacity-80 border border-border/50"
-                                                style={{ backgroundImage: `url("/${[1, 2, 4, 8][activeUseCaseIndex % 4]}.png")` }}
-                                            />
-                                        </motion.div>
-                                    </div>
-                                </motion.div>
-                            </AnimatePresence>
-
-                            {/* Mobile Tabs (Simple selection) */}
-                            <div className="mt-8 flex flex-wrap gap-2 pt-8 border-t border-border sm:hidden">
-                                {landingContent.useCases.items.map((item, index) => (
-                                    <button
-                                        key={item.title}
-                                        type="button"
-                                        onClick={() => {
-                                            setActiveUseCaseIndex(index);
-                                            setIsUseCaseAutoRotating(false);
-                                        }}
-                                        className={classNames(
-                                            "rounded-lg px-4 py-2 text-xs font-bold transition-all",
-                                            activeUseCaseIndex === index
-                                                ? "bg-primary text-bg"
-                                                : "bg-surface text-muted border border-border"
-                                        )}
-                                    >
-                                        {item.title}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
 
 
             <section id="pricing" data-testid="section-10" className="py-16 sm:py-24 lg:py-32">
